@@ -1,24 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Giada & Paolo</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
 
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  background:#f4eee4;
-  color:#718a77;
-  font-family:Montserrat,Arial,sans-serif;
+    margin:0;
+    background:#f4eee4;
+    color:#718a77;
+    font-family:Montserrat,Arial,sans-serif;
 }
 
 /* =========================
@@ -26,42 +30,42 @@ body{
 ========================= */
 
 #opening{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:#f4eee4;
-  transition:opacity .9s ease,visibility .9s ease;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:#f4eee4;
+    transition:opacity .9s ease,visibility .9s ease;
 }
 
 #opening.finished{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
 }
 
 .envelope-wrap{
-  position:relative;
-  width:min(92vw,520px);
-  height:min(92vh,925px);
+    position:relative;
+    width:min(92vw,520px);
+    height:min(92vh,925px);
 }
 
 .envelope{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  z-index:10;
-  transition:opacity .8s ease,transform .8s ease;
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    z-index:10;
+    transition:opacity .8s ease,transform .8s ease;
 }
 
 .envelope.hide{
-  opacity:0;
-  transform:scale(.97) translateY(2%);
+    opacity:0;
+    transform:scale(.97) translateY(2%);
 }
 
 /* =========================
@@ -69,124 +73,133 @@ body{
 ========================= */
 
 .seal-effect{
-  position:absolute;
-  left:50%;
-  top:53%;
-  width:92px;
-  height:92px;
-  z-index:60;
-  pointer-events:none;
-  opacity:0;
-  transform:translate(-50%,-50%);
+    position:absolute;
+    left:50%;
+    top:53%;
+    width:92px;
+    height:92px;
+    z-index:60;
+    pointer-events:none;
+    opacity:0;
+    transform:translate(-50%,-50%);
 }
 
 .seal-effect.active{
-  opacity:1;
+    opacity:1;
 }
 
 .seal-piece{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:radial-gradient(
-    circle at 35% 30%,
-    #f5c6c9,
-    #df9199 48%,
-    #c97782 100%
-  );
-  box-shadow:
-    inset 0 2px 3px #ffffff66,
-    0 3px 7px #0002;
-  opacity:0;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle at 35% 30%,
+        #f5c6c9,
+        #df9199 48%,
+        #c97782 100%
+    );
+    box-shadow:
+        inset 0 2px 3px #ffffff66,
+        0 3px 7px #0002;
+    opacity:0;
 }
 
 .seal-piece.left,
 .seal-piece.right{
-  transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
 }
 
 .seal-effect.active .seal-piece{
-  opacity:1;
+    opacity:1;
 }
 
 .seal-effect.break .seal-piece.left{
-  animation:sealLeft .75s ease forwards;
+    animation:sealLeft .75s ease forwards;
 }
 
 .seal-effect.break .seal-piece.right{
-  animation:sealRight .75s ease forwards;
+    animation:sealRight .75s ease forwards;
 }
 
 @keyframes sealLeft{
-  0%{
-    transform:translate(-50%,-50%) rotate(0) scale(1);
-  }
-  35%{
-    transform:translate(-95%,-55%) rotate(-12deg) scale(1.02);
-  }
-  100%{
-    transform:translate(-180%,-80%) rotate(-28deg) scale(.55);
-    opacity:0;
-  }
+
+    0%{
+        transform:translate(-50%,-50%) rotate(0) scale(1);
+    }
+
+    35%{
+        transform:translate(-95%,-55%) rotate(-12deg) scale(1.02);
+    }
+
+    100%{
+        transform:translate(-180%,-80%) rotate(-28deg) scale(.55);
+        opacity:0;
+    }
 }
 
 @keyframes sealRight{
-  0%{
-    transform:translate(-50%,-50%) rotate(0) scale(1);
-  }
-  35%{
-    transform:translate(-5%,-45%) rotate(12deg) scale(1.02);
-  }
-  100%{
-    transform:translate(80%,-5%) rotate(28deg) scale(.55);
-    opacity:0;
-  }
+
+    0%{
+        transform:translate(-50%,-50%) rotate(0) scale(1);
+    }
+
+    35%{
+        transform:translate(-5%,-45%) rotate(12deg) scale(1.02);
+    }
+
+    100%{
+        transform:translate(80%,-5%) rotate(28deg) scale(.55);
+        opacity:0;
+    }
 }
 
 .crack{
-  position:absolute;
-  left:50%;
-  top:53%;
-  z-index:58;
-  width:2px;
-  height:48px;
-  background:#8e6669;
-  opacity:0;
-  transform-origin:center bottom;
+    position:absolute;
+    left:50%;
+    top:53%;
+    z-index:58;
+    width:2px;
+    height:48px;
+    background:#8e6669;
+    opacity:0;
+    transform-origin:center bottom;
 }
 
 .crack.c1{
-  transform:translate(-50%,-50%) rotate(-25deg);
+    transform:translate(-50%,-50%) rotate(-25deg);
 }
 
 .crack.c2{
-  transform:translate(-50%,-50%) rotate(18deg);
+    transform:translate(-50%,-50%) rotate(18deg);
 }
 
 .crack.c3{
-  transform:translate(-50%,-50%) rotate(60deg);
+    transform:translate(-50%,-50%) rotate(60deg);
 }
 
 .seal-effect.break .crack{
-  animation:crackShow .45s ease forwards;
+    animation:crackShow .45s ease forwards;
 }
 
 @keyframes crackShow{
-  0%{
-    opacity:0;
-    height:0;
-  }
-  45%{
-    opacity:.8;
-    height:48px;
-  }
-  100%{
-    opacity:0;
-    height:55px;
-  }
+
+    0%{
+        opacity:0;
+        height:0;
+    }
+
+    45%{
+        opacity:.8;
+        height:48px;
+    }
+
+    100%{
+        opacity:0;
+        height:55px;
+    }
 }
 
 /* =========================
@@ -194,47 +207,45 @@ body{
 ========================= */
 
 .letter{
-  position:absolute;
-  left:50%;
-  top:12%;
-  width:72%;
-  z-index:40;
-  opacity:0;
-  transform:translate(-50%,48%) scale(.94);
-  transition:
-    transform 1.25s cubic-bezier(.2,.8,.2,1),
-    opacity .7s ease;
+    position:absolute;
+    left:50%;
+    top:12%;
+    width:72%;
+    z-index:40;
+    opacity:0;
+    transform:translate(-50%,48%) scale(.94);
+    transition:
+        transform 1.25s cubic-bezier(.2,.8,.2,1),
+        opacity .7s ease;
 }
 
 .letter.show{
-  opacity:1;
-  transform:translate(-50%,0) scale(1);
+    opacity:1;
+    transform:translate(-50%,0) scale(1);
 }
 
 .open-btn{
-  position:absolute;
-  left:50%;
-  top:66%;
-  transform:translate(-50%,-50%);
-  z-index:80;
-  border:0;
-  border-radius:999px;
-  padding:13px 24px;
-  background:#dca4aa;
-  color:white;
-  letter-spacing:.12em;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 6px 18px #0002;
-  transition:
-    opacity .4s ease,
-    transform .4s ease;
+    position:absolute;
+    left:50%;
+    top:66%;
+    transform:translate(-50%,-50%);
+    z-index:80;
+    border:0;
+    border-radius:999px;
+    padding:13px 24px;
+    background:#dca4aa;
+    color:white;
+    letter-spacing:.12em;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 6px 18px #0002;
+    transition:opacity .4s ease,transform .4s ease;
 }
 
 .open-btn.hidden{
-  opacity:0;
-  pointer-events:none;
-  transform:translate(-50%,-50%) scale(.9);
+    opacity:0;
+    pointer-events:none;
+    transform:translate(-50%,-50%) scale(.9);
 }
 
 /* =========================
@@ -242,34 +253,34 @@ body{
 ========================= */
 
 #site{
-  min-height:100svh;
-  opacity:0;
-  transition:opacity .6s ease;
-  background:#f4eee4;
+    min-height:100svh;
+    opacity:0;
+    transition:opacity .6s ease;
+    background:#f4eee4;
 }
 
 #site.show{
-  opacity:1;
+    opacity:1;
 }
 
 .page{
-  width:min(100%,520px);
-  margin:auto;
-  padding:20px 14px 70px;
+    width:min(100%,520px);
+    margin:auto;
+    padding:20px 14px 70px;
 }
 
 .ticket{
-  position:relative;
-  width:100%;
-  overflow:hidden;
-  border-radius:2px;
-  box-shadow:0 10px 35px #00000012;
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    border-radius:2px;
+    box-shadow:0 10px 35px #00000012;
 }
 
 .ticket img{
-  display:block;
-  width:100%;
-  height:auto;
+    display:block;
+    width:100%;
+    height:auto;
 }
 
 /* =========================
@@ -277,144 +288,142 @@ body{
 ========================= */
 
 .scratch-zone{
-  position:absolute;
-  left:5.5%;
-  top:45.4%;
-  width:89%;
-  height:12.5%;
-  overflow:hidden;
-  border-radius:7px;
-  z-index:20;
+    position:absolute;
+    left:5.5%;
+    top:45.4%;
+    width:89%;
+    height:12.5%;
+    overflow:hidden;
+    border-radius:7px;
+    z-index:20;
 }
 
 .reveal{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:#f5eadc;
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(18px,5vw,29px);
-  font-weight:600;
-  letter-spacing:.08em;
-  color:#718a77;
+    position:absolute;
+    inset:0;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:#f5eadc;
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(18px,5vw,29px);
+    font-weight:600;
+    letter-spacing:.08em;
+    color:#718a77;
 }
 
 #scratch{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  width:100%;
-  height:100%;
-  display:block;
-  touch-action:none;
-  cursor:crosshair;
-  transition:opacity .45s ease;
+    position:absolute;
+    inset:0;
+    z-index:2;
+    width:100%;
+    height:100%;
+    display:block;
+    touch-action:none;
+    cursor:crosshair;
+    transition:opacity .45s ease;
 }
 
 #scratch.finished{
-  opacity:0;
-  pointer-events:none;
+    opacity:0;
+    pointer-events:none;
 }
 
 /* =========================
-   CORIANDOLI + PETALI
+   PETALI + CORIANDOLI
 ========================= */
 
 #confetti{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:99999;
-  pointer-events:none;
-  overflow:hidden;
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:99999;
+    pointer-events:none;
+    overflow:hidden;
 }
 
 .confetti-piece{
-  position:absolute;
-  top:-35px;
-  display:block;
-  opacity:0;
-  pointer-events:none;
-  will-change:transform,opacity;
-  animation:softFall var(--duration) ease-out forwards;
+    position:absolute;
+    top:-35px;
+    display:block;
+    opacity:0;
+    pointer-events:none;
+    will-change:transform,opacity;
+    animation:softFall var(--duration) ease-out forwards;
 }
 
 .confetti-piece.petal{
-  width:8px;
-  height:13px;
-  border-radius:75% 25% 75% 25%;
+    width:8px;
+    height:13px;
+    border-radius:75% 25% 75% 25%;
 }
 
 .confetti-piece.confetti{
-  width:6px;
-  height:9px;
-  border-radius:1px;
+    width:6px;
+    height:9px;
+    border-radius:1px;
 }
 
 .confetti-piece.tiny{
-  width:4px;
-  height:6px;
-  border-radius:1px;
+    width:4px;
+    height:6px;
+    border-radius:1px;
 }
 
 @keyframes softFall{
 
-  0%{
-    opacity:0;
-    transform:
-      translate3d(0,-30px,0)
-      rotate(0deg);
-  }
+    0%{
+        opacity:0;
+        transform:translate3d(0,-30px,0) rotate(0deg);
+    }
 
-  8%{
-    opacity:.85;
-  }
+    8%{
+        opacity:.85;
+    }
 
-  30%{
-    transform:
-      translate3d(
-        calc(var(--moveX) * .25),
-        28vh,
-        0
-      )
-      rotate(var(--rotate));
-  }
+    30%{
+        transform:
+            translate3d(
+                calc(var(--moveX) * .25),
+                28vh,
+                0
+            )
+            rotate(var(--rotate));
+    }
 
-  55%{
-    transform:
-      translate3d(
-        calc(var(--moveX) * .55),
-        55vh,
-        0
-      )
-      rotate(calc(var(--rotate) * 1.4));
-  }
+    55%{
+        transform:
+            translate3d(
+                calc(var(--moveX) * .55),
+                55vh,
+                0
+            )
+            rotate(calc(var(--rotate) * 1.4));
+    }
 
-  78%{
-    transform:
-      translate3d(
-        calc(var(--moveX) * .78),
-        78vh,
-        0
-      )
-      rotate(calc(var(--rotate) * 1.8));
-  }
+    78%{
+        transform:
+            translate3d(
+                calc(var(--moveX) * .78),
+                78vh,
+                0
+            )
+            rotate(calc(var(--rotate) * 1.8));
+    }
 
-  100%{
-    opacity:0;
-    transform:
-      translate3d(
-        var(--moveX),
-        108vh,
-        0
-      )
-      rotate(var(--rotate));
-  }
+    100%{
+        opacity:0;
+        transform:
+            translate3d(
+                var(--moveX),
+                108vh,
+                0
+            )
+            rotate(var(--rotate));
+    }
 }
 
 /* =========================
@@ -422,75 +431,79 @@ body{
 ========================= */
 
 .countdown{
-  margin:15px 0 0;
-  text-align:center;
+    margin:15px 0 0;
+    text-align:center;
 }
 
 .countdown-title{
-  margin-bottom:10px;
-  font-family:"Cormorant Garamond",serif;
-  font-size:25px;
-  letter-spacing:.12em;
-  color:#718a77;
+    margin-bottom:10px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    letter-spacing:.12em;
+    color:#718a77;
 }
 
 .digits{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
 .unit{
-  min-width:68px;
-  padding:9px 7px;
-  background:#f5eadc;
-  border:1px solid #d7cbbb;
-  border-radius:8px;
+    min-width:68px;
+    padding:9px 7px;
+    background:#f5eadc;
+    border:1px solid #d7cbbb;
+    border-radius:8px;
 }
 
 .num{
-  font-size:25px;
-  font-weight:600;
-  color:#718a77;
+    font-size:25px;
+    font-weight:600;
+    color:#718a77;
 }
 
 .lab{
-  font-size:9px;
-  letter-spacing:.14em;
-  color:#8a8176;
+    font-size:9px;
+    letter-spacing:.14em;
+    color:#8a8176;
 }
+
+/* =========================
+   IMPORTANTE:
+   NESSUNA SCRITTA TENUTA
+   QUI SOTTO IL COUNTDOWN
+========================= */
 
 /* =========================
    MENU
 ========================= */
 
 .navigation{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:25px;
 }
 
 .nav-button{
-  padding:14px 8px;
-  border:1px solid #d7cbbb;
-  border-radius:10px;
-  background:#fffaf3;
-  color:#718a77;
-  font-family:Montserrat,Arial,sans-serif;
-  font-size:10px;
-  font-weight:600;
-  letter-spacing:.08em;
-  cursor:pointer;
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+    padding:14px 8px;
+    border:1px solid #d7cbbb;
+    border-radius:10px;
+    background:#fffaf3;
+    color:#718a77;
+    font-family:Montserrat,Arial,sans-serif;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.08em;
+    cursor:pointer;
+    transition:transform .2s ease,box-shadow .2s ease;
 }
 
 .nav-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 15px #00000012;
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px #00000012;
 }
 
 /* =========================
@@ -498,57 +511,59 @@ body{
 ========================= */
 
 .info-section{
-  display:none;
-  margin-top:15px;
-  padding:22px 17px;
-  background:#f5eadc;
-  border:1px solid #d7cbbb;
-  border-radius:10px;
-  animation:sectionIn .35s ease;
+    display:none;
+    margin-top:15px;
+    padding:22px 17px;
+    background:#f5eadc;
+    border:1px solid #d7cbbb;
+    border-radius:10px;
+    animation:sectionIn .35s ease;
 }
 
 .info-section.open{
-  display:block;
+    display:block;
 }
 
 @keyframes sectionIn{
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .info-section h2{
-  margin:0 0 12px;
-  text-align:center;
-  font-family:"Cormorant Garamond",serif;
-  font-size:28px;
-  letter-spacing:.1em;
-  color:#718a77;
+    margin:0 0 12px;
+    text-align:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:28px;
+    letter-spacing:.1em;
+    color:#718a77;
 }
 
 .info-section p{
-  line-height:1.7;
-  text-align:center;
-  color:#746f67;
+    line-height:1.7;
+    text-align:center;
+    color:#746f67;
 }
 
 .close-section{
-  display:block;
-  margin:18px auto 0;
-  padding:9px 17px;
-  border:0;
-  border-radius:999px;
-  background:#dca4aa;
-  color:#fff;
-  font-size:9px;
-  font-weight:600;
-  letter-spacing:.08em;
-  cursor:pointer;
+    display:block;
+    margin:18px auto 0;
+    padding:9px 17px;
+    border:0;
+    border-radius:999px;
+    background:#dca4aa;
+    color:#fff;
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:.08em;
+    cursor:pointer;
 }
 
 /* =========================
@@ -556,78 +571,78 @@ body{
 ========================= */
 
 .location-photo{
-  display:block;
-  width:100%;
-  margin:0 0 17px;
-  border-radius:8px;
-  box-shadow:0 6px 18px #00000014;
+    display:block;
+    width:100%;
+    margin:0 0 17px;
+    border-radius:8px;
+    box-shadow:0 6px 18px #00000014;
 }
 
 .location-address{
-  font-family:"Cormorant Garamond",serif;
-  font-size:21px;
-  line-height:1.4;
-  text-align:center;
-  color:#718a77;
+    font-family:"Cormorant Garamond",serif;
+    font-size:21px;
+    line-height:1.4;
+    text-align:center;
+    color:#718a77;
 }
 
 .location-buttons{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:15px;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:15px;
 }
 
 .map-link,
 .site-link{
-  display:inline-block;
-  padding:11px 16px;
-  border-radius:999px;
-  color:white;
-  text-decoration:none;
-  font-size:9px;
-  font-weight:600;
-  letter-spacing:.08em;
+    display:inline-block;
+    padding:11px 16px;
+    border-radius:999px;
+    color:white;
+    text-decoration:none;
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:.08em;
 }
 
 .map-link{
-  background:#718a77;
+    background:#718a77;
 }
 
 .site-link{
-  background:#dca4aa;
+    background:#dca4aa;
 }
 
 /* =========================
-   RSVP
+   DRESS CODE
 ========================= */
 
 .rsvp{
-  display:grid;
-  gap:10px;
+    display:grid;
+    gap:10px;
 }
 
 .rsvp input,
 .rsvp textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #d7cbbb;
-  border-radius:7px;
-  background:#fffaf3;
-  font:inherit;
-  color:#746f67;
+    width:100%;
+    padding:12px;
+    border:1px solid #d7cbbb;
+    border-radius:7px;
+    background:#fffaf3;
+    font:inherit;
+    color:#746f67;
 }
 
 .rsvp button{
-  padding:13px;
-  border:0;
-  border-radius:999px;
-  background:#dca4aa;
-  color:white;
-  font-weight:600;
-  letter-spacing:.08em;
-  cursor:pointer;
+    padding:13px;
+    border:0;
+    border-radius:999px;
+    background:#dca4aa;
+    color:white;
+    font-weight:600;
+    letter-spacing:.08em;
+    cursor:pointer;
 }
 
 /* =========================
@@ -635,23 +650,23 @@ body{
 ========================= */
 
 .final-message{
-  margin-top:30px;
-  padding:5px 10px 0;
-  text-align:center;
-  font-family:"Cormorant Garamond",serif;
-  font-size:23px;
-  line-height:1.35;
-  font-weight:600;
-  letter-spacing:.04em;
-  color:#718a77;
+    margin-top:30px;
+    padding:5px 10px 0;
+    text-align:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:23px;
+    line-height:1.35;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:#718a77;
 }
 
 .footer{
-  margin-top:20px;
-  text-align:center;
-  font-family:"Cormorant Garamond",serif;
-  font-size:17px;
-  color:#718a77;
+    margin-top:20px;
+    text-align:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:17px;
+    color:#718a77;
 }
 
 /* =========================
@@ -660,69 +675,74 @@ body{
 
 @media(max-width:400px){
 
-  .page{
-    padding-left:10px;
-    padding-right:10px;
-  }
+    .page{
+        padding-left:10px;
+        padding-right:10px;
+    }
 
-  .navigation{
-    grid-template-columns:1fr;
-  }
+    .navigation{
+        grid-template-columns:1fr;
+    }
 
-  .open-btn{
-    top:68%;
-  }
+    .open-btn{
+        top:68%;
+    }
 
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- PETALI E CORIANDOLI -->
 <div id="confetti"></div>
 
 <!-- =========================
-     BUSTA
+     APERTURA
 ========================= -->
 
 <div id="opening">
 
-  <div class="envelope-wrap">
+    <div class="envelope-wrap">
 
-    <img
-      id="envelope"
-      class="envelope"
-      src="busta.png"
-      alt="Busta"
-    >
+        <img
+            id="envelope"
+            class="envelope"
+            src="busta.png"
+            alt="Busta"
+        >
 
-    <div id="sealEffect" class="seal-effect">
+        <div
+            id="sealEffect"
+            class="seal-effect"
+        >
 
-      <div class="seal-piece left"></div>
-      <div class="seal-piece right"></div>
+            <div class="seal-piece left"></div>
+            <div class="seal-piece right"></div>
 
-      <span class="crack c1"></span>
-      <span class="crack c2"></span>
-      <span class="crack c3"></span>
+            <span class="crack c1"></span>
+            <span class="crack c2"></span>
+            <span class="crack c3"></span>
+
+        </div>
+
+        <img
+            id="letter"
+            class="letter"
+            src="biglietto.png"
+            alt="Il nostro biglietto"
+        >
+
+        <button
+            id="openBtn"
+            class="open-btn"
+            type="button"
+        >
+            APRI LA BUSTA
+        </button>
 
     </div>
-
-    <img
-      id="letter"
-      class="letter"
-      src="biglietto.png"
-      alt="Il nostro biglietto"
-    >
-
-    <button
-      id="openBtn"
-      class="open-btn"
-      type="button"
-    >
-      APRI LA BUSTA
-    </button>
-
-  </div>
 
 </div>
 
@@ -732,310 +752,365 @@ body{
 
 <main id="site">
 
-  <div class="page">
+    <div class="page">
 
-    <div class="ticket">
+        <!-- BIGLIETTO -->
 
-      <img
-        src="biglietto.png"
-        alt="Il nostro biglietto"
-      >
+        <div class="ticket">
 
-      <div class="scratch-zone">
+            <img
+                src="biglietto.png"
+                alt="Il nostro biglietto"
+            >
 
-        <div class="reveal">
-          8 SETTEMBRE 2027
+            <div class="scratch-zone">
+
+                <div class="reveal">
+                    8 SETTEMBRE 2027
+                </div>
+
+                <canvas id="scratch"></canvas>
+
+            </div>
+
         </div>
 
-        <canvas id="scratch"></canvas>
+        <!-- COUNTDOWN -->
 
-      </div>
+        <div class="countdown">
 
-    </div>
+            <div class="countdown-title">
+                Manca sempre meno…
+            </div>
 
-    <!-- COUNTDOWN -->
+            <div class="digits">
 
-    <div class="countdown">
+                <div class="unit">
+                    <div
+                        class="num"
+                        id="d"
+                    >
+                        0
+                    </div>
+                    <div class="lab">
+                        GIORNI
+                    </div>
+                </div>
 
-      <div class="countdown-title">
-        Manca sempre meno…
-      </div>
+                <div class="unit">
+                    <div
+                        class="num"
+                        id="h"
+                    >
+                        0
+                    </div>
+                    <div class="lab">
+                        ORE
+                    </div>
+                </div>
 
-      <div class="digits">
+                <div class="unit">
+                    <div
+                        class="num"
+                        id="m"
+                    >
+                        0
+                    </div>
+                    <div class="lab">
+                        MINUTI
+                    </div>
+                </div>
 
-        <div class="unit">
-          <div class="num" id="d">0</div>
-          <div class="lab">GIORNI</div>
+                <div class="unit">
+                    <div
+                        class="num"
+                        id="s"
+                    >
+                        0
+                    </div>
+                    <div class="lab">
+                        SECONDI
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="unit">
-          <div class="num" id="h">0</div>
-          <div class="lab">ORE</div>
+        <!--
+        QUI FINISCE IL COUNTDOWN.
+        NON C'È ALCUNA SCRITTA TENUTA MONTICELLO.
+        -->
+
+        <!-- MENU -->
+
+        <div class="navigation">
+
+            <button
+                class="nav-button"
+                data-section="location"
+                type="button"
+            >
+                📍 LOCATION
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="dresscode"
+                type="button"
+            >
+                👗 DRESS CODE
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="presence"
+                type="button"
+            >
+                💌 PRESENZA
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="us"
+                type="button"
+            >
+                🤍 NOI DUE
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="dreams"
+                type="button"
+            >
+                🌿 I NOSTRI SOGNI
+            </button>
+
         </div>
 
-        <div class="unit">
-          <div class="num" id="m">0</div>
-          <div class="lab">MINUTI</div>
+        <!-- =========================
+             LOCATION
+        ========================= -->
+
+        <section
+            id="location"
+            class="info-section"
+        >
+
+            <h2>
+                📍 Location
+            </h2>
+
+            <img
+                class="location-photo"
+                src="https://www.monticellopombia.it/wp-content/uploads/2018/05/monticello-cope.jpg"
+                alt="Tenuta il Monticello"
+            >
+
+            <div class="location-address">
+
+                <strong>
+                    Tenuta il Monticello
+                </strong>
+
+                <br>
+
+                Via Roma, 4
+
+                <br>
+
+                28050 Pombia (NO)
+
+            </div>
+
+            <p>
+                Vi aspettiamo alla Tenuta Monticello
+                per festeggiare insieme il nostro giorno.
+            </p>
+
+            <div class="location-buttons">
+
+                <a
+                    class="map-link"
+                    href="https://www.google.com/maps/dir/?api=1&destination=Tenuta+il+Monticello%2C+Via+Roma+4%2C+28050+Pombia+NO"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    🗺️ INDICAZIONI E MAPPA
+                </a>
+
+                <a
+                    class="site-link"
+                    href="https://www.monticellopombia.it/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    🌿 SITO DELLA TENUTA
+                </a>
+
+            </div>
+
+            <button
+                class="close-section"
+                type="button"
+            >
+                CHIUDI
+            </button>
+
+        </section>
+
+        <!-- =========================
+             DRESS CODE
+        ========================= -->
+
+        <section
+            id="dresscode"
+            class="info-section"
+        >
+
+            <h2>
+                👗 Dress code
+            </h2>
+
+            <p>
+                Eleganza, comodità e leggerezza,
+                venite come vi sentite più belli!
+            </p>
+
+            <button
+                class="close-section"
+                type="button"
+            >
+                CHIUDI
+            </button>
+
+        </section>
+
+        <!-- =========================
+             PRESENZA
+        ========================= -->
+
+        <section
+            id="presence"
+            class="info-section"
+        >
+
+            <h2>
+                💌 Conferma la tua presenza
+            </h2>
+
+            <form
+                id="rsvpForm"
+                class="rsvp"
+            >
+
+                <input
+                    required
+                    placeholder="Nome e cognome"
+                >
+
+                <input
+                    required
+                    type="number"
+                    min="1"
+                    placeholder="N. adulti"
+                >
+
+                <input
+                    type="number"
+                    min="0"
+                    placeholder="N. bambini (0–10 anni)"
+                >
+
+                <textarea
+                    rows="3"
+                    placeholder="Allergie / intolleranze"
+                ></textarea>
+
+                <button type="submit">
+                    INVIA
+                </button>
+
+            </form>
+
+            <button
+                class="close-section"
+                type="button"
+            >
+                CHIUDI
+            </button>
+
+        </section>
+
+        <!-- =========================
+             NOI DUE
+        ========================= -->
+
+        <section
+            id="us"
+            class="info-section"
+        >
+
+            <h2>
+                🤍 Noi due
+            </h2>
+
+            <p>
+                Qui racconteremo la nostra storia,
+                i nostri momenti più belli
+                e tutto quello che ci ha portati
+                fino a questo giorno.
+            </p>
+
+            <button
+                class="close-section"
+                type="button"
+            >
+                CHIUDI
+            </button>
+
+        </section>
+
+        <!-- =========================
+             I NOSTRI SOGNI
+        ========================= -->
+
+        <section
+            id="dreams"
+            class="info-section"
+        >
+
+            <h2>
+                🌿 I nostri sogni
+            </h2>
+
+            <p>
+                Uno spazio dedicato ai nostri desideri
+                e ai vostri pensieri.
+            </p>
+
+            <button
+                class="close-section"
+                type="button"
+            >
+                CHIUDI
+            </button>
+
+        </section>
+
+        <!-- =========================
+             FRASE FINALE
+        ========================= -->
+
+        <div class="final-message">
+            Non vediamo l’ora di vivere questo giorno insieme a voi!
         </div>
 
-        <div class="unit">
-          <div class="num" id="s">0</div>
-          <div class="lab">SECONDI</div>
+        <div class="footer">
+            Giada &amp; Paolo
         </div>
 
-      </div>
-
     </div>
-
-    <!-- QUI NON C'È PIÙ "TENUTA MONTICELLO" -->
-
-    <!-- MENU -->
-
-    <div class="navigation">
-
-      <button
-        class="nav-button"
-        data-section="location"
-        type="button"
-      >
-        📍 LOCATION
-      </button>
-
-      <button
-        class="nav-button"
-        data-section="dresscode"
-        type="button"
-      >
-        👗 DRESS CODE
-      </button>
-
-      <button
-        class="nav-button"
-        data-section="presence"
-        type="button"
-      >
-        💌 PRESENZA
-      </button>
-
-      <button
-        class="nav-button"
-        data-section="us"
-        type="button"
-      >
-        🤍 NOI DUE
-      </button>
-
-      <button
-        class="nav-button"
-        data-section="dreams"
-        type="button"
-      >
-        🌿 I NOSTRI SOGNI
-      </button>
-
-    </div>
-
-    <!-- LOCATION -->
-
-    <section
-      id="location"
-      class="info-section"
-    >
-
-      <h2>📍 Location</h2>
-
-      <img
-        class="location-photo"
-        src="https://www.monticellopombia.it/wp-content/uploads/2018/05/monticello-cope.jpg"
-        alt="Tenuta il Monticello"
-      >
-
-      <div class="location-address">
-
-        <strong>
-          Tenuta il Monticello
-        </strong>
-
-        <br>
-
-        Via Roma, 4
-
-        <br>
-
-        28050 Pombia (NO)
-
-      </div>
-
-      <p>
-        Vi aspettiamo alla Tenuta Monticello
-        per festeggiare insieme il nostro giorno.
-      </p>
-
-      <div class="location-buttons">
-
-        <a
-          class="map-link"
-          href="https://www.google.com/maps/dir/?api=1&destination=Tenuta+il+Monticello%2C+Via+Roma+4%2C+28050+Pombia+NO"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🗺️ INDICAZIONI E MAPPA
-        </a>
-
-        <a
-          class="site-link"
-          href="https://www.monticellopombia.it/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🌿 SITO DELLA TENUTA
-        </a>
-
-      </div>
-
-      <button
-        class="close-section"
-        type="button"
-      >
-        CHIUDI
-      </button>
-
-    </section>
-
-    <!-- DRESS CODE -->
-
-    <section
-      id="dresscode"
-      class="info-section"
-    >
-
-      <h2>👗 Dress code</h2>
-
-      <p>
-        Eleganza, comodità e leggerezza,
-        venite come vi sentite più belli!
-      </p>
-
-      <button
-        class="close-section"
-        type="button"
-      >
-        CHIUDI
-      </button>
-
-    </section>
-
-    <!-- PRESENZA -->
-
-    <section
-      id="presence"
-      class="info-section"
-    >
-
-      <h2>💌 Conferma la tua presenza</h2>
-
-      <form
-        id="rsvpForm"
-        class="rsvp"
-      >
-
-        <input
-          required
-          placeholder="Nome e cognome"
-        >
-
-        <input
-          required
-          type="number"
-          min="1"
-          placeholder="N. adulti"
-        >
-
-        <input
-          type="number"
-          min="0"
-          placeholder="N. bambini (0–10 anni)"
-        >
-
-        <textarea
-          rows="3"
-          placeholder="Allergie / intolleranze"
-        ></textarea>
-
-        <button type="submit">
-          INVIA
-        </button>
-
-      </form>
-
-      <button
-        class="close-section"
-        type="button"
-      >
-        CHIUDI
-      </button>
-
-    </section>
-
-    <!-- NOI DUE -->
-
-    <section
-      id="us"
-      class="info-section"
-    >
-
-      <h2>🤍 Noi due</h2>
-
-      <p>
-        Qui racconteremo la nostra storia,
-        i nostri momenti più belli
-        e tutto quello che ci ha portati
-        fino a questo giorno.
-      </p>
-
-      <button
-        class="close-section"
-        type="button"
-      >
-        CHIUDI
-      </button>
-
-    </section>
-
-    <!-- I NOSTRI SOGNI -->
-
-    <section
-      id="dreams"
-      class="info-section"
-    >
-
-      <h2>🌿 I nostri sogni</h2>
-
-      <p>
-        Uno spazio dedicato ai nostri desideri
-        e ai vostri pensieri.
-      </p>
-
-      <button
-        class="close-section"
-        type="button"
-      >
-        CHIUDI
-      </button>
-
-    </section>
-
-    <!-- FRASE FINALE -->
-
-    <div class="final-message">
-      Non vediamo l’ora di vivere questo giorno insieme a voi!
-    </div>
-
-    <div class="footer">
-      Giada &amp; Paolo
-    </div>
-
-  </div>
 
 </main>
 
@@ -1046,782 +1121,805 @@ body{
 ========================= */
 
 const target =
-  new Date(
-    "2027-09-08T00:00:00+02:00"
-  ).getTime();
+    new Date(
+        "2027-09-08T00:00:00+02:00"
+    ).getTime();
 
 function tick(){
 
-  let x =
-    Math.max(
-      0,
-      target - Date.now()
-    );
+    let x =
+        Math.max(
+            0,
+            target - Date.now()
+        );
 
-  const d =
-    Math.floor(
-      x / 86400000
-    );
+    const d =
+        Math.floor(
+            x / 86400000
+        );
 
-  x %= 86400000;
+    x %= 86400000;
 
-  const h =
-    Math.floor(
-      x / 3600000
-    );
+    const h =
+        Math.floor(
+            x / 3600000
+        );
 
-  x %= 3600000;
+    x %= 3600000;
 
-  const m =
-    Math.floor(
-      x / 60000
-    );
+    const m =
+        Math.floor(
+            x / 60000
+        );
 
-  x %= 60000;
+    x %= 60000;
 
-  const s =
-    Math.floor(
-      x / 1000
-    );
+    const s =
+        Math.floor(
+            x / 1000
+        );
 
-  document.getElementById("d").textContent =
-    d;
+    document.getElementById("d").textContent =
+        d;
 
-  document.getElementById("h").textContent =
-    String(h).padStart(2,"0");
+    document.getElementById("h").textContent =
+        String(h).padStart(2,"0");
 
-  document.getElementById("m").textContent =
-    String(m).padStart(2,"0");
+    document.getElementById("m").textContent =
+        String(m).padStart(2,"0");
 
-  document.getElementById("s").textContent =
-    String(s).padStart(2,"0");
-
+    document.getElementById("s").textContent =
+        String(s).padStart(2,"0");
 }
 
 tick();
 
 setInterval(
-  tick,
-  1000
+    tick,
+    1000
 );
+
 
 /* =========================
    APERTURA BUSTA
 ========================= */
 
 const opening =
-  document.getElementById("opening");
+    document.getElementById("opening");
 
 const openBtn =
-  document.getElementById("openBtn");
+    document.getElementById("openBtn");
 
 const envelope =
-  document.getElementById("envelope");
+    document.getElementById("envelope");
 
 const sealEffect =
-  document.getElementById("sealEffect");
+    document.getElementById("sealEffect");
 
 const letter =
-  document.getElementById("letter");
+    document.getElementById("letter");
 
 const site =
-  document.getElementById("site");
+    document.getElementById("site");
 
 openBtn.addEventListener(
-  "click",
-  function(){
+    "click",
+    function(){
 
-    openBtn.classList.add(
-      "hidden"
-    );
-
-    setTimeout(
-      () =>
-        sealEffect.classList.add(
-          "active"
-        ),
-      350
-    );
-
-    setTimeout(
-      () =>
-        sealEffect.classList.add(
-          "break"
-        ),
-      430
-    );
-
-    setTimeout(
-      () =>
-        envelope.classList.add(
-          "hide"
-        ),
-      850
-    );
-
-    setTimeout(
-      () =>
-        letter.classList.add(
-          "show"
-        ),
-      1000
-    );
-
-    setTimeout(
-      function(){
-
-        opening.classList.add(
-          "finished"
+        openBtn.classList.add(
+            "hidden"
         );
 
-        site.classList.add(
-          "show"
+        setTimeout(
+            () =>
+                sealEffect.classList.add(
+                    "active"
+                ),
+            350
         );
 
-        initScratch();
-
-        window.scrollTo(
-          0,
-          0
+        setTimeout(
+            () =>
+                sealEffect.classList.add(
+                    "break"
+                ),
+            430
         );
 
-      },
-      2500
-    );
+        setTimeout(
+            () =>
+                envelope.classList.add(
+                    "hide"
+                ),
+            850
+        );
 
-  }
+        setTimeout(
+            () =>
+                letter.classList.add(
+                    "show"
+                ),
+            1000
+        );
+
+        setTimeout(
+            function(){
+
+                opening.classList.add(
+                    "finished"
+                );
+
+                site.classList.add(
+                    "show"
+                );
+
+                initScratch();
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+            },
+            2500
+        );
+
+    }
 );
+
 
 /* =========================
    GRATTA QUI
 ========================= */
 
 let scratchInitialized =
-  false;
+    false;
 
 function initScratch(){
 
-  if(
-    scratchInitialized
-  ){
-    return;
-  }
+    if(
+        scratchInitialized
+    ){
+        return;
+    }
 
-  scratchInitialized =
-    true;
+    scratchInitialized =
+        true;
 
-  const canvas =
-    document.getElementById(
-      "scratch"
-    );
+    const canvas =
+        document.getElementById(
+            "scratch"
+        );
 
-  if(!canvas){
-    return;
-  }
+    if(!canvas){
+        return;
+    }
 
-  const rect =
-    canvas.getBoundingClientRect();
+    const rect =
+        canvas.getBoundingClientRect();
 
-  const width =
-    rect.width;
+    const width =
+        rect.width;
 
-  const height =
-    rect.height;
-
-  if(
-    width <= 0 ||
-    height <= 0
-  ){
-    return;
-  }
-
-  const dpr =
-    Math.max(
-      1,
-      window.devicePixelRatio || 1
-    );
-
-  canvas.width =
-    Math.round(
-      width * dpr
-    );
-
-  canvas.height =
-    Math.round(
-      height * dpr
-    );
-
-  const ctx =
-    canvas.getContext("2d");
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-
-  const gold =
-    ctx.createLinearGradient(
-      0,
-      0,
-      width,
-      height
-    );
-
-  gold.addColorStop(
-    0,
-    "#b88620"
-  );
-
-  gold.addColorStop(
-    .18,
-    "#e8cc72"
-  );
-
-  gold.addColorStop(
-    .38,
-    "#c89b32"
-  );
-
-  gold.addColorStop(
-    .58,
-    "#f2dc91"
-  );
-
-  gold.addColorStop(
-    .78,
-    "#c2942d"
-  );
-
-  gold.addColorStop(
-    1,
-    "#e2c15e"
-  );
-
-  ctx.fillStyle =
-    gold;
-
-  ctx.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-  const glitter=[
-    "#fff8d6",
-    "#ffffff",
-    "#f7e5a0",
-    "#d5ad45"
-  ];
-
-  for(
-    let i=0;
-    i<220;
-    i++
-  ){
-
-    const x =
-      Math.random()*width;
-
-    const y =
-      Math.random()*height;
-
-    const r =
-      Math.random()*1.7+.4;
-
-    ctx.globalAlpha =
-      .4+
-      Math.random()*.6;
-
-    ctx.fillStyle =
-      glitter[
-        Math.floor(
-          Math.random()*
-          glitter.length
-        )
-      ];
-
-    ctx.beginPath();
-
-    ctx.arc(
-      x,
-      y,
-      r,
-      0,
-      Math.PI*2
-    );
-
-    ctx.fill();
+    const height =
+        rect.height;
 
     if(
-      Math.random()>.72
+        width <= 0 ||
+        height <= 0
     ){
+        return;
+    }
 
-      ctx.fillRect(
-        x-2,
-        y-.5,
-        4,
-        1
-      );
+    const dpr =
+        Math.max(
+            1,
+            window.devicePixelRatio || 1
+        );
 
-      ctx.fillRect(
-        x-.5,
-        y-2,
+    canvas.width =
+        Math.round(
+            width * dpr
+        );
+
+    canvas.height =
+        Math.round(
+            height * dpr
+        );
+
+    const ctx =
+        canvas.getContext("2d");
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+    const gold =
+        ctx.createLinearGradient(
+            0,
+            0,
+            width,
+            height
+        );
+
+    gold.addColorStop(
+        0,
+        "#b88620"
+    );
+
+    gold.addColorStop(
+        .18,
+        "#e8cc72"
+    );
+
+    gold.addColorStop(
+        .38,
+        "#c89b32"
+    );
+
+    gold.addColorStop(
+        .58,
+        "#f2dc91"
+    );
+
+    gold.addColorStop(
+        .78,
+        "#c2942d"
+    );
+
+    gold.addColorStop(
         1,
-        4
-      );
-
-    }
-
-  }
-
-  ctx.globalAlpha=1;
-
-  ctx.font =
-    "600 18px Montserrat,Arial";
-
-  ctx.fillStyle =
-    "#718a77";
-
-  ctx.textAlign =
-    "center";
-
-  ctx.textBaseline =
-    "middle";
-
-  ctx.fillText(
-    "GRATTA QUI ✨",
-    width/2,
-    height/2
-  );
-
-  let drawing =
-    false;
-
-  let last =
-    null;
-
-  let strokes =
-    0;
-
-  let finished =
-    false;
-
-  function position(e){
-
-    const r =
-      canvas.getBoundingClientRect();
-
-    return{
-      x:e.clientX-r.left,
-      y:e.clientY-r.top
-    };
-
-  }
-
-  function erase(
-    x,
-    y
-  ){
-
-    ctx.globalCompositeOperation =
-      "destination-out";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      x,
-      y,
-      22,
-      0,
-      Math.PI*2
+        "#e2c15e"
     );
 
-    ctx.fill();
+    ctx.fillStyle =
+        gold;
 
-  }
-
-  function eraseLine(
-    a,
-    b
-  ){
-
-    ctx.globalCompositeOperation =
-      "destination-out";
-
-    ctx.lineWidth =
-      44;
-
-    ctx.lineCap =
-      "round";
-
-    ctx.lineJoin =
-      "round";
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      a.x,
-      a.y
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
     );
 
-    ctx.lineTo(
-      b.x,
-      b.y
-    );
-
-    ctx.stroke();
-
-  }
-
-  /* =========================
-     PETALI + CORIANDOLI
-========================= */
-
-  function launchConfetti(){
-
-    const container =
-      document.getElementById(
-        "confetti"
-      );
-
-    if(!container){
-      return;
-    }
-
-    const colors = [
-      "#e8a5b1",
-      "#f0b7c0",
-      "#d98e9d",
-      "#789b7f",
-      "#9db79e",
-      "#b8cbb8"
+    const glitter = [
+        "#fff8d6",
+        "#ffffff",
+        "#f7e5a0",
+        "#d5ad45"
     ];
 
     for(
-      let i=0;
-      i<150;
-      i++
+        let i = 0;
+        i < 220;
+        i++
     ){
 
-      const piece =
-        document.createElement(
-          "span"
+        const x =
+            Math.random() * width;
+
+        const y =
+            Math.random() * height;
+
+        const r =
+            Math.random() * 1.7 + .4;
+
+        ctx.globalAlpha =
+            .4 +
+            Math.random() * .6;
+
+        ctx.fillStyle =
+            glitter[
+                Math.floor(
+                    Math.random() *
+                    glitter.length
+                )
+            ];
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            r,
+            0,
+            Math.PI * 2
         );
 
-      const isPetal =
-        Math.random() < .58;
-
-      piece.className =
-        "confetti-piece " +
-        (isPetal ? "petal" : "confetti");
-
-      if(
-        Math.random() < .18
-      ){
-        piece.classList.add(
-          "tiny"
-        );
-      }
-
-      piece.style.backgroundColor =
-        colors[
-          Math.floor(
-            Math.random() *
-            colors.length
-          )
-        ];
-
-      const startX =
-        Math.random()*100;
-
-      const moveX =
-        Math.random()*360-180;
-
-      const rotate =
-        Math.random()*720-360;
-
-      const duration =
-        4.5+
-        Math.random()*2.8;
-
-      piece.style.left =
-        startX+"%";
-
-      piece.style.setProperty(
-        "--moveX",
-        moveX+"px"
-      );
-
-      piece.style.setProperty(
-        "--rotate",
-        rotate+"deg"
-      );
-
-      piece.style.setProperty(
-        "--duration",
-        duration+"s"
-      );
-
-      piece.style.animationDelay =
-        Math.random()*.9+"s";
-
-      const scale =
-        .55+
-        Math.random()*.75;
-
-      piece.style.transform =
-        "scale("+scale+")";
-
-      container.appendChild(
-        piece
-      );
-
-      setTimeout(
-        () => {
-          piece.remove();
-        },
-        (duration+1.2)*1000
-      );
-
-    }
-
-  }
-
-  function complete(){
-
-    if(
-      finished
-    ){
-      return;
-    }
-
-    finished =
-      true;
-
-    ctx.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
-    canvas.classList.add(
-      "finished"
-    );
-
-    launchConfetti();
-
-    setTimeout(
-      () => {
+        ctx.fill();
 
         if(
-          canvas.parentNode
+            Math.random() > .72
         ){
-          canvas.remove();
+
+            ctx.fillRect(
+                x - 2,
+                y - .5,
+                4,
+                1
+            );
+
+            ctx.fillRect(
+                x - .5,
+                y - 2,
+                1,
+                4
+            );
+
         }
 
-      },
-      500
+    }
+
+    ctx.globalAlpha = 1;
+
+    ctx.font =
+        "600 18px Montserrat,Arial";
+
+    ctx.fillStyle =
+        "#718a77";
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+    ctx.fillText(
+        "GRATTA QUI ✨",
+        width / 2,
+        height / 2
     );
 
-  }
 
-  function scratch(e){
+    let drawing =
+        false;
 
-    if(
-      !drawing ||
-      finished
-    ){
-      return;
-    }
+    let last =
+        null;
 
-    e.preventDefault();
+    let strokes =
+        0;
 
-    const p =
-      position(e);
+    let finished =
+        false;
 
-    erase(
-      p.x,
-      p.y
-    );
 
-    if(last){
+    function position(e){
 
-      eraseLine(
-        last,
-        p
-      );
+        const r =
+            canvas.getBoundingClientRect();
+
+        return {
+            x:e.clientX - r.left,
+            y:e.clientY - r.top
+        };
 
     }
 
-    last =
-      p;
 
-    strokes++;
-
-    if(
-      strokes>=75
+    function erase(
+        x,
+        y
     ){
 
-      complete();
+        ctx.globalCompositeOperation =
+            "destination-out";
 
-    }
+        ctx.beginPath();
 
-  }
-
-  canvas.addEventListener(
-    "pointerdown",
-    e => {
-
-      drawing =
-        true;
-
-      last =
-        position(e);
-
-      erase(
-        last.x,
-        last.y
-      );
-
-      try{
-
-        canvas.setPointerCapture(
-          e.pointerId
+        ctx.arc(
+            x,
+            y,
+            22,
+            0,
+            Math.PI * 2
         );
 
-      }catch(error){}
+        ctx.fill();
 
     }
-  );
 
-  canvas.addEventListener(
-    "pointermove",
-    scratch
-  );
 
-  function stop(e){
+    function eraseLine(
+        a,
+        b
+    ){
 
-    drawing =
-      false;
+        ctx.globalCompositeOperation =
+            "destination-out";
 
-    last =
-      null;
+        ctx.lineWidth =
+            44;
 
-    try{
+        ctx.lineCap =
+            "round";
 
-      canvas.releasePointerCapture(
-        e.pointerId
-      );
+        ctx.lineJoin =
+            "round";
 
-    }catch(error){}
+        ctx.beginPath();
 
-  }
+        ctx.moveTo(
+            a.x,
+            a.y
+        );
 
-  canvas.addEventListener(
-    "pointerup",
-    stop
-  );
+        ctx.lineTo(
+            b.x,
+            b.y
+        );
 
-  canvas.addEventListener(
-    "pointercancel",
-    stop
-  );
+        ctx.stroke();
+
+    }
+
+
+    /* =========================
+       PETALI + CORIANDOLI
+    ========================= */
+
+    function launchConfetti(){
+
+        const container =
+            document.getElementById(
+                "confetti"
+            );
+
+        if(!container){
+            return;
+        }
+
+        const colors = [
+
+            "#e8a5b1",
+            "#f0b7c0",
+            "#d98e9d",
+
+            "#789b7f",
+            "#9db79e",
+            "#b8cbb8"
+
+        ];
+
+        for(
+            let i = 0;
+            i < 150;
+            i++
+        ){
+
+            const piece =
+                document.createElement(
+                    "span"
+                );
+
+            const isPetal =
+                Math.random() < .58;
+
+            piece.className =
+                "confetti-piece " +
+                (
+                    isPetal
+                    ? "petal"
+                    : "confetti"
+                );
+
+            if(
+                Math.random() < .18
+            ){
+
+                piece.classList.add(
+                    "tiny"
+                );
+
+            }
+
+            piece.style.backgroundColor =
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ];
+
+            const startX =
+                Math.random() * 100;
+
+            const moveX =
+                Math.random() * 360 - 180;
+
+            const rotate =
+                Math.random() * 720 - 360;
+
+            const duration =
+                4.5 +
+                Math.random() * 2.8;
+
+            const scale =
+                .55 +
+                Math.random() * .75;
+
+            piece.style.left =
+                startX + "%";
+
+            piece.style.setProperty(
+                "--moveX",
+                moveX + "px"
+            );
+
+            piece.style.setProperty(
+                "--rotate",
+                rotate + "deg"
+            );
+
+            piece.style.setProperty(
+                "--duration",
+                duration + "s"
+            );
+
+            piece.style.animationDelay =
+                Math.random() * .9 + "s";
+
+            piece.style.transform =
+                "scale(" + scale + ")";
+
+            container.appendChild(
+                piece
+            );
+
+            setTimeout(
+                () => piece.remove(),
+                (duration + 1.2) * 1000
+            );
+
+        }
+
+    }
+
+
+    function complete(){
+
+        if(finished){
+            return;
+        }
+
+        finished =
+            true;
+
+        ctx.clearRect(
+            0,
+            0,
+            width,
+            height
+        );
+
+        canvas.classList.add(
+            "finished"
+        );
+
+        launchConfetti();
+
+        setTimeout(
+            () => {
+
+                if(
+                    canvas.parentNode
+                ){
+                    canvas.remove();
+                }
+
+            },
+            500
+        );
+
+    }
+
+
+    function scratch(e){
+
+        if(
+            !drawing ||
+            finished
+        ){
+            return;
+        }
+
+        e.preventDefault();
+
+        const p =
+            position(e);
+
+        erase(
+            p.x,
+            p.y
+        );
+
+        if(last){
+
+            eraseLine(
+                last,
+                p
+            );
+
+        }
+
+        last =
+            p;
+
+        strokes++;
+
+        if(
+            strokes >= 75
+        ){
+
+            complete();
+
+        }
+
+    }
+
+
+    canvas.addEventListener(
+        "pointerdown",
+        e => {
+
+            drawing =
+                true;
+
+            last =
+                position(e);
+
+            erase(
+                last.x,
+                last.y
+            );
+
+            try{
+
+                canvas.setPointerCapture(
+                    e.pointerId
+                );
+
+            }catch(error){}
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "pointermove",
+        scratch
+    );
+
+
+    function stop(e){
+
+        drawing =
+            false;
+
+        last =
+            null;
+
+        try{
+
+            canvas.releasePointerCapture(
+                e.pointerId
+            );
+
+        }catch(error){}
+
+    }
+
+
+    canvas.addEventListener(
+        "pointerup",
+        stop
+    );
+
+    canvas.addEventListener(
+        "pointercancel",
+        stop
+    );
 
 }
 
+
 /* =========================
-   MENU SEZIONI
+   MENU
 ========================= */
 
 document
 .querySelectorAll(
-  ".nav-button"
+    ".nav-button"
 )
 .forEach(
-  button => {
+    button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-        document
-        .querySelectorAll(
-          ".info-section"
-        )
-        .forEach(
-          s =>
-            s.classList.remove(
-              "open"
-            )
+                document
+                .querySelectorAll(
+                    ".info-section"
+                )
+                .forEach(
+                    s =>
+                        s.classList.remove(
+                            "open"
+                        )
+                );
+
+                const selected =
+                    document.getElementById(
+                        button.dataset.section
+                    );
+
+                if(selected){
+
+                    selected.classList.add(
+                        "open"
+                    );
+
+                    setTimeout(
+                        () => {
+
+                            selected.scrollIntoView({
+                                behavior:"smooth",
+                                block:"start"
+                            });
+
+                        },
+                        50
+                    );
+
+                }
+
+            }
         );
 
-        const selected =
-          document.getElementById(
-            button.dataset.section
-          );
-
-        if(selected){
-
-          selected.classList.add(
-            "open"
-          );
-
-          setTimeout(
-            () =>
-              selected.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-              }),
-            50
-          );
-
-        }
-
-      }
-    );
-
-  }
+    }
 );
 
+
 /* =========================
-   CHIUSURA SEZIONI
+   CHIUDI SEZIONE
 ========================= */
 
 document
 .querySelectorAll(
-  ".close-section"
+    ".close-section"
 )
 .forEach(
-  button => {
+    button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-        const section =
-          button.closest(
-            ".info-section"
-          );
+                const section =
+                    button.closest(
+                        ".info-section"
+                    );
 
-        if(section){
+                if(section){
 
-          section.classList.remove(
-            "open"
-          );
+                    section.classList.remove(
+                        "open"
+                    );
 
-        }
+                }
 
-      }
-    );
+            }
+        );
 
-  }
+    }
 );
+
 
 /* =========================
    RSVP
@@ -1830,16 +1928,16 @@ document
 document
 .getElementById("rsvpForm")
 .addEventListener(
-  "submit",
-  e => {
+    "submit",
+    e => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    alert(
-      "Grazie! La tua risposta è stata registrata."
-    );
+        alert(
+            "Grazie! La tua risposta è stata registrata."
+        );
 
-  }
+    }
 );
 
 </script>
