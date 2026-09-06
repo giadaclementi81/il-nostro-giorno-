@@ -105,13 +105,16 @@ body{
   opacity:0;
 }
 
-.seal-piece.left,
-.seal-piece.right{
+.seal-effect.active .seal-piece{
+  opacity:1;
+}
+
+.seal-piece.left{
   transform:translate(-50%,-50%);
 }
 
-.seal-effect.active .seal-piece{
-  opacity:1;
+.seal-piece.right{
+  transform:translate(-50%,-50%);
 }
 
 .seal-effect.break .seal-piece.left{
@@ -223,15 +226,20 @@ body{
   top:66%;
   transform:translate(-50%,-50%);
   z-index:80;
+
   border:0;
   border-radius:999px;
   padding:13px 24px;
+
   background:#dca4aa;
-  color:white;
+  color:#fff;
+
   letter-spacing:.12em;
   font-weight:600;
+
   cursor:pointer;
   box-shadow:0 6px 18px #0002;
+
   transition:
     opacity .4s ease,
     transform .4s ease;
@@ -244,7 +252,7 @@ body{
 }
 
 /* ==================================================
-   PAGINA DEL BIGLIETTO
+   SITO
 ================================================== */
 
 #site{
@@ -301,16 +309,20 @@ body{
   position:absolute;
   inset:0;
   z-index:1;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   background:#f5eadc;
 
   font-family:"Cormorant Garamond",serif;
   font-size:clamp(18px,5vw,29px);
   font-weight:600;
   letter-spacing:.08em;
+
   color:#718a77;
 }
 
@@ -318,17 +330,65 @@ body{
   position:absolute;
   inset:0;
   z-index:2;
+
   width:100%;
   height:100%;
+
   display:block;
   touch-action:none;
   cursor:crosshair;
+
   transition:opacity .45s ease;
 }
 
 #scratch.finished{
   opacity:0;
   pointer-events:none;
+}
+
+/* ==================================================
+   CORIANDOLI
+================================================== */
+
+#confetti{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:999;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.confetti-piece{
+  position:absolute;
+  top:-30px;
+  width:7px;
+  height:11px;
+  opacity:0;
+  animation:confettiFall 2.8s ease-out forwards;
+}
+
+@keyframes confettiFall{
+
+  0%{
+    opacity:0;
+    transform:
+      translate3d(0,-30px,0)
+      rotate(0deg);
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translate3d(var(--moveX),110vh,0)
+      rotate(var(--rotate));
+  }
+
 }
 
 /* ==================================================
@@ -342,6 +402,7 @@ body{
 
 .countdown-title{
   margin-bottom:10px;
+
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
   letter-spacing:.12em;
@@ -358,6 +419,7 @@ body{
 .unit{
   min-width:68px;
   padding:9px 7px;
+
   background:#f5eadc;
   border:1px solid #d7cbbb;
   border-radius:8px;
@@ -380,7 +442,7 @@ body{
 ================================================== */
 
 .venue{
-  margin-top:-4px;
+  margin-top:-18px;
   text-align:center;
 }
 
@@ -405,15 +467,20 @@ body{
 
 .nav-button{
   padding:14px 8px;
+
   border:1px solid #d7cbbb;
   border-radius:10px;
+
   background:#fffaf3;
   color:#718a77;
+
   font-family:Montserrat,Arial,sans-serif;
   font-size:10px;
   font-weight:600;
   letter-spacing:.08em;
+
   cursor:pointer;
+
   transition:
     transform .2s ease,
     box-shadow .2s ease;
@@ -425,16 +492,19 @@ body{
 }
 
 /* ==================================================
-   SEZIONI INTERATTIVE
+   SEZIONI
 ================================================== */
 
 .info-section{
   display:none;
+
   margin-top:15px;
   padding:22px 17px;
+
   background:#f5eadc;
   border:1px solid #d7cbbb;
   border-radius:10px;
+
   animation:sectionIn .35s ease;
 }
 
@@ -443,6 +513,7 @@ body{
 }
 
 @keyframes sectionIn{
+
   from{
     opacity:0;
     transform:translateY(8px);
@@ -452,14 +523,18 @@ body{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 .info-section h2{
   margin:0 0 12px;
+
   text-align:center;
+
   font-family:"Cormorant Garamond",serif;
   font-size:28px;
   letter-spacing:.1em;
+
   color:#718a77;
 }
 
@@ -471,15 +546,21 @@ body{
 
 .close-section{
   display:block;
+
   margin:18px auto 0;
+
   padding:9px 17px;
+
   border:0;
   border-radius:999px;
+
   background:#dca4aa;
   color:#fff;
+
   font-size:9px;
   font-weight:600;
   letter-spacing:.08em;
+
   cursor:pointer;
 }
 
@@ -491,6 +572,7 @@ body{
   display:block;
   width:100%;
   margin:0 0 17px;
+
   border-radius:8px;
   box-shadow:0 6px 18px #00000014;
 }
@@ -499,6 +581,7 @@ body{
   font-family:"Cormorant Garamond",serif;
   font-size:21px;
   line-height:1.4;
+
   text-align:center;
   color:#718a77;
 }
@@ -514,10 +597,14 @@ body{
 .map-link,
 .site-link{
   display:inline-block;
+
   padding:11px 16px;
+
   border-radius:999px;
-  color:white;
+
+  color:#fff;
   text-decoration:none;
+
   font-size:9px;
   font-weight:600;
   letter-spacing:.08em;
@@ -543,22 +630,30 @@ body{
 .rsvp input,
 .rsvp textarea{
   width:100%;
+
   padding:12px;
+
   border:1px solid #d7cbbb;
   border-radius:7px;
+
   background:#fffaf3;
+
   font:inherit;
   color:#746f67;
 }
 
 .rsvp button{
   padding:13px;
+
   border:0;
   border-radius:999px;
+
   background:#dca4aa;
-  color:white;
+  color:#fff;
+
   font-weight:600;
   letter-spacing:.08em;
+
   cursor:pointer;
 }
 
@@ -569,20 +664,27 @@ body{
 .final-message{
   margin-top:30px;
   padding:5px 10px 0;
+
   text-align:center;
+
   font-family:"Cormorant Garamond",serif;
   font-size:23px;
   line-height:1.35;
+
   font-weight:600;
   letter-spacing:.04em;
+
   color:#718a77;
 }
 
 .footer{
   margin-top:20px;
+
   text-align:center;
+
   font-family:"Cormorant Garamond",serif;
   font-size:17px;
+
   color:#718a77;
 }
 
@@ -604,12 +706,20 @@ body{
   .open-btn{
     top:68%;
   }
+
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- ==================================================
+     CORIANDOLI
+================================================== -->
+
+<div id="confetti"></div>
+
 
 <!-- ==================================================
      APERTURA BUSTA
@@ -626,10 +736,16 @@ body{
       alt="Busta"
     >
 
-    <!-- EFFETTO CERARACCA -->
-    <div id="sealEffect" class="seal-effect">
+
+    <!-- CERARACCA -->
+
+    <div
+      id="sealEffect"
+      class="seal-effect"
+    >
 
       <div class="seal-piece left"></div>
+
       <div class="seal-piece right"></div>
 
       <span class="crack c1"></span>
@@ -638,13 +754,18 @@ body{
 
     </div>
 
+
     <!-- BIGLIETTO -->
+
     <img
       id="letter"
       class="letter"
       src="biglietto.png"
       alt="Il nostro biglietto"
     >
+
+
+    <!-- PULSANTE -->
 
     <button
       id="openBtn"
@@ -660,14 +781,18 @@ body{
 
 
 <!-- ==================================================
-     PAGINA DEL BIGLIETTO
+     SITO
 ================================================== -->
 
 <main id="site">
 
   <div class="page">
 
-    <!-- BIGLIETTO PRINCIPALE -->
+
+    <!-- ==================================================
+         BIGLIETTO
+    ================================================== -->
+
     <div class="ticket">
 
       <img
@@ -675,10 +800,11 @@ body{
         alt="Il nostro biglietto"
       >
 
+
       <!-- GRATTA E VINCI -->
+
       <div class="scratch-zone">
 
-        <!-- SOTTO LA COPERTURA C'È SOLO LA DATA -->
         <div class="reveal">
           8 SETTEMBRE 2027
         </div>
@@ -700,26 +826,70 @@ body{
         Manca sempre meno…
       </div>
 
+
       <div class="digits">
 
         <div class="unit">
-          <div class="num" id="d">0</div>
-          <div class="lab">GIORNI</div>
+
+          <div
+            class="num"
+            id="d"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            GIORNI
+          </div>
+
         </div>
 
-        <div class="unit">
-          <div class="num" id="h">0</div>
-          <div class="lab">ORE</div>
-        </div>
 
         <div class="unit">
-          <div class="num" id="m">0</div>
-          <div class="lab">MINUTI</div>
+
+          <div
+            class="num"
+            id="h"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            ORE
+          </div>
+
         </div>
 
+
         <div class="unit">
-          <div class="num" id="s">0</div>
-          <div class="lab">SECONDI</div>
+
+          <div
+            class="num"
+            id="m"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            MINUTI
+          </div>
+
+        </div>
+
+
+        <div class="unit">
+
+          <div
+            class="num"
+            id="s"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            SECONDI
+          </div>
+
         </div>
 
       </div>
@@ -754,6 +924,7 @@ body{
         📍 LOCATION
       </button>
 
+
       <button
         class="nav-button"
         data-section="dresscode"
@@ -761,6 +932,7 @@ body{
       >
         👗 DRESS CODE
       </button>
+
 
       <button
         class="nav-button"
@@ -770,6 +942,7 @@ body{
         💌 PRESENZA
       </button>
 
+
       <button
         class="nav-button"
         data-section="us"
@@ -777,6 +950,7 @@ body{
       >
         🤍 NOI DUE
       </button>
+
 
       <button
         class="nav-button"
@@ -798,7 +972,10 @@ body{
       class="info-section"
     >
 
-      <h2>📍 Location</h2>
+      <h2>
+        📍 Location
+      </h2>
+
 
       <img
         class="location-photo"
@@ -806,18 +983,29 @@ body{
         alt="Tenuta il Monticello"
       >
 
+
       <div class="location-address">
 
-        <strong>Tenuta il Monticello</strong><br>
-        Via Roma, 4<br>
+        <strong>
+          Tenuta il Monticello
+        </strong>
+
+        <br>
+
+        Via Roma, 4
+
+        <br>
+
         28050 Pombia (NO)
 
       </div>
+
 
       <p>
         Vi aspettiamo alla Tenuta Monticello
         per festeggiare insieme il nostro giorno.
       </p>
+
 
       <div class="location-buttons">
 
@@ -830,6 +1018,7 @@ body{
           🗺️ INDICAZIONI E MAPPA
         </a>
 
+
         <a
           class="site-link"
           href="https://www.monticellopombia.it/"
@@ -840,6 +1029,7 @@ body{
         </a>
 
       </div>
+
 
       <button
         class="close-section"
@@ -860,12 +1050,16 @@ body{
       class="info-section"
     >
 
-      <h2>👗 Dress code</h2>
+      <h2>
+        👗 Dress code
+      </h2>
+
 
       <p>
         Eleganza, comodità e leggerezza,
         venite come vi sentite più belli!
       </p>
+
 
       <button
         class="close-section"
@@ -886,7 +1080,10 @@ body{
       class="info-section"
     >
 
-      <h2>💌 Conferma la tua presenza</h2>
+      <h2>
+        💌 Conferma la tua presenza
+      </h2>
+
 
       <form
         id="rsvpForm"
@@ -898,6 +1095,7 @@ body{
           placeholder="Nome e cognome"
         >
 
+
         <input
           required
           type="number"
@@ -905,22 +1103,26 @@ body{
           placeholder="N. adulti"
         >
 
+
         <input
           type="number"
           min="0"
           placeholder="N. bambini (0–10 anni)"
         >
 
+
         <textarea
           rows="3"
           placeholder="Allergie / intolleranze"
         ></textarea>
+
 
         <button type="submit">
           INVIA
         </button>
 
       </form>
+
 
       <button
         class="close-section"
@@ -941,7 +1143,10 @@ body{
       class="info-section"
     >
 
-      <h2>🤍 Noi due</h2>
+      <h2>
+        🤍 Noi due
+      </h2>
+
 
       <p>
         Qui racconteremo la nostra storia,
@@ -949,6 +1154,7 @@ body{
         e tutto quello che ci ha portati
         fino a questo giorno.
       </p>
+
 
       <button
         class="close-section"
@@ -969,12 +1175,16 @@ body{
       class="info-section"
     >
 
-      <h2>🌿 I nostri sogni</h2>
+      <h2>
+        🌿 I nostri sogni
+      </h2>
+
 
       <p>
         Uno spazio dedicato ai nostri desideri
         e ai vostri pensieri.
       </p>
+
 
       <button
         class="close-section"
@@ -997,7 +1207,6 @@ body{
     </div>
 
 
-    <!-- FIRMA -->
     <div class="footer">
 
       Giada &amp; Paolo
@@ -1016,7 +1225,9 @@ body{
 ================================================== */
 
 const target =
-  new Date("2027-09-08T00:00:00+02:00").getTime();
+  new Date(
+    "2027-09-08T00:00:00+02:00"
+  ).getTime();
 
 
 function tick(){
@@ -1064,11 +1275,14 @@ function tick(){
   document.getElementById("d").textContent =
     d;
 
+
   document.getElementById("h").textContent =
     String(h).padStart(2,"0");
 
+
   document.getElementById("m").textContent =
     String(m).padStart(2,"0");
+
 
   document.getElementById("s").textContent =
     String(s).padStart(2,"0");
@@ -1085,7 +1299,7 @@ setInterval(
 
 
 /* ==================================================
-   APERTURA DELLA BUSTA
+   APERTURA BUSTA
 ================================================== */
 
 const opening =
@@ -1111,14 +1325,12 @@ openBtn.addEventListener(
   "click",
   function(){
 
-    /* NASCONDE IL PULSANTE */
-
     openBtn.classList.add(
       "hidden"
     );
 
 
-    /* CERARACCA */
+    /* ATTIVA LA CERARACCA */
 
     setTimeout(
       function(){
@@ -1128,11 +1340,11 @@ openBtn.addEventListener(
         );
 
       },
-      350
+      300
     );
 
 
-    /* ROTTURA CERARACCA */
+    /* LA CERARACCA SI SPEZZA */
 
     setTimeout(
       function(){
@@ -1142,7 +1354,7 @@ openBtn.addEventListener(
         );
 
       },
-      430
+      450
     );
 
 
@@ -1156,7 +1368,7 @@ openBtn.addEventListener(
         );
 
       },
-      850
+      800
     );
 
 
@@ -1170,15 +1382,11 @@ openBtn.addEventListener(
         );
 
       },
-      1000
+      950
     );
 
 
-    /*
-      DOPO L'ANIMAZIONE:
-      LA BUSTA SCOMPARE COMPLETAMENTE
-      E RESTA UNA SOLA PAGINA.
-    */
+    /* RESTA UNA SOLA PAGINA */
 
     setTimeout(
       function(){
@@ -1225,9 +1433,7 @@ function initScratch(){
 
 
   const canvas =
-    document.getElementById(
-      "scratch"
-    );
+    document.getElementById("scratch");
 
 
   if(!canvas){
@@ -1263,15 +1469,11 @@ function initScratch(){
 
 
   canvas.width =
-    Math.round(
-      width * dpr
-    );
+    Math.round(width*dpr);
 
 
   canvas.height =
-    Math.round(
-      height * dpr
-    );
+    Math.round(height*dpr);
 
 
   const ctx =
@@ -1342,15 +1544,9 @@ function initScratch(){
   );
 
 
-  /*
-    BRILLANTINI:
-    vengono disegnati SOLO sulla
-    copertura del gratta-e-vinci.
-    Quando la copertura viene cancellata,
-    spariscono completamente.
-  */
+  /* BRILLANTINI */
 
-  const glitter = [
+  const glitter=[
     "#fff8d6",
     "#ffffff",
     "#f7e5a0",
@@ -1359,60 +1555,67 @@ function initScratch(){
 
 
   for(
-    let i = 0;
-    i < 220;
+    let i=0;
+    i<220;
     i++
   ){
 
     const x =
-      Math.random() * width;
+      Math.random()*width;
+
 
     const y =
-      Math.random() * height;
+      Math.random()*height;
+
 
     const r =
-      Math.random() * 1.7 + .4;
+      Math.random()*1.7+.4;
 
 
     ctx.globalAlpha =
-      .4 + Math.random() * .6;
+      .4+
+      Math.random()*.6;
 
 
     ctx.fillStyle =
       glitter[
         Math.floor(
-          Math.random() * glitter.length
+          Math.random()*
+          glitter.length
         )
       ];
 
 
     ctx.beginPath();
 
+
     ctx.arc(
       x,
       y,
       r,
       0,
-      Math.PI * 2
+      Math.PI*2
     );
+
 
     ctx.fill();
 
 
     if(
-      Math.random() > .72
+      Math.random()>.72
     ){
 
       ctx.fillRect(
-        x - 2,
-        y - .5,
+        x-2,
+        y-.5,
         4,
         1
       );
 
+
       ctx.fillRect(
-        x - .5,
-        y - 2,
+        x-.5,
+        y-2,
         1,
         4
       );
@@ -1422,26 +1625,45 @@ function initScratch(){
   }
 
 
-  ctx.globalAlpha =
-    1;
+  ctx.globalAlpha=1;
 
 
-  /*
-    IMPORTANTE:
-    NON VIENE DISEGNATA "GRATTA QUI".
-    SOTTO RESTA SOLO:
-    8 SETTEMBRE 2027
-  */
+  /* SCRITTA GRATTA QUI */
+
+  ctx.font =
+    "600 18px Montserrat,Arial";
+
+
+  ctx.fillStyle =
+    "#718a77";
+
+
+  ctx.textAlign =
+    "center";
+
+
+  ctx.textBaseline =
+    "middle";
+
+
+  ctx.fillText(
+    "GRATTA QUI ✨",
+    width/2,
+    height/2
+  );
 
 
   let drawing =
     false;
 
+
   let last =
     null;
 
+
   let strokes =
     0;
+
 
   let finished =
     false;
@@ -1453,15 +1675,18 @@ function initScratch(){
       canvas.getBoundingClientRect();
 
 
-    return {
-      x:e.clientX - r.left,
-      y:e.clientY - r.top
+    return{
+      x:
+        e.clientX-r.left,
+
+      y:
+        e.clientY-r.top
     };
 
   }
 
 
-  function erase(
+  function eraseCircle(
     x,
     y
   ){
@@ -1472,13 +1697,15 @@ function initScratch(){
 
     ctx.beginPath();
 
+
     ctx.arc(
       x,
       y,
       22,
       0,
-      Math.PI * 2
+      Math.PI*2
     );
+
 
     ctx.fill();
 
@@ -1497,8 +1724,10 @@ function initScratch(){
     ctx.lineWidth =
       44;
 
+
     ctx.lineCap =
       "round";
+
 
     ctx.lineJoin =
       "round";
@@ -1506,22 +1735,138 @@ function initScratch(){
 
     ctx.beginPath();
 
+
     ctx.moveTo(
       a.x,
       a.y
     );
+
 
     ctx.lineTo(
       b.x,
       b.y
     );
 
+
     ctx.stroke();
 
   }
 
 
-  function complete(){
+  function launchConfetti(){
+
+    const container =
+      document.getElementById(
+        "confetti"
+      );
+
+
+    if(!container){
+      return;
+    }
+
+
+    /*
+      55 elementi:
+      piccoli coriandoli/floreali
+      che cadono dallo schermo.
+    */
+
+    for(
+      let i=0;
+      i<55;
+      i++
+    ){
+
+      const piece =
+        document.createElement(
+          "span"
+        );
+
+
+      piece.className =
+        "confetti-piece";
+
+
+      const symbols=[
+        "✿",
+        "❀",
+        "✦",
+        "✧",
+        "•"
+      ];
+
+
+      piece.textContent =
+        symbols[
+          Math.floor(
+            Math.random()*
+            symbols.length
+          )
+        ];
+
+
+      piece.style.left =
+        Math.random()*100+"%";
+
+
+      piece.style.fontSize =
+        (8+
+        Math.random()*13)+"px";
+
+
+      piece.style.width =
+        (4+
+        Math.random()*5)+"px";
+
+
+      piece.style.height =
+        (6+
+        Math.random()*8)+"px";
+
+
+      piece.style.setProperty(
+        "--moveX",
+        (
+          Math.random()*240-120
+        )+"px"
+      );
+
+
+      piece.style.setProperty(
+        "--rotate",
+        (
+          Math.random()*720-360
+        )+"deg"
+      );
+
+
+      piece.style.animationDelay =
+        (
+          Math.random()*.65
+        )+"s";
+
+
+      container.appendChild(
+        piece
+      );
+
+
+      setTimeout(
+        function(){
+
+          piece.remove();
+
+        },
+        3800
+      );
+
+    }
+
+  }
+
+
+  function completeScratch(){
 
     if(finished){
       return;
@@ -1533,8 +1878,8 @@ function initScratch(){
 
 
     /*
-      CANCELLA TUTTA LA COPERTURA.
-      Non rimane nessun glitter.
+      Prima eliminiamo completamente
+      oro + brillantini + scritta.
     */
 
     ctx.clearRect(
@@ -1550,11 +1895,21 @@ function initScratch(){
     );
 
 
+    /*
+      CORIANDOLI PARTONO
+      NEL MOMENTO DELLA RIVELAZIONE.
+    */
+
+    launchConfetti();
+
+
     setTimeout(
       function(){
 
         if(canvas.parentNode){
+
           canvas.remove();
+
         }
 
       },
@@ -1581,7 +1936,7 @@ function initScratch(){
       position(e);
 
 
-    erase(
+    eraseCircle(
       p.x,
       p.y
     );
@@ -1605,15 +1960,16 @@ function initScratch(){
 
 
     /*
-      Dopo abbastanza grattatura
-      la copertura scompare del tutto.
+      La copertura viene eliminata
+      dopo una quantità sufficiente
+      di grattatura.
     */
 
     if(
-      strokes >= 75
+      strokes>=75
     ){
 
-      complete();
+      completeScratch();
 
     }
 
@@ -1632,7 +1988,7 @@ function initScratch(){
         position(e);
 
 
-      erase(
+      eraseCircle(
         last.x,
         last.y
       );
@@ -1660,6 +2016,7 @@ function initScratch(){
 
     drawing =
       false;
+
 
     last =
       null;
@@ -1695,98 +2052,100 @@ function initScratch(){
 ================================================== */
 
 document
-  .querySelectorAll(".nav-button")
-  .forEach(
-    function(button){
+.querySelectorAll(".nav-button")
+.forEach(
+  function(button){
 
-      button.addEventListener(
-        "click",
-        function(){
+    button.addEventListener(
+      "click",
+      function(){
 
-          const id =
-            button.dataset.section;
-
-
-          document
-            .querySelectorAll(".info-section")
-            .forEach(
-              function(section){
-
-                section.classList.remove(
-                  "open"
-                );
-
-              }
-            );
+        const id =
+          button.dataset.section;
 
 
-          const selected =
-            document.getElementById(
-              id
-            );
-
-
-          if(!selected){
-            return;
-          }
-
-
-          selected.classList.add(
-            "open"
-          );
-
-
-          setTimeout(
-            function(){
-
-              selected.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-              });
-
-            },
-            50
-          );
-
-        }
-      );
-
-    }
-  );
-
-
-/* ==================================================
-   CHIUSURA SEZIONI
-================================================== */
-
-document
-  .querySelectorAll(".close-section")
-  .forEach(
-    function(button){
-
-      button.addEventListener(
-        "click",
-        function(){
-
-          const section =
-            button.closest(
-              ".info-section"
-            );
-
-
-          if(section){
+        document
+        .querySelectorAll(
+          ".info-section"
+        )
+        .forEach(
+          function(section){
 
             section.classList.remove(
               "open"
             );
 
           }
+        );
+
+
+        const selected =
+          document.getElementById(
+            id
+          );
+
+
+        if(!selected){
+          return;
+        }
+
+
+        selected.classList.add(
+          "open"
+        );
+
+
+        setTimeout(
+          function(){
+
+            selected.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+          },
+          50
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* ==================================================
+   CHIUDI SEZIONE
+================================================== */
+
+document
+.querySelectorAll(".close-section")
+.forEach(
+  function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        const section =
+          button.closest(
+            ".info-section"
+          );
+
+
+        if(section){
+
+          section.classList.remove(
+            "open"
+          );
 
         }
-      );
 
-    }
-  );
+      }
+    );
+
+  }
+);
 
 
 /* ==================================================
@@ -1794,20 +2153,20 @@ document
 ================================================== */
 
 document
-  .getElementById("rsvpForm")
-  .addEventListener(
-    "submit",
-    function(e){
+.getElementById("rsvpForm")
+.addEventListener(
+  "submit",
+  function(e){
 
-      e.preventDefault();
+    e.preventDefault();
 
 
-      alert(
-        "Grazie! La tua risposta è stata registrata."
-      );
+    alert(
+      "Grazie! La tua risposta è stata registrata."
+    );
 
-    }
-  );
+  }
+);
 
 </script>
 
