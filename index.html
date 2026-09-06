@@ -23,25 +23,20 @@ body{
   font-family:Montserrat,Arial,sans-serif;
 }
 
-/* =====================================================
+/* ==================================================
    APERTURA BUSTA
-===================================================== */
+================================================== */
 
 #opening{
   position:fixed;
   inset:0;
   z-index:1000;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   overflow:hidden;
   background:#f4eee4;
-
-  transition:
-    opacity .9s ease,
-    visibility .9s ease;
+  transition:opacity .9s ease,visibility .9s ease;
 }
 
 #opening.finished{
@@ -59,16 +54,11 @@ body{
 .envelope{
   position:absolute;
   inset:0;
-
   width:100%;
   height:100%;
-
   object-fit:contain;
   z-index:10;
-
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
+  transition:opacity .8s ease,transform .8s ease;
 }
 
 .envelope.hide{
@@ -76,22 +66,18 @@ body{
   transform:scale(.97) translateY(2%);
 }
 
-/* =====================================================
+/* ==================================================
    CERARACCA
-===================================================== */
+================================================== */
 
 .seal-effect{
   position:absolute;
-
   left:50%;
   top:53%;
-
   width:92px;
   height:92px;
-
   z-index:60;
   pointer-events:none;
-
   opacity:0;
   transform:translate(-50%,-50%);
 }
@@ -102,34 +88,24 @@ body{
 
 .seal-piece{
   position:absolute;
-
   left:50%;
   top:50%;
-
   width:45px;
   height:45px;
-
   border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #f5c6c9,
-      #df9199 48%,
-      #c97782 100%
-    );
-
+  background:radial-gradient(
+    circle at 35% 30%,
+    #f5c6c9,
+    #df9199 48%,
+    #c97782 100%
+  );
   box-shadow:
     inset 0 2px 3px #ffffff66,
     0 3px 7px #0002;
-
   opacity:0;
 }
 
-.seal-piece.left{
-  transform:translate(-50%,-50%);
-}
-
+.seal-piece.left,
 .seal-piece.right{
   transform:translate(-50%,-50%);
 }
@@ -148,69 +124,38 @@ body{
 
 @keyframes sealLeft{
   0%{
-    transform:
-      translate(-50%,-50%)
-      rotate(0)
-      scale(1);
+    transform:translate(-50%,-50%) rotate(0) scale(1);
   }
-
   35%{
-    transform:
-      translate(-95%,-55%)
-      rotate(-12deg)
-      scale(1.02);
+    transform:translate(-95%,-55%) rotate(-12deg) scale(1.02);
   }
-
   100%{
-    transform:
-      translate(-180%,-80%)
-      rotate(-28deg)
-      scale(.55);
+    transform:translate(-180%,-80%) rotate(-28deg) scale(.55);
     opacity:0;
   }
 }
 
 @keyframes sealRight{
   0%{
-    transform:
-      translate(-50%,-50%)
-      rotate(0)
-      scale(1);
+    transform:translate(-50%,-50%) rotate(0) scale(1);
   }
-
   35%{
-    transform:
-      translate(-5%,-45%)
-      rotate(12deg)
-      scale(1.02);
+    transform:translate(-5%,-45%) rotate(12deg) scale(1.02);
   }
-
   100%{
-    transform:
-      translate(80%,-5%)
-      rotate(28deg)
-      scale(.55);
+    transform:translate(80%,-5%) rotate(28deg) scale(.55);
     opacity:0;
   }
 }
 
-/* =====================================================
-   CREPE DELLA CERARACCA
-===================================================== */
-
 .crack{
   position:absolute;
-
   left:50%;
   top:53%;
-
   z-index:58;
-
   width:2px;
   height:48px;
-
   background:#8e6669;
-
   opacity:0;
   transform-origin:center bottom;
 }
@@ -236,38 +181,28 @@ body{
     opacity:0;
     height:0;
   }
-
   45%{
     opacity:.8;
     height:48px;
   }
-
   100%{
     opacity:0;
     height:55px;
   }
 }
 
-/* =====================================================
+/* ==================================================
    BIGLIETTO DURANTE APERTURA
-===================================================== */
+================================================== */
 
 .letter{
   position:absolute;
-
   left:50%;
   top:12%;
-
   width:72%;
-
   z-index:40;
-
   opacity:0;
-
-  transform:
-    translate(-50%,48%)
-    scale(.94);
-
+  transform:translate(-50%,48%) scale(.94);
   transition:
     transform 1.25s cubic-bezier(.2,.8,.2,1),
     opacity .7s ease;
@@ -275,41 +210,28 @@ body{
 
 .letter.show{
   opacity:1;
-
-  transform:
-    translate(-50%,0)
-    scale(1);
+  transform:translate(-50%,0) scale(1);
 }
 
-/* =====================================================
+/* ==================================================
    PULSANTE APRI
-===================================================== */
+================================================== */
 
 .open-btn{
   position:absolute;
-
   left:50%;
   top:66%;
-
   transform:translate(-50%,-50%);
-
   z-index:80;
-
   border:0;
   border-radius:999px;
-
   padding:13px 24px;
-
   background:#dca4aa;
   color:white;
-
   letter-spacing:.12em;
   font-weight:600;
-
   cursor:pointer;
-
   box-shadow:0 6px 18px #0002;
-
   transition:
     opacity .4s ease,
     transform .4s ease;
@@ -318,23 +240,17 @@ body{
 .open-btn.hidden{
   opacity:0;
   pointer-events:none;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.9);
+  transform:translate(-50%,-50%) scale(.9);
 }
 
-/* =====================================================
-   PAGINA FINALE
-===================================================== */
+/* ==================================================
+   PAGINA DEL BIGLIETTO
+================================================== */
 
 #site{
   min-height:100svh;
-
   opacity:0;
-
   transition:opacity .6s ease;
-
   background:#f4eee4;
 }
 
@@ -344,96 +260,76 @@ body{
 
 .page{
   width:min(100%,520px);
-
   margin:auto;
-
   padding:20px 14px 70px;
 }
 
-/* =====================================================
+/* ==================================================
    BIGLIETTO
-===================================================== */
+================================================== */
 
 .ticket{
   position:relative;
-
   width:100%;
-
   overflow:hidden;
-
   border-radius:2px;
-
   box-shadow:0 10px 35px #00000012;
 }
 
 .ticket img{
   display:block;
-
   width:100%;
   height:auto;
 }
 
-/* =====================================================
+/* ==================================================
    GRATTA E VINCI
-===================================================== */
+================================================== */
 
 .scratch-zone{
   position:absolute;
-
   left:5.5%;
   top:45.4%;
-
   width:89%;
   height:12.5%;
-
   overflow:hidden;
-
   border-radius:7px;
-
   z-index:20;
 }
 
 .reveal{
   position:absolute;
   inset:0;
-
   z-index:1;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   text-align:center;
+
+  /*
+    Sotto la copertura c'è SOLO la data.
+    Nessun "GRATTA QUI".
+    Nessun glitter rimane sotto.
+  */
 
   background:#f5eadc;
 
   font-family:"Cormorant Garamond",serif;
-
   font-size:clamp(18px,5vw,29px);
-
   font-weight:600;
-
   letter-spacing:.08em;
-
   color:#718a77;
 }
 
 #scratch{
   position:absolute;
   inset:0;
-
   z-index:2;
-
   width:100%;
   height:100%;
-
   display:block;
-
   touch-action:none;
-
   cursor:crosshair;
-
   transition:opacity .45s ease;
 }
 
@@ -442,70 +338,53 @@ body{
   pointer-events:none;
 }
 
-/* =====================================================
+/* ==================================================
    COUNTDOWN
-===================================================== */
+================================================== */
 
 .countdown{
   margin:15px 0 0;
-
   text-align:center;
 }
 
 .countdown-title{
   margin-bottom:10px;
-
   font-family:"Cormorant Garamond",serif;
-
   font-size:25px;
-
   letter-spacing:.12em;
-
   color:#718a77;
 }
 
 .digits{
   display:flex;
-
   justify-content:center;
-
   gap:8px;
-
   flex-wrap:wrap;
 }
 
 .unit{
   min-width:68px;
-
   padding:9px 7px;
-
   background:#f5eadc;
-
   border:1px solid #d7cbbb;
-
   border-radius:8px;
 }
 
 .num{
   font-size:25px;
-
   font-weight:600;
-
   color:#718a77;
 }
 
 .lab{
   font-size:9px;
-
   letter-spacing:.14em;
-
   color:#8a8176;
 }
 
-/* =====================================================
+/* ==================================================
    TENUTA MONTICELLO
-   PIÙ VICINA AL COUNTDOWN
-===================================================== */
+================================================== */
 
 .venue{
   margin-top:-4px;
@@ -514,51 +393,34 @@ body{
 
 .venue-title{
   font-family:"Cormorant Garamond",serif;
-
   font-size:29px;
-
   font-weight:600;
-
   letter-spacing:.12em;
-
   color:#718a77;
 }
 
-/* =====================================================
+/* ==================================================
    PULSANTI
-===================================================== */
+================================================== */
 
 .navigation{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:10px;
-
   margin-top:25px;
 }
 
 .nav-button{
   padding:14px 8px;
-
   border:1px solid #d7cbbb;
-
   border-radius:10px;
-
   background:#fffaf3;
-
   color:#718a77;
-
   font-family:Montserrat,Arial,sans-serif;
-
   font-size:10px;
-
   font-weight:600;
-
   letter-spacing:.08em;
-
   cursor:pointer;
-
   transition:
     transform .2s ease,
     box-shadow .2s ease;
@@ -566,27 +428,20 @@ body{
 
 .nav-button:hover{
   transform:translateY(-2px);
-
   box-shadow:0 6px 15px #00000012;
 }
 
-/* =====================================================
-   SEZIONI
-===================================================== */
+/* ==================================================
+   SEZIONI INTERATTIVE
+================================================== */
 
 .info-section{
   display:none;
-
   margin-top:15px;
-
   padding:22px 17px;
-
   background:#f5eadc;
-
   border:1px solid #d7cbbb;
-
   border-radius:10px;
-
   animation:sectionIn .35s ease;
 }
 
@@ -608,105 +463,70 @@ body{
 
 .info-section h2{
   margin:0 0 12px;
-
   text-align:center;
-
   font-family:"Cormorant Garamond",serif;
-
   font-size:28px;
-
   letter-spacing:.1em;
-
   color:#718a77;
 }
 
 .info-section p{
   line-height:1.7;
-
   text-align:center;
-
   color:#746f67;
 }
 
 .close-section{
   display:block;
-
   margin:18px auto 0;
-
   padding:9px 17px;
-
   border:0;
   border-radius:999px;
-
   background:#dca4aa;
-
   color:#fff;
-
   font-size:9px;
-
   font-weight:600;
-
   letter-spacing:.08em;
-
   cursor:pointer;
 }
 
-/* =====================================================
+/* ==================================================
    LOCATION
-===================================================== */
+================================================== */
 
 .location-photo{
   display:block;
-
   width:100%;
-
   margin:0 0 17px;
-
   border-radius:8px;
-
   box-shadow:0 6px 18px #00000014;
 }
 
 .location-address{
   font-family:"Cormorant Garamond",serif;
-
   font-size:21px;
-
   line-height:1.4;
-
   text-align:center;
-
   color:#718a77;
 }
 
 .location-buttons{
   display:flex;
-
   justify-content:center;
-
   gap:8px;
-
   flex-wrap:wrap;
-
   margin-top:15px;
 }
 
 .map-link,
 .site-link{
   display:inline-block;
-
   padding:11px 16px;
-
   border-radius:999px;
-
   color:white;
-
   text-decoration:none;
-
   font-size:9px;
-
   font-weight:600;
-
   letter-spacing:.08em;
 }
 
@@ -718,9 +538,9 @@ body{
   background:#dca4aa;
 }
 
-/* =====================================================
+/* ==================================================
    RSVP
-===================================================== */
+================================================== */
 
 .rsvp{
   display:grid;
@@ -730,56 +550,48 @@ body{
 .rsvp input,
 .rsvp textarea{
   width:100%;
-
   padding:12px;
-
   border:1px solid #d7cbbb;
-
   border-radius:7px;
-
   background:#fffaf3;
-
   font:inherit;
-
   color:#746f67;
 }
 
 .rsvp button{
   padding:13px;
-
   border:0;
   border-radius:999px;
-
   background:#dca4aa;
-
   color:white;
-
   font-weight:600;
-
   letter-spacing:.08em;
-
   cursor:pointer;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* ==================================================
+   FRASE FINALE
+================================================== */
 
-.footer{
-  margin-top:28px;
-
+.final-message{
+  margin-top:30px;
+  padding:5px 10px 0;
   text-align:center;
-
   font-family:"Cormorant Garamond",serif;
-
-  font-size:17px;
-
+  font-size:23px;
+  line-height:1.35;
+  font-weight:600;
+  letter-spacing:.04em;
   color:#718a77;
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.footer{
+  margin-top:20px;
+  text-align:center;
+  font-family:"Cormorant Garamond",serif;
+  font-size:17px;
+  color:#718a77;
+}
 
 @media(max-width:400px){
 
@@ -796,21 +608,19 @@ body{
     top:68%;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- ==================================================
      APERTURA BUSTA
-===================================================== -->
+================================================== -->
 
 <div id="opening">
 
   <div class="envelope-wrap">
 
-    <!-- LA TUA BUSTA -->
     <img
       id="envelope"
       class="envelope"
@@ -818,11 +628,8 @@ body{
       alt="Busta"
     >
 
-    <!-- CERARACCA -->
-    <div
-      id="sealEffect"
-      class="seal-effect"
-    >
+    <!-- Effetto ceralacca -->
+    <div id="sealEffect" class="seal-effect">
 
       <div class="seal-piece left"></div>
       <div class="seal-piece right"></div>
@@ -833,7 +640,7 @@ body{
 
     </div>
 
-    <!-- BIGLIETTO -->
+    <!-- Biglietto che arriva dalla busta -->
     <img
       id="letter"
       class="letter"
@@ -854,16 +661,15 @@ body{
 </div>
 
 
-<!-- =====================================================
+<!-- ==================================================
      PAGINA DEL BIGLIETTO
-===================================================== -->
+================================================== -->
 
 <main id="site">
 
   <div class="page">
 
     <!-- BIGLIETTO -->
-
     <div class="ticket">
 
       <img
@@ -872,9 +678,9 @@ body{
       >
 
       <!-- GRATTA E VINCI -->
-
       <div class="scratch-zone">
 
+        <!-- UNICA COSA SOTTO LA COPERTURA -->
         <div class="reveal">
           8 SETTEMBRE 2027
         </div>
@@ -887,7 +693,6 @@ body{
 
 
     <!-- COUNTDOWN -->
-
     <div class="countdown">
 
       <div class="countdown-title">
@@ -921,8 +726,7 @@ body{
     </div>
 
 
-    <!-- TENUTA MONTICELLO -->
-
+    <!-- TENUTA -->
     <div class="venue">
 
       <div class="venue-title">
@@ -932,7 +736,9 @@ body{
     </div>
 
 
-    <!-- PULSANTI -->
+    <!-- ==================================================
+         PULSANTI INTERATTIVI
+    ================================================== -->
 
     <div class="navigation">
 
@@ -979,7 +785,9 @@ body{
     </div>
 
 
-    <!-- LOCATION -->
+    <!-- ==================================================
+         LOCATION
+    ================================================== -->
 
     <section
       id="location"
@@ -997,7 +805,9 @@ body{
       <div class="location-address">
 
         <strong>Tenuta il Monticello</strong><br>
+
         Via Roma, 4<br>
+
         28050 Pombia (NO)
 
       </div>
@@ -1039,7 +849,9 @@ body{
     </section>
 
 
-    <!-- DRESS CODE -->
+    <!-- ==================================================
+         DRESS CODE
+    ================================================== -->
 
     <section
       id="dresscode"
@@ -1063,16 +875,16 @@ body{
     </section>
 
 
-    <!-- PRESENZA -->
+    <!-- ==================================================
+         PRESENZA
+    ================================================== -->
 
     <section
       id="presence"
       class="info-section"
     >
 
-      <h2>
-        💌 Conferma la tua presenza
-      </h2>
+      <h2>💌 Conferma la tua presenza</h2>
 
       <form
         id="rsvpForm"
@@ -1118,7 +930,9 @@ body{
     </section>
 
 
-    <!-- NOI DUE -->
+    <!-- ==================================================
+         NOI DUE
+    ================================================== -->
 
     <section
       id="us"
@@ -1144,7 +958,9 @@ body{
     </section>
 
 
-    <!-- I NOSTRI SOGNI -->
+    <!-- ==================================================
+         I NOSTRI SOGNI
+    ================================================== -->
 
     <section
       id="dreams"
@@ -1168,8 +984,21 @@ body{
     </section>
 
 
+    <!-- ==================================================
+         FRASE FINALE
+    ================================================== -->
+
+    <div class="final-message">
+
+      Non vediamo l’ora di vivere questo giorno insieme a voi!
+
+    </div>
+
+
     <div class="footer">
+
       Giada &amp; Paolo
+
     </div>
 
   </div>
@@ -1179,62 +1008,69 @@ body{
 
 <script>
 
-/* =====================================================
+/* ==================================================
    COUNTDOWN
-===================================================== */
+================================================== */
 
 const target =
-  new Date(
-    "2027-09-08T00:00:00+02:00"
-  ).getTime();
+  new Date("2027-09-08T00:00:00+02:00").getTime();
 
 
 function tick(){
 
-  let remaining =
+  let x =
     Math.max(
       0,
       target - Date.now()
     );
 
-  const days =
+
+  const d =
     Math.floor(
-      remaining / 86400000
+      x / 86400000
     );
 
-  remaining %= 86400000;
 
-  const hours =
+  x %= 86400000;
+
+
+  const h =
     Math.floor(
-      remaining / 3600000
+      x / 3600000
     );
 
-  remaining %= 3600000;
 
-  const minutes =
+  x %= 3600000;
+
+
+  const m =
     Math.floor(
-      remaining / 60000
+      x / 60000
     );
 
-  remaining %= 60000;
 
-  const seconds =
+  x %= 60000;
+
+
+  const s =
     Math.floor(
-      remaining / 1000
+      x / 1000
     );
 
-  document.getElementById("d").textContent =
-    days;
+
+  document.getElementById("d").textContent = d;
 
   document.getElementById("h").textContent =
-    String(hours).padStart(2,"0");
+    String(h).padStart(2,"0");
 
   document.getElementById("m").textContent =
-    String(minutes).padStart(2,"0");
+    String(m).padStart(2,"0");
 
   document.getElementById("s").textContent =
-    String(seconds).padStart(2,"0");
+    String(s).padStart(2,"0");
+
 }
+
 
 tick();
 
@@ -1244,9 +1080,9 @@ setInterval(
 );
 
 
-/* =====================================================
+/* ==================================================
    APERTURA BUSTA
-===================================================== */
+================================================== */
 
 const opening =
   document.getElementById("opening");
@@ -1271,34 +1107,33 @@ openBtn.addEventListener(
   "click",
   function(){
 
-    /* Pulsante sparisce */
-
+    /* Nasconde il pulsante */
     openBtn.classList.add("hidden");
 
 
-    /* Ceralacca si rompe */
-
+    /* Fa comparire la ceralacca */
     setTimeout(
       function(){
 
         sealEffect.classList.add("active");
-
-        setTimeout(
-          function(){
-
-            sealEffect.classList.add("break");
-
-          },
-          80
-        );
 
       },
       350
     );
 
 
-    /* Busta scompare */
+    /* Spezza la ceralacca */
+    setTimeout(
+      function(){
 
+        sealEffect.classList.add("break");
+
+      },
+      430
+    );
+
+
+    /* La busta scompare */
     setTimeout(
       function(){
 
@@ -1310,7 +1145,6 @@ openBtn.addEventListener(
 
 
     /* Arriva il biglietto */
-
     setTimeout(
       function(){
 
@@ -1321,12 +1155,7 @@ openBtn.addEventListener(
     );
 
 
-    /*
-      Una sola pagina:
-      la schermata della busta
-      scompare completamente.
-    */
-
+    /* Passaggio alla pagina unica */
     setTimeout(
       function(){
 
@@ -1349,11 +1178,12 @@ openBtn.addEventListener(
 );
 
 
-/* =====================================================
+/* ==================================================
    GRATTA E VINCI
-===================================================== */
+================================================== */
 
-let scratchInitialized=false;
+let scratchInitialized =
+  false;
 
 
 function initScratch(){
@@ -1362,11 +1192,13 @@ function initScratch(){
     return;
   }
 
-  scratchInitialized=true;
+  scratchInitialized =
+    true;
 
 
   const canvas =
     document.getElementById("scratch");
+
 
   if(!canvas){
     return;
@@ -1376,16 +1208,18 @@ function initScratch(){
   const rect =
     canvas.getBoundingClientRect();
 
+
   const width =
     rect.width;
+
 
   const height =
     rect.height;
 
 
   if(
-    width<=0 ||
-    height<=0
+    width <= 0 ||
+    height <= 0
   ){
     return;
   }
@@ -1399,10 +1233,15 @@ function initScratch(){
 
 
   canvas.width =
-    Math.round(width*dpr);
+    Math.round(
+      width * dpr
+    );
+
 
   canvas.height =
-    Math.round(height*dpr);
+    Math.round(
+      height * dpr
+    );
 
 
   const ctx =
@@ -1428,6 +1267,7 @@ function initScratch(){
       width,
       height
     );
+
 
   gold.addColorStop(
     0,
@@ -1460,7 +1300,9 @@ function initScratch(){
   );
 
 
-  ctx.fillStyle=gold;
+  ctx.fillStyle =
+    gold;
+
 
   ctx.fillRect(
     0,
@@ -1470,14 +1312,9 @@ function initScratch(){
   );
 
 
-  /*
-    BRILLANTINI SOLO NELLA COPERTURA.
+  /* BRILLANTINI SOLO SOPRA */
 
-    Quando la copertura viene cancellata,
-    vengono cancellati anche i brillantini.
-  */
-
-  const glitter=[
+  const glitter = [
     "#fff8d6",
     "#ffffff",
     "#f7e5a0",
@@ -1486,30 +1323,29 @@ function initScratch(){
 
 
   for(
-    let i=0;
-    i<220;
+    let i = 0;
+    i < 220;
     i++
   ){
 
     const x =
-      Math.random()*width;
+      Math.random() * width;
 
     const y =
-      Math.random()*height;
+      Math.random() * height;
 
     const r =
-      Math.random()*1.7+.4;
+      Math.random() * 1.7 + .4;
 
 
     ctx.globalAlpha =
-      .4+
-      Math.random()*.6;
+      .4 + Math.random() * .6;
 
 
     ctx.fillStyle =
       glitter[
         Math.floor(
-          Math.random()*glitter.length
+          Math.random() * glitter.length
         )
       ];
 
@@ -1521,26 +1357,26 @@ function initScratch(){
       y,
       r,
       0,
-      Math.PI*2
+      Math.PI * 2
     );
 
     ctx.fill();
 
 
     if(
-      Math.random()>.72
+      Math.random() > .72
     ){
 
       ctx.fillRect(
-        x-2,
-        y-.5,
+        x - 2,
+        y - .5,
         4,
         1
       );
 
       ctx.fillRect(
-        x-.5,
-        y-2,
+        x - .5,
+        y - 2,
         1,
         4
       );
@@ -1550,23 +1386,26 @@ function initScratch(){
   }
 
 
-  ctx.globalAlpha=1;
+  ctx.globalAlpha = 1;
 
 
   /*
     IMPORTANTE:
-    nessuna scritta "GRATTA QUI"
-    viene disegnata sul canvas.
-
-    Sotto la copertura c'è SOLO:
-    8 SETTEMBRE 2027
+    NON VIENE DISEGNATA LA SCRITTA
+    "GRATTA QUI".
   */
 
+  let drawing =
+    false;
 
-  let drawing=false;
-  let last=null;
-  let strokes=0;
-  let finished=false;
+  let last =
+    null;
+
+  let strokes =
+    0;
+
+  let finished =
+    false;
 
 
   function position(e){
@@ -1574,55 +1413,76 @@ function initScratch(){
     const r =
       canvas.getBoundingClientRect();
 
-    return{
-      x:e.clientX-r.left,
-      y:e.clientY-r.top
+
+    return {
+      x:e.clientX - r.left,
+      y:e.clientY - r.top
     };
 
   }
 
 
-  function erase(x,y){
+  function erase(
+    x,
+    y
+  ){
 
     ctx.globalCompositeOperation =
       "destination-out";
 
+
     ctx.beginPath();
+
 
     ctx.arc(
       x,
       y,
       22,
       0,
-      Math.PI*2
+      Math.PI * 2
     );
+
 
     ctx.fill();
 
   }
 
 
-  function eraseLine(a,b){
+  function eraseLine(
+    a,
+    b
+  ){
 
     ctx.globalCompositeOperation =
       "destination-out";
 
-    ctx.lineWidth=44;
 
-    ctx.lineCap="round";
-    ctx.lineJoin="round";
+    ctx.lineWidth =
+      44;
+
+
+    ctx.lineCap =
+      "round";
+
+
+    ctx.lineJoin =
+      "round";
+
 
     ctx.beginPath();
+
 
     ctx.moveTo(
       a.x,
       a.y
     );
 
+
     ctx.lineTo(
       b.x,
       b.y
     );
+
 
     ctx.stroke();
 
@@ -1635,14 +1495,14 @@ function initScratch(){
       return;
     }
 
-    finished=true;
+
+    finished =
+      true;
 
 
     /*
-      Pulizia completa del canvas.
-
-      Rimane esclusivamente
-      la data sottostante.
+      Cancella completamente la copertura.
+      Quindi spariscono anche tutti i brillantini.
     */
 
     ctx.clearRect(
@@ -1681,6 +1541,7 @@ function initScratch(){
       return;
     }
 
+
     e.preventDefault();
 
 
@@ -1704,17 +1565,16 @@ function initScratch(){
     }
 
 
-    last=p;
+    last =
+      p;
+
 
     strokes++;
 
 
-    /*
-      Dopo abbastanza grattate
-      la copertura sparisce.
-    */
-
-    if(strokes>=75){
+    if(
+      strokes >= 75
+    ){
 
       complete();
 
@@ -1727,9 +1587,11 @@ function initScratch(){
     "pointerdown",
     function(e){
 
-      drawing=true;
+      drawing =
+        true;
 
-      last=
+
+      last =
         position(e);
 
 
@@ -1759,9 +1621,12 @@ function initScratch(){
 
   function stop(e){
 
-    drawing=false;
+    drawing =
+      false;
 
-    last=null;
+
+    last =
+      null;
 
 
     try{
@@ -1780,6 +1645,7 @@ function initScratch(){
     stop
   );
 
+
   canvas.addEventListener(
     "pointercancel",
     stop
@@ -1788,84 +1654,77 @@ function initScratch(){
 }
 
 
-/* =====================================================
+/* ==================================================
    PULSANTI INTERATTIVI
-===================================================== */
-
-const buttons =
-  document.querySelectorAll(
-    ".nav-button"
-  );
-
-const sections =
-  document.querySelectorAll(
-    ".info-section"
-  );
-
-
-buttons.forEach(
-  function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        const id =
-          button.dataset.section;
-
-
-        sections.forEach(
-          function(section){
-
-            section.classList.remove(
-              "open"
-            );
-
-          }
-        );
-
-
-        const selected =
-          document.getElementById(id);
-
-
-        if(!selected){
-          return;
-        }
-
-
-        selected.classList.add(
-          "open"
-        );
-
-
-        setTimeout(
-          function(){
-
-            selected.scrollIntoView({
-              behavior:"smooth",
-              block:"start"
-            });
-
-          },
-          50
-        );
-
-      }
-    );
-
-  }
-);
-
-
-/* =====================================================
-   CHIUSURA SEZIONI
-===================================================== */
+================================================== */
 
 document
-  .querySelectorAll(
-    ".close-section"
-  )
+  .querySelectorAll(".nav-button")
+  .forEach(
+    function(button){
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          const id =
+            button.dataset.section;
+
+
+          document
+            .querySelectorAll(".info-section")
+            .forEach(
+              function(section){
+
+                section.classList.remove(
+                  "open"
+                );
+
+              }
+            );
+
+
+          const selected =
+            document.getElementById(
+              id
+            );
+
+
+          if(!selected){
+            return;
+          }
+
+
+          selected.classList.add(
+            "open"
+          );
+
+
+          setTimeout(
+            function(){
+
+              selected.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+              });
+
+            },
+            50
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* ==================================================
+   CHIUSURA SEZIONI
+================================================== */
+
+document
+  .querySelectorAll(".close-section")
   .forEach(
     function(button){
 
@@ -1879,14 +1738,13 @@ document
             );
 
 
-          if(!section){
-            return;
+          if(section){
+
+            section.classList.remove(
+              "open"
+            );
+
           }
-
-
-          section.classList.remove(
-            "open"
-          );
 
         }
       );
@@ -1895,9 +1753,9 @@ document
   );
 
 
-/* =====================================================
+/* ==================================================
    RSVP
-===================================================== */
+================================================== */
 
 document
   .getElementById("rsvpForm")
@@ -1906,6 +1764,7 @@ document
     function(e){
 
       e.preventDefault();
+
 
       alert(
         "Grazie! La tua risposta è stata registrata."
