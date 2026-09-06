@@ -24,17 +24,17 @@ body{
 }
 
 /* =====================================================
-   APERTURA BUSTA
+   APERTURA
 ===================================================== */
 
-.opening{
+#opening{
   position:fixed;
   inset:0;
   z-index:1000;
 
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 
   overflow:hidden;
 
@@ -45,7 +45,7 @@ body{
     visibility .9s ease;
 }
 
-.opening.gone{
+#opening.finished{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -53,6 +53,7 @@ body{
 
 .envelope-wrap{
   position:relative;
+
   width:min(92vw,520px);
   height:min(92vh,925px);
 }
@@ -74,22 +75,380 @@ body{
   z-index:10;
 
   transition:
-    transform .8s ease,
-    opacity .6s ease;
+    opacity .7s ease,
+    transform .8s ease;
 }
 
-.envelope.opening{
+.envelope.move{
   transform:scale(.98);
-}
-
-.envelope.disappear{
-  opacity:0;
-  transform:scale(.96);
 }
 
 
 /* =====================================================
-   PULSANTE
+   FIORI DELL'APERTURA
+===================================================== */
+
+/*
+   I fiori vengono usati come elementi decorativi
+   che entrano dall'esterno durante l'apertura.
+*/
+
+.flower-animation{
+  position:absolute;
+  inset:0;
+
+  z-index:30;
+
+  pointer-events:none;
+
+  opacity:0;
+}
+
+.flower-animation.active{
+  opacity:1;
+}
+
+.flower-piece{
+  position:absolute;
+
+  width:70px;
+  height:70px;
+
+  opacity:0;
+
+  transform:
+    scale(.15)
+    rotate(-35deg);
+}
+
+/* posizione dei fiori */
+
+.flower-piece.f1{
+  left:-5%;
+  top:12%;
+}
+
+.flower-piece.f2{
+  left:5%;
+  top:5%;
+}
+
+.flower-piece.f3{
+  right:-5%;
+  top:12%;
+}
+
+.flower-piece.f4{
+  right:5%;
+  top:5%;
+}
+
+.flower-piece.f5{
+  left:-6%;
+  bottom:15%;
+}
+
+.flower-piece.f6{
+  left:5%;
+  bottom:8%;
+}
+
+.flower-piece.f7{
+  right:-6%;
+  bottom:15%;
+}
+
+.flower-piece.f8{
+  right:5%;
+  bottom:8%;
+}
+
+.flower-animation.active .flower-piece{
+  animation:
+    flowerAppear 1.15s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.flower-animation.active .f1{animation-delay:.00s}
+.flower-animation.active .f2{animation-delay:.10s}
+.flower-animation.active .f3{animation-delay:.16s}
+.flower-animation.active .f4{animation-delay:.25s}
+.flower-animation.active .f5{animation-delay:.30s}
+.flower-animation.active .f6{animation-delay:.40s}
+.flower-animation.active .f7{animation-delay:.46s}
+.flower-animation.active .f8{animation-delay:.55s}
+
+.flower-head{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:34px;
+  height:34px;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #e8a4ad 0 38%,
+      #f1c0c5 39% 63%,
+      transparent 64%
+    );
+}
+
+.flower-head::before,
+.flower-head::after{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:32px;
+  height:15px;
+
+  border-radius:50%;
+
+  background:#e8a4ad;
+}
+
+.flower-head::before{
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.flower-head::after{
+  transform:translate(-50%,-50%) rotate(-45deg);
+}
+
+.flower-center{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:9px;
+  height:9px;
+
+  border-radius:50%;
+
+  background:#d59b68;
+
+  transform:translate(-50%,-50%);
+
+  z-index:3;
+}
+
+.flower-leaf{
+  position:absolute;
+
+  width:32px;
+  height:15px;
+
+  border-radius:100% 0 100% 0;
+
+  background:#a5b198;
+}
+
+.flower-leaf.l1{
+  left:0;
+  bottom:8px;
+
+  transform:rotate(30deg);
+}
+
+.flower-leaf.l2{
+  right:0;
+  top:8px;
+
+  transform:rotate(-35deg);
+}
+
+@keyframes flowerAppear{
+
+  0%{
+    opacity:0;
+
+    transform:
+      scale(.15)
+      rotate(-35deg)
+      translateY(35px);
+  }
+
+  55%{
+    opacity:1;
+
+    transform:
+      scale(1.08)
+      rotate(8deg)
+      translateY(-3px);
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      scale(1)
+      rotate(0deg)
+      translateY(0);
+  }
+
+}
+
+
+/* =====================================================
+   CERALACCA
+===================================================== */
+
+.seal-animation{
+  position:absolute;
+
+  left:50%;
+  top:53%;
+
+  width:92px;
+  height:92px;
+
+  z-index:50;
+
+  transform:translate(-50%,-50%);
+
+  pointer-events:none;
+
+  opacity:0;
+}
+
+.seal-animation.active{
+  opacity:1;
+}
+
+.seal-crack{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:3px;
+  height:40px;
+
+  border-radius:3px;
+
+  background:#8d5b61;
+
+  transform-origin:50% 100%;
+
+  opacity:0;
+}
+
+.seal-animation.break .seal-crack{
+  opacity:1;
+}
+
+.sc1{
+  transform:translate(-50%,-100%) rotate(10deg);
+}
+
+.sc2{
+  transform:translate(-50%,-100%) rotate(75deg);
+}
+
+.sc3{
+  transform:translate(-50%,-100%) rotate(145deg);
+}
+
+.sc4{
+  transform:translate(-50%,-100%) rotate(215deg);
+}
+
+.sc5{
+  transform:translate(-50%,-100%) rotate(285deg);
+}
+
+.seal-animation.break{
+  animation:sealBreaking .8s ease forwards;
+}
+
+@keyframes sealBreaking{
+
+  0%{
+    transform:
+      translate(-50%,-50%)
+      scale(1)
+      rotate(0);
+  }
+
+  20%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.08)
+      rotate(-4deg);
+  }
+
+  40%{
+    transform:
+      translate(-50%,-50%)
+      scale(.94)
+      rotate(5deg);
+  }
+
+  60%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.08)
+      rotate(-4deg);
+  }
+
+  100%{
+    transform:
+      translate(-50%,-50%)
+      scale(.45)
+      rotate(10deg);
+
+    opacity:0;
+  }
+
+}
+
+
+/* =====================================================
+   BIGLIETTO CHE ESCE
+===================================================== */
+
+.letter{
+  position:absolute;
+
+  left:50%;
+  top:12%;
+
+  width:72%;
+
+  z-index:40;
+
+  opacity:0;
+
+  transform:
+    translate(-50%,45%)
+    scale(.94);
+
+  transition:
+    transform 1.25s cubic-bezier(.2,.8,.2,1),
+    opacity .65s ease;
+}
+
+.letter.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,0)
+    scale(1);
+}
+
+
+/* =====================================================
+   PULSANTE APRI
 ===================================================== */
 
 .open-btn{
@@ -100,7 +459,7 @@ body{
 
   transform:translate(-50%,-50%);
 
-  z-index:60;
+  z-index:80;
 
   border:0;
   border-radius:999px;
@@ -108,9 +467,11 @@ body{
   padding:13px 24px;
 
   background:#dca4aa;
+
   color:#fff;
 
   letter-spacing:.12em;
+
   font-weight:600;
 
   cursor:pointer;
@@ -133,387 +494,7 @@ body{
 
 
 /* =====================================================
-   FIORI CHE ENTRANO
-===================================================== */
-
-.flower-layer{
-  position:absolute;
-  inset:0;
-
-  z-index:35;
-
-  pointer-events:none;
-
-  opacity:0;
-}
-
-.flower-layer.active{
-  opacity:1;
-}
-
-
-/* fiori decorativi */
-
-.flower{
-  position:absolute;
-
-  width:58px;
-  height:58px;
-
-  opacity:0;
-
-  transform:scale(.1) rotate(-30deg);
-}
-
-.flower-layer.active .flower{
-  animation:
-    flowerEnter 1.15s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-.flower:nth-child(1){
-  left:3%;
-  top:7%;
-  animation-delay:.05s;
-}
-
-.flower:nth-child(2){
-  left:15%;
-  top:3%;
-  animation-delay:.15s;
-}
-
-.flower:nth-child(3){
-  right:3%;
-  top:7%;
-  animation-delay:.22s;
-}
-
-.flower:nth-child(4){
-  right:15%;
-  top:3%;
-  animation-delay:.3s;
-}
-
-.flower:nth-child(5){
-  left:-2%;
-  bottom:17%;
-  animation-delay:.35s;
-}
-
-.flower:nth-child(6){
-  left:8%;
-  bottom:12%;
-  animation-delay:.42s;
-}
-
-.flower:nth-child(7){
-  right:-2%;
-  bottom:17%;
-  animation-delay:.48s;
-}
-
-.flower:nth-child(8){
-  right:8%;
-  bottom:12%;
-  animation-delay:.55s;
-}
-
-
-.flower::before,
-.flower::after{
-  content:"";
-
-  position:absolute;
-  left:50%;
-  top:50%;
-
-  width:25px;
-  height:39px;
-
-  border-radius:50%;
-
-  background:#e6a0a9;
-
-  transform-origin:50% 100%;
-}
-
-.flower::before{
-  transform:
-    translate(-50%,-100%)
-    rotate(0deg);
-}
-
-.flower::after{
-  transform:
-    translate(-50%,-100%)
-    rotate(90deg);
-}
-
-.flower .center{
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:12px;
-  height:12px;
-
-  border-radius:50%;
-
-  background:#d59b68;
-
-  transform:translate(-50%,-50%);
-
-  z-index:2;
-}
-
-.flower .leaf{
-  position:absolute;
-
-  width:27px;
-  height:13px;
-
-  border-radius:100% 0 100% 0;
-
-  background:#a7b39a;
-
-  transform:rotate(30deg);
-}
-
-.flower .leaf.one{
-  left:0;
-  bottom:3px;
-}
-
-.flower .leaf.two{
-  right:0;
-  top:3px;
-  transform:rotate(-35deg);
-}
-
-
-@keyframes flowerEnter{
-  0%{
-    opacity:0;
-    transform:
-      scale(.1)
-      rotate(-30deg)
-      translateY(45px);
-  }
-
-  55%{
-    opacity:1;
-    transform:
-      scale(1.08)
-      rotate(8deg)
-      translateY(-4px);
-  }
-
-  100%{
-    opacity:1;
-    transform:
-      scale(1)
-      rotate(0)
-      translateY(0);
-  }
-}
-
-
-/* =====================================================
-   CERALACCA
-===================================================== */
-
-.seal-effect{
-  position:absolute;
-
-  left:50%;
-  top:53%;
-
-  width:90px;
-  height:90px;
-
-  z-index:50;
-
-  transform:translate(-50%,-50%);
-
-  pointer-events:none;
-
-  opacity:0;
-}
-
-.seal-effect.active{
-  opacity:1;
-}
-
-.seal-effect.crack{
-  animation:
-    sealBreak .7s ease forwards;
-}
-
-.seal-circle{
-  position:absolute;
-  inset:4px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #f6b8bc,
-      #d9858d 55%,
-      #b96770
-    );
-
-  box-shadow:
-    inset 2px 2px 5px #fff8,
-    inset -3px -4px 7px #8f4d55;
-}
-
-.seal-text{
-  position:absolute;
-
-  inset:0;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:25px;
-
-  color:#718a77;
-
-  font-style:italic;
-}
-
-.crack-line{
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:3px;
-  height:38px;
-
-  background:#8c5a60;
-
-  border-radius:3px;
-
-  transform-origin:50% 100%;
-
-  opacity:0;
-}
-
-.seal-effect.crack .crack-line{
-  opacity:1;
-}
-
-.crack-1{
-  transform:
-    translate(-50%,-100%)
-    rotate(15deg);
-}
-
-.crack-2{
-  transform:
-    translate(-50%,-100%)
-    rotate(82deg);
-}
-
-.crack-3{
-  transform:
-    translate(-50%,-100%)
-    rotate(145deg);
-}
-
-.crack-4{
-  transform:
-    translate(-50%,-100%)
-    rotate(218deg);
-}
-
-.crack-5{
-  transform:
-    translate(-50%,-100%)
-    rotate(285deg);
-}
-
-@keyframes sealBreak{
-  0%{
-    transform:
-      translate(-50%,-50%)
-      scale(1)
-      rotate(0);
-  }
-
-  20%{
-    transform:
-      translate(-50%,-50%)
-      scale(1.06)
-      rotate(-4deg);
-  }
-
-  40%{
-    transform:
-      translate(-50%,-50%)
-      scale(.94)
-      rotate(4deg);
-  }
-
-  60%{
-    transform:
-      translate(-50%,-50%)
-      scale(1.08)
-      rotate(-3deg);
-  }
-
-  100%{
-    transform:
-      translate(-50%,-50%)
-      scale(.55)
-      rotate(7deg);
-    opacity:0;
-  }
-}
-
-
-/* =====================================================
-   BIGLIETTO CHE ESCE
-===================================================== */
-
-.letter{
-  position:absolute;
-
-  left:50%;
-  top:12%;
-
-  width:72%;
-
-  z-index:25;
-
-  opacity:0;
-
-  transform:
-    translate(-50%,42%)
-    scale(.94);
-
-  transition:
-    transform 1.25s cubic-bezier(.2,.8,.2,1),
-    opacity .65s ease;
-}
-
-.letter.visible{
-  opacity:1;
-
-  transform:
-    translate(-50%,0)
-    scale(1);
-}
-
-
-/* =====================================================
-   SITO - UNA SOLA PAGINA
+   PAGINA FINALE
 ===================================================== */
 
 #site{
@@ -524,16 +505,16 @@ body{
   background:#f4eee4;
 }
 
-#site.visible{
+#site.show{
   display:block;
 }
 
-.main-ticket{
+.page{
   width:min(100%,520px);
 
   margin:auto;
 
-  padding:20px 14px 60px;
+  padding:20px 14px 70px;
 }
 
 
@@ -554,7 +535,7 @@ body{
     0 10px 35px #00000012;
 }
 
-.ticket-image{
+.ticket img{
   display:block;
 
   width:100%;
@@ -562,37 +543,13 @@ body{
 }
 
 
-/* =====================================================
-   NOMI
-===================================================== */
+/*
+   IMPORTANTE:
+   NON inseriamo qui i nomi.
 
-.names{
-  position:absolute;
-
-  left:15%;
-  right:15%;
-  top:8%;
-
-  z-index:5;
-
-  text-align:center;
-
-  pointer-events:none;
-}
-
-.names h1{
-  margin:0;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:clamp(30px,8vw,46px);
-
-  font-weight:600;
-
-  letter-spacing:.08em;
-
-  color:#718a77;
-}
+   I nomi sono già dentro biglietto.png,
+   quindi rimangono quelli originali.
+*/
 
 
 /* =====================================================
@@ -610,16 +567,14 @@ body{
 
   overflow:hidden;
 
-  border-radius:8px;
+  border-radius:7px;
 
   z-index:20;
 }
 
 
 /*
-  SOTTO LA COPERTURA C'È SOLO LA DATA.
-  Nessun "GRATTA QUI".
-  Nessun brillantino.
+   SOTTO LA COPERTURA C'È SOLO LA DATA.
 */
 
 .reveal{
@@ -629,6 +584,7 @@ body{
   z-index:1;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -638,7 +594,7 @@ body{
 
   font-family:"Cormorant Garamond",serif;
 
-  font-size:clamp(19px,5vw,29px);
+  font-size:clamp(18px,5vw,29px);
 
   font-weight:600;
 
@@ -647,14 +603,15 @@ body{
   color:#718a77;
 }
 
+
 #scratch{
   position:absolute;
   inset:0;
 
+  z-index:2;
+
   width:100%;
   height:100%;
-
-  z-index:2;
 
   display:block;
 
@@ -665,64 +622,10 @@ body{
   transition:opacity .45s ease;
 }
 
-#scratch.done{
+#scratch.finished{
   opacity:0;
 
   pointer-events:none;
-}
-
-
-/* =====================================================
-   CORIANDOLI / PETALI DOPO IL GRATTA
-===================================================== */
-
-.confetti{
-  position:fixed;
-  inset:0;
-
-  z-index:900;
-
-  pointer-events:none;
-
-  overflow:hidden;
-}
-
-.confetti-piece{
-  position:absolute;
-
-  top:-30px;
-
-  width:9px;
-  height:15px;
-
-  border-radius:60% 40% 60% 40%;
-
-  opacity:0;
-
-  animation:
-    confettiFall linear forwards;
-}
-
-@keyframes confettiFall{
-
-  0%{
-    opacity:0;
-    transform:
-      translateY(-30px)
-      rotate(0deg);
-  }
-
-  10%{
-    opacity:1;
-  }
-
-  100%{
-    opacity:0;
-    transform:
-      translateY(110vh)
-      translateX(var(--drift))
-      rotate(var(--rotation));
-  }
 }
 
 
@@ -858,7 +761,7 @@ body{
 
 
 /* =====================================================
-   CONTENUTI DEI PULSANTI
+   SEZIONI
 ===================================================== */
 
 .info-section{
@@ -882,6 +785,7 @@ body{
 }
 
 @keyframes sectionIn{
+
   from{
     opacity:0;
     transform:translateY(8px);
@@ -891,6 +795,7 @@ body{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 .info-section h2{
@@ -928,7 +833,7 @@ body{
 
   background:#dca4aa;
 
-  color:white;
+  color:#fff;
 
   font-size:9px;
 
@@ -1001,13 +906,71 @@ body{
 
   background:#dca4aa;
 
-  color:#fff;
+  color:white;
 
   font-weight:600;
 
   letter-spacing:.08em;
 
   cursor:pointer;
+}
+
+
+/* =====================================================
+   CORIANDOLI / PETALI
+===================================================== */
+
+#celebration{
+  position:fixed;
+
+  inset:0;
+
+  z-index:900;
+
+  pointer-events:none;
+
+  overflow:hidden;
+}
+
+.petal{
+  position:absolute;
+
+  top:-35px;
+
+  width:10px;
+  height:15px;
+
+  opacity:0;
+
+  border-radius:70% 30% 70% 30%;
+
+  animation:
+    fall linear forwards;
+}
+
+@keyframes fall{
+
+  0%{
+    opacity:0;
+
+    transform:
+      translateY(-30px)
+      rotate(0deg);
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+
+    transform:
+      translateY(110vh)
+      translateX(var(--move))
+      rotate(var(--rotate));
+  }
+
 }
 
 
@@ -1034,7 +997,7 @@ body{
 
 @media(max-width:400px){
 
-  .main-ticket{
+  .page{
     padding-left:10px;
     padding-right:10px;
   }
@@ -1043,13 +1006,10 @@ body{
     grid-template-columns:1fr;
   }
 
-  .names h1{
-    font-size:30px;
-  }
-
   .open-btn{
     top:68%;
   }
+
 }
 
 </style>
@@ -1060,20 +1020,14 @@ body{
 
 
 <!-- =====================================================
-     APERTURA
+     APERTURA DELLA BUSTA
 ===================================================== -->
 
-<div
-  id="opening"
-  class="opening"
->
+<div id="opening">
 
-  <div
-    class="envelope-wrap"
-    id="envelopeWrap"
-  >
+  <div class="envelope-wrap">
 
-    <!-- BUSTA -->
+    <!-- BUSTA ORIGINALE -->
     <img
       id="envelope"
       class="envelope"
@@ -1082,80 +1036,82 @@ body{
     >
 
 
-    <!-- FIORI -->
+    <!-- FIORI CHE ENTRANO -->
     <div
-      id="flowerLayer"
-      class="flower-layer"
+      id="flowerAnimation"
+      class="flower-animation"
     >
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f1">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f2">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f3">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f4">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f5">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f6">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f7">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
-      <div class="flower">
-        <div class="center"></div>
-        <div class="leaf one"></div>
-        <div class="leaf two"></div>
+      <div class="flower-piece f8">
+        <div class="flower-head"></div>
+        <div class="flower-center"></div>
+        <div class="flower-leaf l1"></div>
+        <div class="flower-leaf l2"></div>
       </div>
 
     </div>
 
 
-    <!-- EFFETTO CERALACCA -->
+    <!-- EFFETTO ROTTURA CERALACCA -->
     <div
-      id="sealEffect"
-      class="seal-effect"
+      id="sealAnimation"
+      class="seal-animation"
     >
 
-      <div class="seal-circle"></div>
-
-      <div class="seal-text">
-        GP
-      </div>
-
-      <span class="crack-line crack-1"></span>
-      <span class="crack-line crack-2"></span>
-      <span class="crack-line crack-3"></span>
-      <span class="crack-line crack-4"></span>
-      <span class="crack-line crack-5"></span>
+      <span class="seal-crack sc1"></span>
+      <span class="seal-crack sc2"></span>
+      <span class="seal-crack sc3"></span>
+      <span class="seal-crack sc4"></span>
+      <span class="seal-crack sc5"></span>
 
     </div>
 
@@ -1169,8 +1125,7 @@ body{
     >
 
 
-    <!-- NESSUNA SCRITTA "UN PICCOLO SORRISO PER TE" -->
-
+    <!-- SOLO IL PULSANTE -->
     <button
       id="openBtn"
       class="open-btn"
@@ -1186,36 +1141,35 @@ body{
 
 
 <!-- =====================================================
-     UNICA PAGINA FINALE
+     PAGINA FINALE
 ===================================================== -->
 
 <main id="site">
 
-  <div class="main-ticket">
+  <div class="page">
 
+    <!-- BIGLIETTO -->
     <div class="ticket">
 
-      <!-- GRAFICA DEL BIGLIETTO -->
       <img
-        class="ticket-image"
         src="biglietto.png"
         alt="Il nostro biglietto"
       >
 
 
-      <!-- NOMI -->
-      <div class="names">
-
-        <h1>
-          GIADA &amp; PAOLO
-        </h1>
-
-      </div>
+      <!--
+        NON CI SONO NOMI QUI.
+        I nomi rimangono quelli originali
+        contenuti nell'immagine Canva.
+      -->
 
 
-      <!-- GRATTA -->
+      <!-- GRATTA E VINCI -->
       <div class="scratch-zone">
 
+        <!--
+          SOTTO LA COPERTURA C'È SOLTANTO LA DATA.
+        -->
         <div class="reveal">
           8 SETTEMBRE 2027
         </div>
@@ -1242,23 +1196,58 @@ body{
       <div class="digits">
 
         <div class="unit">
-          <div class="num" id="d">0</div>
-          <div class="lab">GIORNI</div>
+          <div
+            class="num"
+            id="d"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            GIORNI
+          </div>
         </div>
 
-        <div class="unit">
-          <div class="num" id="h">0</div>
-          <div class="lab">ORE</div>
-        </div>
 
         <div class="unit">
-          <div class="num" id="m">0</div>
-          <div class="lab">MINUTI</div>
+          <div
+            class="num"
+            id="h"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            ORE
+          </div>
         </div>
 
+
         <div class="unit">
-          <div class="num" id="s">0</div>
-          <div class="lab">SECONDI</div>
+          <div
+            class="num"
+            id="m"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            MINUTI
+          </div>
+        </div>
+
+
+        <div class="unit">
+          <div
+            class="num"
+            id="s"
+          >
+            0
+          </div>
+
+          <div class="lab">
+            SECONDI
+          </div>
         </div>
 
       </div>
@@ -1267,7 +1256,7 @@ body{
 
 
     <!-- =================================================
-         TENUTA
+         TENUTA MONTICELLO
     ================================================= -->
 
     <div class="venue">
@@ -1280,47 +1269,57 @@ body{
 
 
     <!-- =================================================
-         MENU INTERATTIVO
+         PULSANTI INTERATTIVI
     ================================================= -->
 
     <div class="navigation">
 
       <button
         class="nav-button"
-        data-target="location"
+        data-section="location"
+        type="button"
       >
         📍 LOCATION
       </button>
 
+
       <button
         class="nav-button"
-        data-target="dresscode"
+        data-section="dresscode"
+        type="button"
       >
         👗 DRESS CODE
       </button>
 
+
       <button
         class="nav-button"
-        data-target="presence"
+        data-section="presence"
+        type="button"
       >
         💌 PRESENZA
       </button>
 
+
       <button
         class="nav-button"
-        data-target="us"
+        data-section="us"
+        type="button"
       >
         🤍 NOI DUE
       </button>
 
+
       <button
         class="nav-button"
-        data-target="dreams"
+        data-section="dreams"
+        type="button"
       >
         🌿 I NOSTRI SOGNI
       </button>
 
     </div>
+
 
 
     <!-- =================================================
@@ -1340,7 +1339,7 @@ body{
       </p>
 
       <p>
-        Qui inseriremo le informazioni
+        Qui potremo inserire tutte le informazioni
         per raggiungere la location.
       </p>
 
@@ -1365,6 +1364,7 @@ body{
       </button>
 
     </section>
+
 
 
     <!-- =================================================
@@ -1392,6 +1392,7 @@ body{
     </section>
 
 
+
     <!-- =================================================
          PRESENZA
     ================================================= -->
@@ -1401,11 +1402,13 @@ body{
       class="info-section"
     >
 
-      <h2>💌 Conferma la tua presenza</h2>
+      <h2>
+        💌 Conferma la tua presenza
+      </h2>
 
       <form
-        class="rsvp"
         id="rsvpForm"
+        class="rsvp"
       >
 
         <input
@@ -1447,6 +1450,7 @@ body{
     </section>
 
 
+
     <!-- =================================================
          NOI DUE
     ================================================= -->
@@ -1475,6 +1479,7 @@ body{
     </section>
 
 
+
     <!-- =================================================
          SOGNI
     ================================================= -->
@@ -1501,6 +1506,7 @@ body{
     </section>
 
 
+
     <div class="footer">
       Giada &amp; Paolo
     </div>
@@ -1510,18 +1516,19 @@ body{
 </main>
 
 
-<!-- CORIANDOLI -->
-<div
-  id="confetti"
-  class="confetti"
-></div>
+
+<!-- =====================================================
+     CORIANDOLI / PETALI
+===================================================== -->
+
+<div id="celebration"></div>
 
 
 
 <script>
 
 /* =====================================================
-   APERTURA BUSTA
+   APERTURA
 ===================================================== */
 
 const opening =
@@ -1533,11 +1540,11 @@ const openBtn =
 const envelope =
   document.getElementById("envelope");
 
-const flowerLayer =
-  document.getElementById("flowerLayer");
+const flowerAnimation =
+  document.getElementById("flowerAnimation");
 
-const sealEffect =
-  document.getElementById("sealEffect");
+const sealAnimation =
+  document.getElementById("sealAnimation");
 
 const letter =
   document.getElementById("letter");
@@ -1548,93 +1555,84 @@ const site =
 
 openBtn.addEventListener(
   "click",
-  () => {
+  function(){
 
+    /* pulsante scompare */
     openBtn.classList.add("hidden");
 
-    /*
-      1 — entrano i fiori
-    */
 
-    flowerLayer.classList.add("active");
+    /* FIORI */
+    flowerAnimation.classList.add("active");
 
 
-    /*
-      2 — piccola apertura della busta
-    */
-
+    /* BUSTA INIZIA AD APRIRSI */
     setTimeout(
-      () => {
+      function(){
 
-        envelope.classList.add("opening");
+        envelope.classList.add("move");
 
       },
-      350
+      300
     );
 
 
-    /*
-      3 — ceralacca si spezza
-    */
-
+    /* CERALACCA */
     setTimeout(
-      () => {
+      function(){
 
-        sealEffect.classList.add("active");
+        sealAnimation.classList.add("active");
 
         setTimeout(
-          () => {
+          function(){
 
-            sealEffect.classList.add("crack");
+            sealAnimation.classList.add("break");
 
           },
-          80
+          50
         );
 
       },
-      900
+      850
     );
 
 
-    /*
-      4 — il biglietto esce
-    */
-
+    /* BIGLIETTO ESCE */
     setTimeout(
-      () => {
+      function(){
 
-        letter.classList.add("visible");
+        letter.classList.add("show");
 
       },
-      1250
+      1200
     );
 
 
     /*
-      5 — quando il biglietto è arrivato,
-          la busta scompare.
+      QUANDO IL BIGLIETTO È ARRIVATO,
+      LA BUSTA SCOMPARE.
     */
 
     setTimeout(
-      () => {
+      function(){
 
-        envelope.classList.add("disappear");
+        envelope.style.opacity="0";
 
       },
-      2350
+      2250
     );
 
 
     /*
-      6 — rimane UNA SOLA PAGINA
+      DOPO L'ANIMAZIONE RESTA
+      UNA SOLA PAGINA.
     */
 
     setTimeout(
-      () => {
+      function(){
 
-        opening.classList.add("gone");
+        opening.classList.add("finished");
 
-        site.classList.add("visible");
+        site.classList.add("show");
 
         initScratch();
 
@@ -1644,7 +1642,7 @@ openBtn.addEventListener(
         );
 
       },
-      3000
+      2900
     );
 
   }
@@ -1664,54 +1662,54 @@ const target =
 
 function tick(){
 
-  let x =
+  let remaining =
     Math.max(
       0,
       target - Date.now()
     );
 
 
-  const d =
+  const days =
     Math.floor(
-      x / 86400000
+      remaining / 86400000
     );
 
-  x %= 86400000;
+  remaining %= 86400000;
 
 
-  const h =
+  const hours =
     Math.floor(
-      x / 3600000
+      remaining / 3600000
     );
 
-  x %= 3600000;
+  remaining %= 3600000;
 
 
-  const m =
+  const minutes =
     Math.floor(
-      x / 60000
+      remaining / 60000
     );
 
-  x %= 60000;
+  remaining %= 60000;
 
 
-  const s =
+  const seconds =
     Math.floor(
-      x / 1000
+      remaining / 1000
     );
 
 
   document.getElementById("d").textContent =
-    d;
+    days;
 
   document.getElementById("h").textContent =
-    String(h).padStart(2,"0");
+    String(hours).padStart(2,"0");
 
   document.getElementById("m").textContent =
-    String(m).padStart(2,"0");
+    String(minutes).padStart(2,"0");
 
   document.getElementById("s").textContent =
-    String(s).padStart(2,"0");
+    String(seconds).padStart(2,"0");
 
 }
 
@@ -1726,7 +1724,7 @@ setInterval(
 
 
 /* =====================================================
-   GRATTA-E-VINCI
+   GRATTA E VINCI
 ===================================================== */
 
 function initScratch(){
@@ -1739,14 +1737,15 @@ function initScratch(){
   }
 
 
-  const box =
+  const rect =
     canvas.getBoundingClientRect();
 
+
   const width =
-    box.width;
+    rect.width;
 
   const height =
-    box.height;
+    rect.height;
 
 
   if(
@@ -1766,12 +1765,12 @@ function initScratch(){
 
   canvas.width =
     Math.round(
-      width * dpr
+      width*dpr
     );
 
   canvas.height =
     Math.round(
-      height * dpr
+      height*dpr
     );
 
 
@@ -1789,9 +1788,9 @@ function initScratch(){
   );
 
 
-  /*
-    COPERTURA DORATA
-  */
+  /* ================================================
+     COPERTURA DORATA
+  ================================================= */
 
   const gold =
     ctx.createLinearGradient(
@@ -1844,10 +1843,12 @@ function initScratch(){
   );
 
 
-  /*
-    BRILLANTINI SULLA COPERTURA.
-    Vengono cancellati insieme al canvas.
-  */
+  /* ================================================
+     BRILLANTINI
+     
+     SONO SUL CANVAS, QUINDI QUANDO SI CANCELLA
+     IL CANVAS SPARISCONO COMPLETAMENTE.
+  ================================================= */
 
   const glitter=[
     "#fff8d6",
@@ -1874,7 +1875,9 @@ function initScratch(){
 
 
     ctx.globalAlpha =
-      .4+Math.random()*.6;
+      .4+
+      Math.random()*.6;
+
 
     ctx.fillStyle =
       glitter[
@@ -1925,20 +1928,23 @@ function initScratch(){
 
   /*
     IMPORTANTE:
-    NON DISEGNIAMO "GRATTA QUI" SUL CANVAS.
+    QUI NON C'È "GRATTA QUI".
 
-    Così, quando viene cancellato,
-    non resta nessuna scritta sotto.
+    La copertura contiene solamente oro
+    e brillantini.
   */
 
 
   let drawing=false;
+
   let last=null;
+
   let strokes=0;
+
   let finished=false;
 
 
-  function pos(e){
+  function getPosition(e){
 
     const r =
       canvas.getBoundingClientRect();
@@ -1952,7 +1958,7 @@ function initScratch(){
   }
 
 
-  function erase(
+  function eraseCircle(
     x,
     y
   ){
@@ -1984,6 +1990,7 @@ function initScratch(){
     ctx.globalCompositeOperation =
       "destination-out";
 
+
     ctx.lineWidth=44;
 
     ctx.lineCap="round";
@@ -2014,12 +2021,20 @@ function initScratch(){
       return;
     }
 
+
     finished=true;
 
 
     /*
-      CANCELLIAMO COMPLETAMENTE IL CANVAS.
-      Rimane SOLO la data.
+      CANCELLA TUTTO IL CANVAS.
+      
+      Quindi:
+      - oro sparisce
+      - brillantini spariscono
+      - non rimane "GRATTA QUI"
+      
+      Sotto resta SOLO:
+      8 SETTEMBRE 2027
     */
 
     ctx.clearRect(
@@ -2030,18 +2045,15 @@ function initScratch(){
     );
 
 
-    canvas.classList.add("done");
+    canvas.classList.add("finished");
 
 
-    /*
-      FESTA 🎉🌸
-    */
-
-    launchConfetti();
+    /* FESTA */
+    launchCelebration();
 
 
     setTimeout(
-      () => {
+      function(){
 
         if(canvas.parentNode){
           canvas.remove();
@@ -2067,13 +2079,13 @@ function initScratch(){
     e.preventDefault();
 
 
-    const p =
-      pos(e);
+    const point =
+      getPosition(e);
 
 
-    erase(
-      p.x,
-      p.y
+    eraseCircle(
+      point.x,
+      point.y
     );
 
 
@@ -2081,20 +2093,20 @@ function initScratch(){
 
       eraseLine(
         last,
-        p
+        point
       );
 
     }
 
 
-    last=p;
+    last=point;
 
     strokes++;
 
 
     /*
-      Dopo abbastanza grattatura
-      la copertura viene tolta.
+      Dopo abbastanza passaggi,
+      la copertura viene eliminata.
     */
 
     if(
@@ -2110,13 +2122,15 @@ function initScratch(){
 
   canvas.addEventListener(
     "pointerdown",
-    e => {
+    function(e){
 
       drawing=true;
 
-      last=pos(e);
+      last=
+        getPosition(e);
 
-      erase(
+
+      eraseCircle(
         last.x,
         last.y
       );
@@ -2128,7 +2142,7 @@ function initScratch(){
           e.pointerId
         );
 
-      }catch(err){}
+      }catch(error){}
 
     }
   );
@@ -2140,7 +2154,7 @@ function initScratch(){
   );
 
 
-  function stop(e){
+  function stopDrawing(e){
 
     drawing=false;
 
@@ -2153,19 +2167,19 @@ function initScratch(){
         e.pointerId
       );
 
-    }catch(err){}
+    }catch(error){}
 
   }
 
 
   canvas.addEventListener(
     "pointerup",
-    stop
+    stopDrawing
   );
 
   canvas.addEventListener(
     "pointercancel",
-    stop
+    stopDrawing
   );
 
 }
@@ -2173,130 +2187,108 @@ function initScratch(){
 
 
 /* =====================================================
-   CORIANDOLI / FIORI DOPO LA DATA
+   EFFETTO FIORI / CORIANDOLI
+   QUANDO LA DATA È COMPLETAMENTE SCOPERTA
 ===================================================== */
 
-function launchConfetti(){
+function launchCelebration(){
 
   const container =
-    document.getElementById("confetti");
+    document.getElementById(
+      "celebration"
+    );
 
 
-  const pieces = 42;
+  const total=45;
 
 
   for(
     let i=0;
-    i<pieces;
+    i<total;
     i++
   ){
 
-    const piece =
+    const petal =
       document.createElement("span");
 
 
-    piece.className =
-      "confetti-piece";
+    petal.className =
+      "petal";
 
 
-    /*
-      Petali e coriandoli
-      in stile delicato.
-    */
-
-    const shapes=[
-      "50% 50% 50% 10%",
-      "60% 40% 60% 40%",
-      "40% 60% 40% 60%"
-    ];
-
-
-    piece.style.borderRadius =
-      shapes[
-        Math.floor(
-          Math.random()*shapes.length
-        )
-      ];
-
-
-    piece.style.left =
+    petal.style.left =
       Math.random()*100+"%";
 
 
-    piece.style.width =
-      (6+Math.random()*8)+"px";
+    petal.style.width =
+      6+
+      Math.random()*8+
+      "px";
 
 
-    piece.style.height =
-      (9+Math.random()*10)+"px";
+    petal.style.height =
+      9+
+      Math.random()*10+
+      "px";
 
 
-    piece.style.animationDuration =
-      (2.2+Math.random()*2)+"s";
+    petal.style.animationDuration =
+      2.2+
+      Math.random()*2+
+      "s";
 
 
-    piece.style.animationDelay =
-      (Math.random()*.35)+"s";
+    petal.style.animationDelay =
+      Math.random()*.3+
+      "s";
 
 
-    piece.style.setProperty(
-      "--drift",
-      (-100+Math.random()*200)+"px"
+    petal.style.setProperty(
+      "--move",
+      (-100+
+       Math.random()*200)+
+      "px"
     );
 
 
-    piece.style.setProperty(
-      "--rotation",
-      (-500+Math.random()*1000)+"deg"
+    petal.style.setProperty(
+      "--rotate",
+      (-500+
+       Math.random()*1000)+
+      "deg"
     );
 
 
     /*
-      Usiamo colori direttamente nel CSS
-      tramite classi.
+      Toni coerenti con la grafica
+      del biglietto.
     */
 
-    const colorClasses=[
-      "pink",
-      "cream",
-      "green",
-      "rose"
+    const colors=[
+      "#e6a0a9",
+      "#f3dfc7",
+      "#a7b39a",
+      "#dca4aa"
     ];
 
-    const chosen =
-      colorClasses[
+
+    petal.style.background =
+      colors[
         Math.floor(
-          Math.random()*colorClasses.length
+          Math.random()*colors.length
         )
       ];
 
 
-    if(chosen==="pink"){
-      piece.style.background="#e6a0a9";
-    }
-
-    if(chosen==="cream"){
-      piece.style.background="#f3dfc7";
-    }
-
-    if(chosen==="green"){
-      piece.style.background="#a7b39a";
-    }
-
-    if(chosen==="rose"){
-      piece.style.background="#dca4aa";
-    }
-
-
     container.appendChild(
-      piece
+      petal
     );
 
 
     setTimeout(
-      () => {
+      function(){
 
-        piece.remove();
+        petal.remove();
 
       },
       5000
@@ -2309,34 +2301,38 @@ function launchConfetti(){
 
 
 /* =====================================================
-   PULSANTI
+   PULSANTI INTERATTIVI
 ===================================================== */
 
-const buttons =
+const navButtons =
   document.querySelectorAll(
     ".nav-button"
   );
 
 
-const sections =
+const infoSections =
   document.querySelectorAll(
     ".info-section"
   );
 
 
-buttons.forEach(
-  button => {
+navButtons.forEach(
+  function(button){
 
     button.addEventListener(
       "click",
-      () => {
+      function(){
 
-        const target =
-          button.dataset.target;
+        const id =
+          button.dataset.section;
 
 
-        sections.forEach(
-          section => {
+        /*
+          Chiude tutte le altre sezioni.
+        */
+
+        infoSections.forEach(
+          function(section){
 
             section.classList.remove(
               "open"
@@ -2346,32 +2342,31 @@ buttons.forEach(
         );
 
 
-        const section =
-          document.getElementById(
-            target
-          );
+        const selected =
+          document.getElementById(id);
 
 
-        if(section){
-
-          section.classList.add(
-            "open"
-          );
-
-
-          setTimeout(
-            () => {
-
-              section.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-              });
-
-            },
-            50
-          );
-
+        if(!selected){
+          return;
         }
+
+
+        selected.classList.add(
+          "open"
+        );
+
+
+        setTimeout(
+          function(){
+
+            selected.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+          },
+          50
+        );
 
       }
     );
@@ -2382,17 +2377,19 @@ buttons.forEach(
 
 
 /* =====================================================
-   CHIUDI
+   CHIUDI SEZIONE
 ===================================================== */
 
 document
-  .querySelectorAll(".close-section")
+  .querySelectorAll(
+    ".close-section"
+  )
   .forEach(
-    button => {
+    function(button){
 
       button.addEventListener(
         "click",
-        () => {
+        function(){
 
           const section =
             button.closest(
@@ -2400,21 +2397,37 @@ document
             );
 
 
-          if(section){
-
-            section.classList.remove(
-              "open"
-            );
-
-            window.scrollTo({
-              top:document
-                .querySelector(".navigation")
-                .offsetTop - 20,
-
-              behavior:"smooth"
-            });
-
+          if(!section){
+            return;
           }
+
+
+          section.classList.remove(
+            "open"
+          );
+
+
+          setTimeout(
+            function(){
+
+              const navigation =
+                document.querySelector(
+                  ".navigation"
+                );
+
+
+              if(navigation){
+
+                navigation.scrollIntoView({
+                  behavior:"smooth",
+                  block:"center"
+                });
+
+              }
+
+            },
+            50
+          );
 
         }
       );
@@ -2435,6 +2448,7 @@ document
     function(e){
 
       e.preventDefault();
+
 
       alert(
         "Grazie! La tua risposta è stata registrata."
