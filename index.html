@@ -305,13 +305,6 @@ body{
   align-items:center;
   justify-content:center;
   text-align:center;
-
-  /*
-    Sotto la copertura c'è SOLO la data.
-    Nessun "GRATTA QUI".
-    Nessun glitter rimane sotto.
-  */
-
   background:#f5eadc;
 
   font-family:"Cormorant Garamond",serif;
@@ -593,6 +586,10 @@ body{
   color:#718a77;
 }
 
+/* ==================================================
+   MOBILE
+================================================== */
+
 @media(max-width:400px){
 
   .page{
@@ -608,6 +605,7 @@ body{
     top:68%;
   }
 }
+
 </style>
 </head>
 
@@ -628,7 +626,7 @@ body{
       alt="Busta"
     >
 
-    <!-- Effetto ceralacca -->
+    <!-- EFFETTO CERARACCA -->
     <div id="sealEffect" class="seal-effect">
 
       <div class="seal-piece left"></div>
@@ -640,7 +638,7 @@ body{
 
     </div>
 
-    <!-- Biglietto che arriva dalla busta -->
+    <!-- BIGLIETTO -->
     <img
       id="letter"
       class="letter"
@@ -669,7 +667,7 @@ body{
 
   <div class="page">
 
-    <!-- BIGLIETTO -->
+    <!-- BIGLIETTO PRINCIPALE -->
     <div class="ticket">
 
       <img
@@ -680,7 +678,7 @@ body{
       <!-- GRATTA E VINCI -->
       <div class="scratch-zone">
 
-        <!-- UNICA COSA SOTTO LA COPERTURA -->
+        <!-- SOTTO LA COPERTURA C'È SOLO LA DATA -->
         <div class="reveal">
           8 SETTEMBRE 2027
         </div>
@@ -692,7 +690,10 @@ body{
     </div>
 
 
-    <!-- COUNTDOWN -->
+    <!-- ==================================================
+         COUNTDOWN
+    ================================================== -->
+
     <div class="countdown">
 
       <div class="countdown-title">
@@ -721,6 +722,19 @@ body{
           <div class="lab">SECONDI</div>
         </div>
 
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TENUTA MONTICELLO
+    ================================================== -->
+
+    <div class="venue">
+
+      <div class="venue-title">
+        Tenuta Monticello
       </div>
 
     </div>
@@ -795,9 +809,7 @@ body{
       <div class="location-address">
 
         <strong>Tenuta il Monticello</strong><br>
-
         Via Roma, 4<br>
-
         28050 Pombia (NO)
 
       </div>
@@ -985,6 +997,7 @@ body{
     </div>
 
 
+    <!-- FIRMA -->
     <div class="footer">
 
       Giada &amp; Paolo
@@ -1048,7 +1061,8 @@ function tick(){
     );
 
 
-  document.getElementById("d").textContent = d;
+  document.getElementById("d").textContent =
+    d;
 
   document.getElementById("h").textContent =
     String(h).padStart(2,"0");
@@ -1071,7 +1085,7 @@ setInterval(
 
 
 /* ==================================================
-   APERTURA BUSTA
+   APERTURA DELLA BUSTA
 ================================================== */
 
 const opening =
@@ -1097,61 +1111,85 @@ openBtn.addEventListener(
   "click",
   function(){
 
-    /* Nasconde il pulsante */
-    openBtn.classList.add("hidden");
+    /* NASCONDE IL PULSANTE */
+
+    openBtn.classList.add(
+      "hidden"
+    );
 
 
-    /* Fa comparire la ceralacca */
+    /* CERARACCA */
+
     setTimeout(
       function(){
 
-        sealEffect.classList.add("active");
+        sealEffect.classList.add(
+          "active"
+        );
 
       },
       350
     );
 
 
-    /* Spezza la ceralacca */
+    /* ROTTURA CERARACCA */
+
     setTimeout(
       function(){
 
-        sealEffect.classList.add("break");
+        sealEffect.classList.add(
+          "break"
+        );
 
       },
       430
     );
 
 
-    /* La busta scompare */
+    /* LA BUSTA SCOMPARE */
+
     setTimeout(
       function(){
 
-        envelope.classList.add("hide");
+        envelope.classList.add(
+          "hide"
+        );
 
       },
       850
     );
 
 
-    /* Arriva il biglietto */
+    /* COMPARE IL BIGLIETTO */
+
     setTimeout(
       function(){
 
-        letter.classList.add("show");
+        letter.classList.add(
+          "show"
+        );
 
       },
       1000
     );
 
 
-    /* Passaggio alla pagina unica */
+    /*
+      DOPO L'ANIMAZIONE:
+      LA BUSTA SCOMPARE COMPLETAMENTE
+      E RESTA UNA SOLA PAGINA.
+    */
+
     setTimeout(
       function(){
 
-        opening.classList.add("finished");
+        opening.classList.add(
+          "finished"
+        );
 
-        site.classList.add("show");
+        site.classList.add(
+          "show"
+        );
 
         initScratch();
 
@@ -1187,7 +1225,9 @@ function initScratch(){
 
 
   const canvas =
-    document.getElementById("scratch");
+    document.getElementById(
+      "scratch"
+    );
 
 
   if(!canvas){
@@ -1302,7 +1342,13 @@ function initScratch(){
   );
 
 
-  /* BRILLANTINI SOLO SOPRA */
+  /*
+    BRILLANTINI:
+    vengono disegnati SOLO sulla
+    copertura del gratta-e-vinci.
+    Quando la copertura viene cancellata,
+    spariscono completamente.
+  */
 
   const glitter = [
     "#fff8d6",
@@ -1376,14 +1422,17 @@ function initScratch(){
   }
 
 
-  ctx.globalAlpha = 1;
+  ctx.globalAlpha =
+    1;
 
 
   /*
     IMPORTANTE:
-    NON VIENE DISEGNATA LA SCRITTA
-    "GRATTA QUI".
+    NON VIENE DISEGNATA "GRATTA QUI".
+    SOTTO RESTA SOLO:
+    8 SETTEMBRE 2027
   */
+
 
   let drawing =
     false;
@@ -1423,7 +1472,6 @@ function initScratch(){
 
     ctx.beginPath();
 
-
     ctx.arc(
       x,
       y,
@@ -1431,7 +1479,6 @@ function initScratch(){
       0,
       Math.PI * 2
     );
-
 
     ctx.fill();
 
@@ -1450,10 +1497,8 @@ function initScratch(){
     ctx.lineWidth =
       44;
 
-
     ctx.lineCap =
       "round";
-
 
     ctx.lineJoin =
       "round";
@@ -1461,18 +1506,15 @@ function initScratch(){
 
     ctx.beginPath();
 
-
     ctx.moveTo(
       a.x,
       a.y
     );
 
-
     ctx.lineTo(
       b.x,
       b.y
     );
-
 
     ctx.stroke();
 
@@ -1491,8 +1533,8 @@ function initScratch(){
 
 
     /*
-      Cancella completamente la copertura.
-      Quindi spariscono anche tutti i brillantini.
+      CANCELLA TUTTA LA COPERTURA.
+      Non rimane nessun glitter.
     */
 
     ctx.clearRect(
@@ -1562,6 +1604,11 @@ function initScratch(){
     strokes++;
 
 
+    /*
+      Dopo abbastanza grattatura
+      la copertura scompare del tutto.
+    */
+
     if(
       strokes >= 75
     ){
@@ -1613,7 +1660,6 @@ function initScratch(){
 
     drawing =
       false;
-
 
     last =
       null;
