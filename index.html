@@ -12,8 +12,13 @@
     box-sizing:border-box;
   }
 
+  html,
   body{
     margin:0;
+    min-height:100%;
+  }
+
+  body{
     background:#f4eee4;
     color:#718a77;
     font-family:Montserrat,Arial,sans-serif;
@@ -40,7 +45,9 @@
     width:100%;
     height:100%;
     object-fit:contain;
-    transition:transform 1.1s ease,opacity .8s ease;
+    transition:
+      transform 1.1s ease,
+      opacity .8s ease;
   }
 
   .open-btn{
@@ -57,6 +64,7 @@
     font-weight:600;
     cursor:pointer;
     box-shadow:0 6px 18px #0002;
+    transition:opacity .4s ease;
   }
 
   .hint{
@@ -68,6 +76,7 @@
     font-size:12px;
     letter-spacing:.16em;
     color:#7b8f7e;
+    transition:opacity .4s ease;
   }
 
   .letter{
@@ -100,6 +109,10 @@
     pointer-events:none;
   }
 
+  /* =========================================
+     CONTENUTO
+  ========================================= */
+
   .content{
     display:none;
     max-width:520px;
@@ -118,6 +131,10 @@
     box-shadow:0 10px 35px #00000012;
   }
 
+  /* =========================================
+     BIGLIETTO
+  ========================================= */
+
   .ticket{
     position:relative;
     width:100%;
@@ -129,41 +146,103 @@
     height:auto;
   }
 
-  /* ZONA GRATTA-E-VINCI */
+  /* =========================================
+     GRATTA-E-VINCI
+
+     IMPORTANTE:
+     Questa zona deve coprire SOLO la data.
+  ========================================= */
+
   .scratch-zone{
     position:absolute;
+
+    /*
+      Questi valori sono quelli del tuo vecchio index.
+      Se la data nel biglietto Canva è leggermente
+      più in alto/basso, modificheremo solo questi.
+    */
     left:5.5%;
     top:45.4%;
     width:89%;
     height:12.5%;
-    border-radius:2px;
+
     overflow:hidden;
+    border-radius:2px;
+
+    /*
+      Evita che la zona del canvas alteri il layout.
+    */
+    isolation:isolate;
   }
 
-  #scratch{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    touch-action:none;
-    cursor:crosshair;
-  }
+  /*
+    LA DATA È SOTTO IL CANVAS.
 
-  /* DATA SOTTO LA COPERTURA */
+    Non c'è nessun fondo bianco.
+    Non ci sono brillantini.
+    Non c'è "GRATTA QUI".
+  */
+
   .reveal{
     position:absolute;
     inset:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     font-family:"Cormorant Garamond",serif;
     font-size:clamp(18px,5vw,28px);
     font-weight:600;
     letter-spacing:.08em;
+
     color:#718a77;
+
     background:transparent;
+
+    z-index:1;
+
+    /*
+      Impedisce alla scritta di interferire
+      con il mouse/dito.
+    */
+    pointer-events:none;
   }
+
+  /*
+    Il canvas è sopra la data.
+  */
+
+  #scratch{
+    position:absolute;
+    inset:0;
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    z-index:2;
+
+    touch-action:none;
+    cursor:crosshair;
+
+    /*
+      L'animazione finale fa sparire SOLO il canvas.
+    */
+    transition:opacity .45s ease;
+  }
+
+  #scratch.finished{
+    opacity:0;
+    pointer-events:none;
+  }
+
+  /* =========================================
+     COUNTDOWN
+  ========================================= */
 
   .countdown{
     margin:20px 0 4px;
@@ -204,6 +283,10 @@
     color:#8a8176;
   }
 
+  /* =========================================
+     SEZIONI
+  ========================================= */
+
   .section{
     margin-top:32px;
     text-align:center;
@@ -220,6 +303,10 @@
     line-height:1.7;
     color:#746f67;
   }
+
+  /* =========================================
+     RSVP
+  ========================================= */
 
   .rsvp{
     display:grid;
@@ -245,13 +332,18 @@
     color:white;
     font-weight:600;
     letter-spacing:.08em;
+    cursor:pointer;
   }
+
 </style>
 </head>
 
 <body>
 
-<!-- APERTURA BUSTA -->
+<!-- =========================================
+     APERTURA BUSTA
+========================================= -->
+
 <div id="opening" class="screen">
 
   <div class="envelope-wrap">
@@ -286,7 +378,10 @@
 </div>
 
 
-<!-- CONTENUTO DEL BIGLIETTO -->
+<!-- =========================================
+     CONTENUTO DEL BIGLIETTO
+========================================= -->
+
 <main id="content" class="content">
 
   <div class="paper">
@@ -298,12 +393,30 @@
         alt="Il nostro giorno"
       >
 
-      <!-- GRATTA E VINCI -->
+
+      <!-- =====================================
+           GRATTA-E-VINCI
+      ====================================== -->
+
       <div class="scratch-zone">
+
+        <!--
+          QUESTA È L'UNICA COSA CHE DEVE
+          COMPARIRE QUANDO SI GRATTA.
+        -->
 
         <div class="reveal">
           8 SETTEMBRE 2027
         </div>
+
+
+        <!--
+          IL CANVAS COPRE LA DATA.
+
+          Contiene SOLO la superficie dorata.
+          NIENTE TESTO.
+          NIENTE BRILLANTINI.
+      -->
 
         <canvas id="scratch"></canvas>
 
@@ -312,7 +425,10 @@
     </div>
 
 
-    <!-- COUNTDOWN -->
+    <!-- =========================================
+         COUNTDOWN
+    ========================================= -->
+
     <div class="countdown">
 
       <div class="countdown-title">
@@ -346,13 +462,19 @@
     </div>
 
 
-    <!-- MESSAGGIO -->
+    <!-- =========================================
+         MESSAGGIO
+    ========================================= -->
+
     <section class="section">
       <h2>🥂 Ci vediamo lì!</h2>
     </section>
 
 
-    <!-- DRESS CODE -->
+    <!-- =========================================
+         DRESS CODE
+    ========================================= -->
+
     <section class="section">
 
       <h2>👗 Dress code</h2>
@@ -364,7 +486,10 @@
     </section>
 
 
-    <!-- RSVP -->
+    <!-- =========================================
+         RSVP
+    ========================================= -->
+
     <section class="section">
 
       <h2>💌 Conferma la tua presenza</h2>
@@ -406,7 +531,10 @@
     </section>
 
 
-    <!-- SOGNI -->
+    <!-- =========================================
+         SOGNI
+    ========================================= -->
+
     <section class="section">
 
       <h2>🌿 Per i nostri sogni</h2>
@@ -418,7 +546,10 @@
     </section>
 
 
-    <!-- STORIA -->
+    <!-- =========================================
+         STORIA
+    ========================================= -->
+
     <section class="section">
 
       <h2>🤍 Un po’ di noi</h2>
@@ -446,43 +577,48 @@ const target =
 
 function tick(){
 
-  let x=Math.max(
+  let x = Math.max(
     0,
-    target-Date.now()
-  );
-
-  const d=Math.floor(
-    x/86400000
-  );
-
-  x%=86400000;
-
-  const h=Math.floor(
-    x/3600000
-  );
-
-  x%=3600000;
-
-  const m=Math.floor(
-    x/60000
-  );
-
-  x%=60000;
-
-  const s=Math.floor(
-    x/1000
+    target - Date.now()
   );
 
 
-  document.getElementById("d").textContent=d;
+  const d = Math.floor(
+    x / 86400000
+  );
 
-  document.getElementById("h").textContent=
+  x %= 86400000;
+
+
+  const h = Math.floor(
+    x / 3600000
+  );
+
+  x %= 3600000;
+
+
+  const m = Math.floor(
+    x / 60000
+  );
+
+  x %= 60000;
+
+
+  const s = Math.floor(
+    x / 1000
+  );
+
+
+  document.getElementById("d").textContent =
+    d;
+
+  document.getElementById("h").textContent =
     String(h).padStart(2,"0");
 
-  document.getElementById("m").textContent=
+  document.getElementById("m").textContent =
     String(m).padStart(2,"0");
 
-  document.getElementById("s").textContent=
+  document.getElementById("s").textContent =
     String(s).padStart(2,"0");
 }
 
@@ -499,7 +635,7 @@ setInterval(
    APERTURA DELLA BUSTA
 ========================================= */
 
-document.getElementById("openBtn").onclick=()=>{
+document.getElementById("openBtn").onclick = () => {
 
   const opening =
     document.getElementById("opening");
@@ -521,13 +657,21 @@ document.getElementById("openBtn").onclick=()=>{
   hint.classList.add("hidden");
 
 
-  setTimeout(()=>{
+  setTimeout(() => {
 
-    opening.style.display="none";
+    opening.style.display = "none";
 
     content.classList.add("show");
 
-    initScratch();
+    /*
+      Aspettiamo che il biglietto sia realmente
+      visibile prima di calcolare le dimensioni
+      del canvas.
+    */
+
+    requestAnimationFrame(() => {
+      initScratch();
+    });
 
   },1400);
 
@@ -535,7 +679,7 @@ document.getElementById("openBtn").onclick=()=>{
 
 
 /* =========================================
-   GRATTA-E-VINCI DORATO + BRILLANTINI
+   GRATTA-E-VINCI
 ========================================= */
 
 function initScratch(){
@@ -550,6 +694,14 @@ function initScratch(){
     c.getBoundingClientRect();
 
 
+  if(
+    box.width <= 0 ||
+    box.height <= 0
+  ){
+    return;
+  }
+
+
   const dpr =
     Math.max(
       1,
@@ -557,24 +709,38 @@ function initScratch(){
     );
 
 
+  /*
+    Dimensione reale del canvas.
+  */
+
   c.width =
-    box.width*dpr;
+    Math.round(box.width * dpr);
 
   c.height =
-    box.height*dpr;
+    Math.round(box.height * dpr);
 
 
   const ctx =
     c.getContext("2d");
 
 
-  ctx.scale(
+  /*
+    Lavoriamo in coordinate CSS.
+  */
+
+  ctx.setTransform(
     dpr,
-    dpr
+    0,
+    0,
+    dpr,
+    0,
+    0
   );
 
 
-  /* COPERTURA DORATA */
+  /* =======================================
+     COPERTURA DORATA
+  ======================================= */
 
   const gold =
     ctx.createLinearGradient(
@@ -616,7 +782,12 @@ function initScratch(){
   );
 
 
-  ctx.fillStyle=gold;
+  ctx.globalCompositeOperation =
+    "source-over";
+
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = gold;
 
   ctx.fillRect(
     0,
@@ -626,42 +797,68 @@ function initScratch(){
   );
 
 
-  /* BRILLANTINI */
+  /*
+    IMPORTANTE:
 
-  const glitter=[
-    "#fff8d6",
-    "#ffffff",
-    "#f7e5a0",
-    "#d5ad45"
-  ];
+    NON disegniamo:
+    - "GRATTA QUI"
+    - brillantini
+    - stelline
 
-
-  for(
-    let i=0;
-    i<220;
-    i++
-  ){
-
-    const x =
-      Math.random()*box.width;
-
-    const y =
-      Math.random()*box.height;
-
-    const r =
-      Math.random()*1.8+0.4;
+    Quindi quello che rimane sotto
+    sarà ESCLUSIVAMENTE la data.
+  */
 
 
-    ctx.globalAlpha =
-      0.45+Math.random()*0.55;
+  /* =======================================
+     SISTEMA DI GRATTATURA
+  ======================================= */
+
+  let isDrawing = false;
+
+  let lastPoint = null;
+
+  let totalScratched = 0;
+
+  let finished = false;
 
 
-    ctx.fillStyle =
-      glitter[
-        Math.floor(
-          Math.random()*glitter.length
-        )
-      ];
+  /*
+    Dimensione del pennello.
+  */
+
+  const brushSize = 24;
+
+
+  /* =======================================
+     COORDINATE
+  ======================================= */
+
+  function getPosition(e){
+
+    const rect =
+      c.getBoundingClientRect();
+
+
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+
+  }
+
+
+  /* =======================================
+     CANCELLAZIONE
+  ======================================= */
+
+  function erasePoint(x,y){
+
+    ctx.globalCompositeOperation =
+      "destination-out";
+
+
+    ctx.globalAlpha = 1;
 
 
     ctx.beginPath();
@@ -669,215 +866,384 @@ function initScratch(){
     ctx.arc(
       x,
       y,
-      r,
+      brushSize,
       0,
-      Math.PI*2
+      Math.PI * 2
     );
 
     ctx.fill();
 
-
-    /* PICCOLA STELLINA */
-
-    if(Math.random()>0.72){
-
-      ctx.fillRect(
-        x-2,
-        y-0.5,
-        4,
-        1
-      );
-
-      ctx.fillRect(
-        x-0.5,
-        y-2,
-        1,
-        4
-      );
-
-    }
-
   }
 
 
-  ctx.globalAlpha=1;
+  /* =======================================
+     LINEA CONTINUA
+  ======================================= */
 
-
-  /* SCRITTA SULLA COPERTURA */
-
-  ctx.font =
-    "600 18px Montserrat,Arial";
-
-  ctx.fillStyle =
-    "#718a77";
-
-  ctx.textAlign =
-    "center";
-
-  ctx.textBaseline =
-    "middle";
-
-
-  ctx.fillText(
-    "GRATTA QUI ✨",
-    box.width/2,
-    box.height/2
-  );
-
-
-  let down=false;
-
-  let last=null;
-
-  let erased=0;
-
-
-  /* POSIZIONE DEL DITO/MOUSE */
-
-  function pos(e){
-
-    const r =
-      c.getBoundingClientRect();
-
-
-    return{
-      x:e.clientX-r.left,
-      y:e.clientY-r.top
-    };
-
-  }
-
-
-  /* GRATTATURA */
-
-  function scratch(e){
-
-    if(!down)return;
-
-    e.preventDefault();
-
-
-    const p =
-      pos(e);
-
+  function eraseLine(from,to){
 
     ctx.globalCompositeOperation =
       "destination-out";
 
 
-    /* BUCO */
+    ctx.lineWidth =
+      brushSize * 2;
+
+    ctx.lineCap =
+      "round";
+
+    ctx.lineJoin =
+      "round";
+
 
     ctx.beginPath();
 
-    ctx.arc(
-      p.x,
-      p.y,
-      18,
-      0,
-      Math.PI*2
+    ctx.moveTo(
+      from.x,
+      from.y
     );
 
-    ctx.fill();
+    ctx.lineTo(
+      to.x,
+      to.y
+    );
+
+    ctx.stroke();
+
+  }
 
 
-    /* LINEA DELLA GRATTATURA */
+  /* =======================================
+     CONTROLLO AREA GRATTATA
+  ======================================= */
 
-    if(last){
+  function checkScratchPercentage(){
 
-      ctx.lineWidth=36;
+    /*
+      Riduciamo la dimensione del canvas
+      per rendere il controllo molto più leggero.
+    */
 
-      ctx.lineCap="round";
+    const sampleWidth = 80;
 
-      ctx.beginPath();
+    const sampleHeight = 40;
 
-      ctx.moveTo(
-        last.x,
-        last.y
-      );
 
-      ctx.lineTo(
-        p.x,
-        p.y
-      );
+    const sampleCanvas =
+      document.createElement("canvas");
 
-      ctx.stroke();
+    sampleCanvas.width =
+      sampleWidth;
+
+    sampleCanvas.height =
+      sampleHeight;
+
+
+    const sampleCtx =
+      sampleCanvas.getContext("2d");
+
+
+    sampleCtx.drawImage(
+      c,
+      0,
+      0,
+      sampleWidth,
+      sampleHeight
+    );
+
+
+    const pixels =
+      sampleCtx.getImageData(
+        0,
+        0,
+        sampleWidth,
+        sampleHeight
+      ).data;
+
+
+    let transparent = 0;
+
+    const total =
+      sampleWidth *
+      sampleHeight;
+
+
+    /*
+      Il canvas è trasparente dove
+      abbiamo grattato.
+    */
+
+    for(
+      let i = 3;
+      i < pixels.length;
+      i += 4
+    ){
+
+      if(pixels[i] < 100){
+        transparent++;
+      }
 
     }
 
 
-    last=p;
-
-    erased++;
-
-
-    /* QUANDO È STATA GRATTATA ABBASTANZA */
-
-    if(erased>90){
-
-      c.style.transition =
-        "opacity .4s ease";
-
-      c.style.opacity="0";
+    const percentage =
+      (transparent / total) * 100;
 
 
-      setTimeout(()=>{
+    /*
+      A circa il 55% consideriamo
+      la data sufficientemente scoperta.
 
-        if(c.parentNode){
+      Questo evita di dover grattare
+      tutto perfettamente.
+    */
 
-          c.remove();
+    if(
+      percentage >= 55
+    ){
 
-        }
-
-      },400);
+      finishScratch();
 
     }
 
   }
 
 
-  /* TOUCH / MOUSE */
+  /* =======================================
+     FINE DEL GRATTA
+  ======================================= */
+
+  function finishScratch(){
+
+    if(finished) return;
+
+    finished = true;
+
+
+    /*
+      Prima rendiamo completamente
+      trasparente la superficie.
+    */
+
+    ctx.clearRect(
+      0,
+      0,
+      box.width,
+      box.height
+    );
+
+
+    /*
+      Poi facciamo una piccola dissolvenza.
+    */
+
+    c.classList.add("finished");
+
+
+    setTimeout(() => {
+
+      /*
+        Rimuoviamo il canvas.
+        Rimane solamente la data.
+      */
+
+      if(c.parentNode){
+        c.remove();
+      }
+
+    },500);
+
+  }
+
+
+  /* =======================================
+     POINTER DOWN
+  ======================================= */
 
   c.addEventListener(
     "pointerdown",
-    e=>{
+    e => {
 
-      down=true;
+      if(finished) return;
 
-      last=pos(e);
 
-      c.setPointerCapture(
-        e.pointerId
+      e.preventDefault();
+
+
+      isDrawing = true;
+
+
+      lastPoint =
+        getPosition(e);
+
+
+      erasePoint(
+        lastPoint.x,
+        lastPoint.y
       );
+
+
+      totalScratched++;
+
+
+      /*
+        Controlliamo periodicamente,
+        non ad ogni singolo pixel.
+      */
+
+      if(
+        totalScratched % 12 === 0
+      ){
+
+        checkScratchPercentage();
+
+      }
+
+
+      try{
+
+        c.setPointerCapture(
+          e.pointerId
+        );
+
+      }catch(error){}
 
     }
   );
 
 
+  /* =======================================
+     POINTER MOVE
+  ======================================= */
+
   c.addEventListener(
     "pointermove",
-    scratch
+    e => {
+
+      if(
+        !isDrawing ||
+        finished
+      ){
+        return;
+      }
+
+
+      e.preventDefault();
+
+
+      const current =
+        getPosition(e);
+
+
+      if(lastPoint){
+
+        eraseLine(
+          lastPoint,
+          current
+        );
+
+      }
+
+
+      erasePoint(
+        current.x,
+        current.y
+      );
+
+
+      lastPoint =
+        current;
+
+
+      totalScratched++;
+
+
+      if(
+        totalScratched % 12 === 0
+      ){
+
+        checkScratchPercentage();
+
+      }
+
+    }
   );
+
+
+  /* =======================================
+     POINTER UP
+  ======================================= */
+
+  function stopDrawing(e){
+
+    isDrawing = false;
+
+    lastPoint = null;
+
+
+    try{
+
+      if(e && e.pointerId){
+        c.releasePointerCapture(
+          e.pointerId
+        );
+      }
+
+    }catch(error){}
+
+  }
 
 
   c.addEventListener(
     "pointerup",
-    ()=>{
-
-      down=false;
-
-      last=null;
-
-    }
+    stopDrawing
   );
 
 
   c.addEventListener(
     "pointercancel",
-    ()=>{
+    stopDrawing
+  );
 
-      down=false;
 
-      last=null;
+  c.addEventListener(
+    "pointerleave",
+    e => {
+
+      /*
+        Non interrompiamo necessariamente
+        la grattatura quando il dito esce
+        leggermente dal canvas.
+      */
+
+    }
+  );
+
+
+  /* =======================================
+     RIDIMENSIONAMENTO
+  ======================================= */
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      /*
+        Se la finestra cambia dimensione
+        prima della grattatura, ricostruiamo
+        la superficie.
+      */
+
+      if(!finished){
+
+        /*
+          In questo caso è meglio lasciare
+          il canvas attuale per evitare di
+          cancellare accidentalmente la
+          progressione dell'utente.
+        */
+
+      }
 
     }
   );
