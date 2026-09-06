@@ -24,7 +24,7 @@ body{
 }
 
 /* =====================================================
-   APERTURA
+   APERTURA BUSTA
 ===================================================== */
 
 #opening{
@@ -75,235 +75,16 @@ body{
   z-index:10;
 
   transition:
-    opacity .7s ease,
+    opacity .8s ease,
     transform .8s ease;
 }
 
-.envelope.move{
-  transform:scale(.98);
-}
-
 
 /* =====================================================
-   FIORI DELL'APERTURA
+   CERALACCA - EFFETTO ROTTURA
 ===================================================== */
 
-/*
-   I fiori vengono usati come elementi decorativi
-   che entrano dall'esterno durante l'apertura.
-*/
-
-.flower-animation{
-  position:absolute;
-  inset:0;
-
-  z-index:30;
-
-  pointer-events:none;
-
-  opacity:0;
-}
-
-.flower-animation.active{
-  opacity:1;
-}
-
-.flower-piece{
-  position:absolute;
-
-  width:70px;
-  height:70px;
-
-  opacity:0;
-
-  transform:
-    scale(.15)
-    rotate(-35deg);
-}
-
-/* posizione dei fiori */
-
-.flower-piece.f1{
-  left:-5%;
-  top:12%;
-}
-
-.flower-piece.f2{
-  left:5%;
-  top:5%;
-}
-
-.flower-piece.f3{
-  right:-5%;
-  top:12%;
-}
-
-.flower-piece.f4{
-  right:5%;
-  top:5%;
-}
-
-.flower-piece.f5{
-  left:-6%;
-  bottom:15%;
-}
-
-.flower-piece.f6{
-  left:5%;
-  bottom:8%;
-}
-
-.flower-piece.f7{
-  right:-6%;
-  bottom:15%;
-}
-
-.flower-piece.f8{
-  right:5%;
-  bottom:8%;
-}
-
-.flower-animation.active .flower-piece{
-  animation:
-    flowerAppear 1.15s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-.flower-animation.active .f1{animation-delay:.00s}
-.flower-animation.active .f2{animation-delay:.10s}
-.flower-animation.active .f3{animation-delay:.16s}
-.flower-animation.active .f4{animation-delay:.25s}
-.flower-animation.active .f5{animation-delay:.30s}
-.flower-animation.active .f6{animation-delay:.40s}
-.flower-animation.active .f7{animation-delay:.46s}
-.flower-animation.active .f8{animation-delay:.55s}
-
-.flower-head{
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:34px;
-  height:34px;
-
-  transform:translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #e8a4ad 0 38%,
-      #f1c0c5 39% 63%,
-      transparent 64%
-    );
-}
-
-.flower-head::before,
-.flower-head::after{
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:32px;
-  height:15px;
-
-  border-radius:50%;
-
-  background:#e8a4ad;
-}
-
-.flower-head::before{
-  transform:translate(-50%,-50%) rotate(45deg);
-}
-
-.flower-head::after{
-  transform:translate(-50%,-50%) rotate(-45deg);
-}
-
-.flower-center{
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:9px;
-  height:9px;
-
-  border-radius:50%;
-
-  background:#d59b68;
-
-  transform:translate(-50%,-50%);
-
-  z-index:3;
-}
-
-.flower-leaf{
-  position:absolute;
-
-  width:32px;
-  height:15px;
-
-  border-radius:100% 0 100% 0;
-
-  background:#a5b198;
-}
-
-.flower-leaf.l1{
-  left:0;
-  bottom:8px;
-
-  transform:rotate(30deg);
-}
-
-.flower-leaf.l2{
-  right:0;
-  top:8px;
-
-  transform:rotate(-35deg);
-}
-
-@keyframes flowerAppear{
-
-  0%{
-    opacity:0;
-
-    transform:
-      scale(.15)
-      rotate(-35deg)
-      translateY(35px);
-  }
-
-  55%{
-    opacity:1;
-
-    transform:
-      scale(1.08)
-      rotate(8deg)
-      translateY(-3px);
-  }
-
-  100%{
-    opacity:1;
-
-    transform:
-      scale(1)
-      rotate(0deg)
-      translateY(0);
-  }
-
-}
-
-
-/* =====================================================
-   CERALACCA
-===================================================== */
-
-.seal-animation{
+.seal-effect{
   position:absolute;
 
   left:50%;
@@ -312,109 +93,209 @@ body{
   width:92px;
   height:92px;
 
-  z-index:50;
-
-  transform:translate(-50%,-50%);
+  z-index:60;
 
   pointer-events:none;
 
   opacity:0;
+
+  transform:
+    translate(-50%,-50%)
+    scale(1);
 }
 
-.seal-animation.active{
+.seal-effect.active{
   opacity:1;
 }
 
-.seal-crack{
+.seal-piece{
   position:absolute;
 
   left:50%;
   top:50%;
 
-  width:3px;
-  height:40px;
+  width:45px;
+  height:45px;
 
-  border-radius:3px;
+  border-radius:50%;
 
-  background:#8d5b61;
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #f5c6c9,
+      #df9199 48%,
+      #c97782 100%
+    );
 
-  transform-origin:50% 100%;
+  box-shadow:
+    inset 0 2px 3px #ffffff66,
+    0 3px 7px #0002;
 
   opacity:0;
 }
 
-.seal-animation.break .seal-crack{
+.seal-piece::after{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:30px;
+  height:3px;
+
+  background:#718a77;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-20deg);
+
+  opacity:.75;
+}
+
+/*
+  I due pezzi simulano la rottura
+  della ceralacca.
+*/
+
+.seal-piece.left{
+  transform:
+    translate(-50%,-50%);
+}
+
+.seal-piece.right{
+  transform:
+    translate(-50%,-50%);
+}
+
+.seal-effect.active .seal-piece{
   opacity:1;
 }
 
-.sc1{
-  transform:translate(-50%,-100%) rotate(10deg);
+.seal-effect.break .seal-piece.left{
+  animation:
+    sealLeft .75s ease forwards;
 }
 
-.sc2{
-  transform:translate(-50%,-100%) rotate(75deg);
+.seal-effect.break .seal-piece.right{
+  animation:
+    sealRight .75s ease forwards;
 }
 
-.sc3{
-  transform:translate(-50%,-100%) rotate(145deg);
-}
-
-.sc4{
-  transform:translate(-50%,-100%) rotate(215deg);
-}
-
-.sc5{
-  transform:translate(-50%,-100%) rotate(285deg);
-}
-
-.seal-animation.break{
-  animation:sealBreaking .8s ease forwards;
-}
-
-@keyframes sealBreaking{
+@keyframes sealLeft{
 
   0%{
     transform:
       translate(-50%,-50%)
-      scale(1)
-      rotate(0);
+      rotate(0)
+      scale(1);
   }
 
-  20%{
+  35%{
     transform:
-      translate(-50%,-50%)
-      scale(1.08)
-      rotate(-4deg);
-  }
-
-  40%{
-    transform:
-      translate(-50%,-50%)
-      scale(.94)
-      rotate(5deg);
-  }
-
-  60%{
-    transform:
-      translate(-50%,-50%)
-      scale(1.08)
-      rotate(-4deg);
+      translate(-95%,-55%)
+      rotate(-12deg)
+      scale(1.02);
   }
 
   100%{
     transform:
-      translate(-50%,-50%)
-      scale(.45)
-      rotate(10deg);
+      translate(-180%,-80%)
+      rotate(-28deg)
+      scale(.55);
 
     opacity:0;
   }
+}
 
+@keyframes sealRight{
+
+  0%{
+    transform:
+      translate(-50%,-50%)
+      rotate(0)
+      scale(1);
+  }
+
+  35%{
+    transform:
+      translate(-5%,-45%)
+      rotate(12deg)
+      scale(1.02);
+  }
+
+  100%{
+    transform:
+      translate(80%,-5%)
+      rotate(28deg)
+      scale(.55);
+
+    opacity:0;
+  }
 }
 
 
 /* =====================================================
-   BIGLIETTO CHE ESCE
+   PICCOLO EFFETTO DI APERTURA
+===================================================== */
+
+.crack{
+  position:absolute;
+
+  left:50%;
+  top:53%;
+
+  z-index:58;
+
+  width:2px;
+  height:48px;
+
+  background:#8e6669;
+
+  opacity:0;
+
+  transform-origin:center bottom;
+}
+
+.crack.c1{
+  transform:translate(-50%,-50%) rotate(-25deg);
+}
+
+.crack.c2{
+  transform:translate(-50%,-50%) rotate(18deg);
+}
+
+.crack.c3{
+  transform:translate(-50%,-50%) rotate(60deg);
+}
+
+.seal-effect.break .crack{
+  animation:
+    crackShow .45s ease forwards;
+}
+
+@keyframes crackShow{
+
+  0%{
+    opacity:0;
+    height:0;
+  }
+
+  45%{
+    opacity:.8;
+    height:48px;
+  }
+
+  100%{
+    opacity:0;
+    height:55px;
+  }
+}
+
+
+/* =====================================================
+   BIGLIETTO
 ===================================================== */
 
 .letter{
@@ -430,12 +311,12 @@ body{
   opacity:0;
 
   transform:
-    translate(-50%,45%)
+    translate(-50%,48%)
     scale(.94);
 
   transition:
     transform 1.25s cubic-bezier(.2,.8,.2,1),
-    opacity .65s ease;
+    opacity .7s ease;
 }
 
 .letter.show{
@@ -444,6 +325,19 @@ body{
   transform:
     translate(-50%,0)
     scale(1);
+}
+
+
+/* =====================================================
+   BUSTA SCOMPARE
+===================================================== */
+
+.envelope.hide{
+  opacity:0;
+
+  transform:
+    scale(.97)
+    translateY(2%);
 }
 
 
@@ -468,7 +362,7 @@ body{
 
   background:#dca4aa;
 
-  color:#fff;
+  color:white;
 
   letter-spacing:.12em;
 
@@ -498,15 +392,17 @@ body{
 ===================================================== */
 
 #site{
-  display:none;
-
   min-height:100svh;
+
+  opacity:0;
+
+  transition:opacity .6s ease;
 
   background:#f4eee4;
 }
 
 #site.show{
-  display:block;
+  opacity:1;
 }
 
 .page{
@@ -519,7 +415,7 @@ body{
 
 
 /* =====================================================
-   BIGLIETTO
+   BIGLIETTO FINALE
 ===================================================== */
 
 .ticket{
@@ -544,11 +440,9 @@ body{
 
 
 /*
-   IMPORTANTE:
-   NON inseriamo qui i nomi.
-
-   I nomi sono già dentro biglietto.png,
-   quindi rimangono quelli originali.
+  NESSUN NOME VIENE AGGIUNTO QUI.
+  Giada e Paolo rimangono quelli
+  presenti nel biglietto Canva.
 */
 
 
@@ -574,7 +468,7 @@ body{
 
 
 /*
-   SOTTO LA COPERTURA C'È SOLO LA DATA.
+  SOTTO LA COPERTURA C'È SOLO LA DATA.
 */
 
 .reveal{
@@ -634,7 +528,7 @@ body{
 ===================================================== */
 
 .countdown{
-  margin:20px 0 0;
+  margin:15px 0 0;
 
   text-align:center;
 }
@@ -695,7 +589,7 @@ body{
 ===================================================== */
 
 .venue{
-  margin:20px 0 0;
+  margin:7px 0 0;
 
   text-align:center;
 }
@@ -714,7 +608,7 @@ body{
 
 
 /* =====================================================
-   PULSANTI
+   NAVIGAZIONE
 ===================================================== */
 
 .navigation{
@@ -795,7 +689,6 @@ body{
     opacity:1;
     transform:translateY(0);
   }
-
 }
 
 .info-section h2{
@@ -849,12 +742,46 @@ body{
    LOCATION
 ===================================================== */
 
+.location-photo{
+  display:block;
+
+  width:100%;
+
+  margin:0 0 17px;
+
+  border-radius:8px;
+
+  box-shadow:0 6px 18px #00000014;
+}
+
+.location-address{
+  font-family:"Cormorant Garamond",serif;
+
+  font-size:21px;
+
+  line-height:1.4;
+
+  text-align:center;
+
+  color:#718a77;
+}
+
+.location-buttons{
+  display:flex;
+
+  justify-content:center;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+  margin-top:15px;
+}
+
 .map-link{
   display:inline-block;
 
-  margin-top:8px;
-
-  padding:11px 18px;
+  padding:11px 16px;
 
   border-radius:999px;
 
@@ -864,14 +791,36 @@ body{
 
   text-decoration:none;
 
-  font-size:10px;
+  font-size:9px;
+
+  font-weight:600;
+
+  letter-spacing:.08em;
+}
+
+.site-link{
+  display:inline-block;
+
+  padding:11px 16px;
+
+  border-radius:999px;
+
+  background:#dca4aa;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:9px;
+
+  font-weight:600;
 
   letter-spacing:.08em;
 }
 
 
 /* =====================================================
-   RSVP
+   DRESS CODE
 ===================================================== */
 
 .rsvp{
@@ -917,7 +866,7 @@ body{
 
 
 /* =====================================================
-   CORIANDOLI / PETALI
+   CORIANDOLI / PETALI DOPO IL GRATTA
 ===================================================== */
 
 #celebration{
@@ -970,7 +919,6 @@ body{
       translateX(var(--move))
       rotate(var(--rotate));
   }
-
 }
 
 
@@ -1020,7 +968,7 @@ body{
 
 
 <!-- =====================================================
-     APERTURA DELLA BUSTA
+     APERTURA
 ===================================================== -->
 
 <div id="opening">
@@ -1036,82 +984,18 @@ body{
     >
 
 
-    <!-- FIORI CHE ENTRANO -->
-    <div
-      id="flowerAnimation"
-      class="flower-animation"
-    >
-
-      <div class="flower-piece f1">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f2">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f3">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f4">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f5">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f6">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f7">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-      <div class="flower-piece f8">
-        <div class="flower-head"></div>
-        <div class="flower-center"></div>
-        <div class="flower-leaf l1"></div>
-        <div class="flower-leaf l2"></div>
-      </div>
-
-    </div>
-
-
     <!-- EFFETTO ROTTURA CERALACCA -->
     <div
-      id="sealAnimation"
-      class="seal-animation"
+      id="sealEffect"
+      class="seal-effect"
     >
 
-      <span class="seal-crack sc1"></span>
-      <span class="seal-crack sc2"></span>
-      <span class="seal-crack sc3"></span>
-      <span class="seal-crack sc4"></span>
-      <span class="seal-crack sc5"></span>
+      <div class="seal-piece left"></div>
+      <div class="seal-piece right"></div>
+
+      <span class="crack c1"></span>
+      <span class="crack c2"></span>
+      <span class="crack c3"></span>
 
     </div>
 
@@ -1121,7 +1005,7 @@ body{
       id="letter"
       class="letter"
       src="biglietto.png"
-      alt="Giada e Paolo"
+      alt="Il nostro biglietto"
     >
 
 
@@ -1157,26 +1041,17 @@ body{
       >
 
 
-      <!--
-        NON CI SONO NOMI QUI.
-        I nomi rimangono quelli originali
-        contenuti nell'immagine Canva.
-      -->
-
-
       <!-- GRATTA E VINCI -->
+
       <div class="scratch-zone">
 
-        <!--
-          SOTTO LA COPERTURA C'È SOLTANTO LA DATA.
-        -->
+        <!-- SOTTO RIMANE SOLO LA DATA -->
+
         <div class="reveal">
           8 SETTEMBRE 2027
         </div>
 
-        <canvas
-          id="scratch"
-        ></canvas>
+        <canvas id="scratch"></canvas>
 
       </div>
 
@@ -1196,58 +1071,23 @@ body{
       <div class="digits">
 
         <div class="unit">
-          <div
-            class="num"
-            id="d"
-          >
-            0
-          </div>
-
-          <div class="lab">
-            GIORNI
-          </div>
+          <div class="num" id="d">0</div>
+          <div class="lab">GIORNI</div>
         </div>
 
-
         <div class="unit">
-          <div
-            class="num"
-            id="h"
-          >
-            0
-          </div>
-
-          <div class="lab">
-            ORE
-          </div>
+          <div class="num" id="h">0</div>
+          <div class="lab">ORE</div>
         </div>
 
-
         <div class="unit">
-          <div
-            class="num"
-            id="m"
-          >
-            0
-          </div>
-
-          <div class="lab">
-            MINUTI
-          </div>
+          <div class="num" id="m">0</div>
+          <div class="lab">MINUTI</div>
         </div>
 
-
         <div class="unit">
-          <div
-            class="num"
-            id="s"
-          >
-            0
-          </div>
-
-          <div class="lab">
-            SECONDI
-          </div>
+          <div class="num" id="s">0</div>
+          <div class="lab">SECONDI</div>
         </div>
 
       </div>
@@ -1269,7 +1109,7 @@ body{
 
 
     <!-- =================================================
-         PULSANTI INTERATTIVI
+         PULSANTI
     ================================================= -->
 
     <div class="navigation">
@@ -1282,7 +1122,6 @@ body{
         📍 LOCATION
       </button>
 
-
       <button
         class="nav-button"
         data-section="dresscode"
@@ -1290,7 +1129,6 @@ body{
       >
         👗 DRESS CODE
       </button>
-
 
       <button
         class="nav-button"
@@ -1300,7 +1138,6 @@ body{
         💌 PRESENZA
       </button>
 
-
       <button
         class="nav-button"
         data-section="us"
@@ -1308,7 +1145,6 @@ body{
       >
         🤍 NOI DUE
       </button>
-
 
       <button
         class="nav-button"
@@ -1333,28 +1169,60 @@ body{
 
       <h2>📍 Location</h2>
 
-      <p>
-        Ci vediamo alla
-        <strong>Tenuta Monticello</strong>.
-      </p>
+
+      <!-- FOTO DELLA TENUTA -->
+
+      <img
+        class="location-photo"
+        src="https://www.monticellopombia.it/wp-content/uploads/2018/05/monticello-cope.jpg"
+        alt="Tenuta il Monticello"
+      >
+
+
+      <div class="location-address">
+
+        <strong>Tenuta il Monticello</strong><br>
+
+        Via Roma, 4<br>
+
+        28050 Pombia (NO)
+
+      </div>
+
 
       <p>
-        Qui potremo inserire tutte le informazioni
-        per raggiungere la location.
+        Vi aspettiamo alla Tenuta Monticello
+        per festeggiare insieme il nostro giorno.
       </p>
 
-      <div style="text-align:center">
+
+      <div class="location-buttons">
+
+        <!-- GOOGLE MAPS -->
 
         <a
           class="map-link"
-          href="https://www.google.com/maps/search/?api=1&query=Tenuta+Monticello"
+          href="https://www.google.com/maps/dir/?api=1&destination=Tenuta+il+Monticello%2C+Via+Roma+4%2C+28050+Pombia+NO"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
-          APRI LA MAPPA
+          🗺️ INDICAZIONI E MAPPA
+        </a>
+
+
+        <!-- SITO UFFICIALE -->
+
+        <a
+          class="site-link"
+          href="https://www.monticellopombia.it/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🌿 SITO DELLA TENUTA
         </a>
 
       </div>
+
 
       <button
         class="close-section"
@@ -1379,7 +1247,8 @@ body{
       <h2>👗 Dress code</h2>
 
       <p>
-        Eleganza, leggerezza e un tocco di voi.
+        Eleganza, comodità e leggerezza,
+        venite come vi sentite più belli!
       </p>
 
       <button
@@ -1439,6 +1308,7 @@ body{
         </button>
 
       </form>
+
 
       <button
         class="close-section"
@@ -1506,7 +1376,6 @@ body{
     </section>
 
 
-
     <div class="footer">
       Giada &amp; Paolo
     </div>
@@ -1516,9 +1385,8 @@ body{
 </main>
 
 
-
 <!-- =====================================================
-     CORIANDOLI / PETALI
+     PETALI / CORIANDOLI
 ===================================================== -->
 
 <div id="celebration"></div>
@@ -1528,7 +1396,7 @@ body{
 <script>
 
 /* =====================================================
-   APERTURA
+   APERTURA BUSTA
 ===================================================== */
 
 const opening =
@@ -1540,11 +1408,8 @@ const openBtn =
 const envelope =
   document.getElementById("envelope");
 
-const flowerAnimation =
-  document.getElementById("flowerAnimation");
-
-const sealAnimation =
-  document.getElementById("sealAnimation");
+const sealEffect =
+  document.getElementById("sealEffect");
 
 const letter =
   document.getElementById("letter");
@@ -1557,59 +1422,63 @@ openBtn.addEventListener(
   "click",
   function(){
 
-    /* pulsante scompare */
+    /* NASCONDE IL PULSANTE */
+
     openBtn.classList.add("hidden");
 
 
-    /* FIORI */
-    flowerAnimation.classList.add("active");
+    /* PICCOLO MOVIMENTO DELLA BUSTA */
 
-
-    /* BUSTA INIZIA AD APRIRSI */
     setTimeout(
       function(){
 
-        envelope.classList.add("move");
+        envelope.classList.add("hide");
 
       },
-      300
+      1450
     );
 
 
-    /* CERALACCA */
+    /*
+      CERALACCA:
+      appare, si crepa e si divide
+    */
+
     setTimeout(
       function(){
 
-        sealAnimation.classList.add("active");
+        sealEffect.classList.add("active");
 
         setTimeout(
           function(){
 
-            sealAnimation.classList.add("break");
+            sealEffect.classList.add("break");
 
           },
-          50
+          80
         );
 
       },
-      850
+      550
     );
 
 
-    /* BIGLIETTO ESCE */
+    /*
+      IL BIGLIETTO ENTRA
+    */
+
     setTimeout(
       function(){
 
         letter.classList.add("show");
 
       },
-      1200
+      1050
     );
 
 
     /*
-      QUANDO IL BIGLIETTO È ARRIVATO,
-      LA BUSTA SCOMPARE.
+      LA BUSTA SPARISCE
     */
 
     setTimeout(
@@ -1618,13 +1487,17 @@ openBtn.addEventListener(
         envelope.style.opacity="0";
 
       },
-      2250
+      1750
     );
 
 
     /*
-      DOPO L'ANIMAZIONE RESTA
-      UNA SOLA PAGINA.
+      DOPO L'ANIMAZIONE
+      MOSTRIAMO LA PAGINA FINALE.
+
+      Il biglietto della pagina finale è uno solo:
+      non viene mostrata una seconda copia
+      durante l'apertura.
     */
 
     setTimeout(
@@ -1642,7 +1515,7 @@ openBtn.addEventListener(
         );
 
       },
-      2900
+      2600
     );
 
   }
@@ -1727,7 +1600,17 @@ setInterval(
    GRATTA E VINCI
 ===================================================== */
 
+let scratchInitialized=false;
+
+
 function initScratch(){
+
+  if(scratchInitialized){
+    return;
+  }
+
+  scratchInitialized=true;
+
 
   const canvas =
     document.getElementById("scratch");
@@ -1749,8 +1632,8 @@ function initScratch(){
 
 
   if(
-    width <= 0 ||
-    height <= 0
+    width<=0 ||
+    height<=0
   ){
     return;
   }
@@ -1788,9 +1671,7 @@ function initScratch(){
   );
 
 
-  /* ================================================
-     COPERTURA DORATA
-  ================================================= */
+  /* COPERTURA DORATA */
 
   const gold =
     ctx.createLinearGradient(
@@ -1832,8 +1713,7 @@ function initScratch(){
   );
 
 
-  ctx.fillStyle =
-    gold;
+  ctx.fillStyle=gold;
 
   ctx.fillRect(
     0,
@@ -1843,12 +1723,11 @@ function initScratch(){
   );
 
 
-  /* ================================================
-     BRILLANTINI
-     
-     SONO SUL CANVAS, QUINDI QUANDO SI CANCELLA
-     IL CANVAS SPARISCONO COMPLETAMENTE.
-  ================================================= */
+  /*
+    BRILLANTINI SULLA COPERTURA.
+    Sono parte del canvas e quindi spariscono
+    insieme alla copertura.
+  */
 
   const glitter=[
     "#fff8d6",
@@ -1927,11 +1806,8 @@ function initScratch(){
 
 
   /*
-    IMPORTANTE:
-    QUI NON C'È "GRATTA QUI".
-
-    La copertura contiene solamente oro
-    e brillantini.
+    NESSUNA SCRITTA "GRATTA QUI".
+    Sotto c'è esclusivamente la data.
   */
 
 
@@ -1944,7 +1820,7 @@ function initScratch(){
   let finished=false;
 
 
-  function getPosition(e){
+  function position(e){
 
     const r =
       canvas.getBoundingClientRect();
@@ -1958,7 +1834,7 @@ function initScratch(){
   }
 
 
-  function eraseCircle(
+  function erase(
     x,
     y
   ){
@@ -1990,7 +1866,6 @@ function initScratch(){
     ctx.globalCompositeOperation =
       "destination-out";
 
-
     ctx.lineWidth=44;
 
     ctx.lineCap="round";
@@ -2015,7 +1890,7 @@ function initScratch(){
   }
 
 
-  function finishScratch(){
+  function complete(){
 
     if(finished){
       return;
@@ -2027,14 +1902,10 @@ function initScratch(){
 
     /*
       CANCELLA TUTTO IL CANVAS.
-      
-      Quindi:
-      - oro sparisce
-      - brillantini spariscono
-      - non rimane "GRATTA QUI"
-      
-      Sotto resta SOLO:
-      8 SETTEMBRE 2027
+      Quindi spariscono:
+      - oro
+      - brillantini
+      - qualsiasi traccia della copertura
     */
 
     ctx.clearRect(
@@ -2045,10 +1916,11 @@ function initScratch(){
     );
 
 
-    canvas.classList.add("finished");
+    canvas.classList.add(
+      "finished"
+    );
 
 
-    /* FESTA */
     launchCelebration();
 
 
@@ -2079,13 +1951,13 @@ function initScratch(){
     e.preventDefault();
 
 
-    const point =
-      getPosition(e);
+    const p =
+      position(e);
 
 
-    eraseCircle(
-      point.x,
-      point.y
+    erase(
+      p.x,
+      p.y
     );
 
 
@@ -2093,27 +1965,20 @@ function initScratch(){
 
       eraseLine(
         last,
-        point
+        p
       );
 
     }
 
 
-    last=point;
+    last=p;
 
     strokes++;
 
 
-    /*
-      Dopo abbastanza passaggi,
-      la copertura viene eliminata.
-    */
+    if(strokes>=75){
 
-    if(
-      strokes>=75
-    ){
-
-      finishScratch();
+      complete();
 
     }
 
@@ -2127,10 +1992,10 @@ function initScratch(){
       drawing=true;
 
       last=
-        getPosition(e);
+        position(e);
 
 
-      eraseCircle(
+      erase(
         last.x,
         last.y
       );
@@ -2154,7 +2019,7 @@ function initScratch(){
   );
 
 
-  function stopDrawing(e){
+  function stop(e){
 
     drawing=false;
 
@@ -2174,12 +2039,12 @@ function initScratch(){
 
   canvas.addEventListener(
     "pointerup",
-    stopDrawing
+    stop
   );
 
   canvas.addEventListener(
     "pointercancel",
-    stopDrawing
+    stop
   );
 
 }
@@ -2187,8 +2052,7 @@ function initScratch(){
 
 
 /* =====================================================
-   EFFETTO FIORI / CORIANDOLI
-   QUANDO LA DATA È COMPLETAMENTE SCOPERTA
+   FESTA DO GRATTA
 ===================================================== */
 
 function launchCelebration(){
@@ -2199,12 +2063,9 @@ function launchCelebration(){
     );
 
 
-  const total=45;
-
-
   for(
     let i=0;
-    i<total;
+    i<45;
     i++
   ){
 
@@ -2212,8 +2073,7 @@ function launchCelebration(){
       document.createElement("span");
 
 
-    petal.className =
-      "petal";
+    petal.className="petal";
 
 
     petal.style.left =
@@ -2246,23 +2106,16 @@ function launchCelebration(){
     petal.style.setProperty(
       "--move",
       (-100+
-       Math.random()*200)+
-      "px"
+       Math.random()*200)+"px"
     );
 
 
     petal.style.setProperty(
       "--rotate",
       (-500+
-       Math.random()*1000)+
-      "deg"
+       Math.random()*1000)+"deg"
     );
 
-
-    /*
-      Toni coerenti con la grafica
-      del biglietto.
-    */
 
     const colors=[
       "#e6a0a9",
@@ -2301,22 +2154,22 @@ function launchCelebration(){
 
 
 /* =====================================================
-   PULSANTI INTERATTIVI
+   PULSANTI DELLE SEZIONI
 ===================================================== */
 
-const navButtons =
+const buttons =
   document.querySelectorAll(
     ".nav-button"
   );
 
 
-const infoSections =
+const sections =
   document.querySelectorAll(
     ".info-section"
   );
 
 
-navButtons.forEach(
+buttons.forEach(
   function(button){
 
     button.addEventListener(
@@ -2327,11 +2180,7 @@ navButtons.forEach(
           button.dataset.section;
 
 
-        /*
-          Chiude tutte le altre sezioni.
-        */
-
-        infoSections.forEach(
+        sections.forEach(
           function(section){
 
             section.classList.remove(
@@ -2404,29 +2253,6 @@ document
 
           section.classList.remove(
             "open"
-          );
-
-
-          setTimeout(
-            function(){
-
-              const navigation =
-                document.querySelector(
-                  ".navigation"
-                );
-
-
-              if(navigation){
-
-                navigation.scrollIntoView({
-                  behavior:"smooth",
-                  block:"center"
-                });
-
-              }
-
-            },
-            50
           );
 
         }
