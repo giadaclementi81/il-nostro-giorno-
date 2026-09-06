@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Il nostro giorno</title>
+<title>Giada & Paolo</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
@@ -12,40 +12,40 @@
   box-sizing:border-box;
 }
 
-html,
-body{
-  margin:0;
-  padding:0;
-  min-height:100%;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
+  margin:0;
   background:#f4eee4;
   color:#718a77;
   font-family:Montserrat,Arial,sans-serif;
 }
 
 /* =====================================================
-   SCHERMATA BUSTA
+   APERTURA BUSTA
 ===================================================== */
 
-#opening{
+.opening{
   position:fixed;
   inset:0;
-  z-index:100;
-  min-height:100svh;
+  z-index:1000;
+
   display:flex;
-  align-items:center;
   justify-content:center;
-  padding:20px;
+  align-items:center;
+
   overflow:hidden;
+
   background:#f4eee4;
+
   transition:
-    opacity .8s ease,
-    visibility .8s ease;
+    opacity .9s ease,
+    visibility .9s ease;
 }
 
-#opening.hide{
+.opening.gone{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -54,253 +54,53 @@ body{
 .envelope-wrap{
   position:relative;
   width:min(92vw,520px);
-  aspect-ratio:1080/1920;
+  height:min(92vh,925px);
 }
+
+
+/* =====================================================
+   BUSTA
+===================================================== */
 
 .envelope{
   position:absolute;
   inset:0;
+
   width:100%;
   height:100%;
+
   object-fit:contain;
 
-  transform:scale(1);
-  opacity:1;
+  z-index:10;
 
   transition:
-    transform 1.1s ease,
-    opacity .7s ease;
+    transform .8s ease,
+    opacity .6s ease;
 }
 
-.envelope-opening{
-  transform:scale(1.015);
+.envelope.opening{
+  transform:scale(.98);
 }
 
-.envelope-fade{
+.envelope.disappear{
   opacity:0;
-  transform:scale(.97);
+  transform:scale(.96);
 }
+
 
 /* =====================================================
-   EFFETTO FIORI
-===================================================== */
-
-.flowers{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:5;
-}
-
-.flower-left,
-.flower-right{
-  position:absolute;
-  width:22%;
-  opacity:0;
-  transform:scale(.7);
-}
-
-.flower-left{
-  left:3%;
-  top:8%;
-}
-
-.flower-right{
-  right:3%;
-  top:8%;
-}
-
-.opening-flowers .flower-left,
-.opening-flowers .flower-right{
-  animation:flowerAppear .9s ease forwards;
-}
-
-.opening-flowers .flower-right{
-  animation-delay:.15s;
-}
-
-@keyframes flowerAppear{
-  0%{
-    opacity:0;
-    transform:scale(.7) rotate(-8deg);
-  }
-
-  70%{
-    opacity:1;
-    transform:scale(1.05) rotate(2deg);
-  }
-
-  100%{
-    opacity:1;
-    transform:scale(1) rotate(0);
-  }
-}
-
-.flower{
-  position:absolute;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#e9a5ad;
-  box-shadow:
-    0 0 0 7px #efbdc2,
-    0 0 0 14px #f4d6d3;
-}
-
-.flower::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:9px;
-  height:9px;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  background:#d99b63;
-}
-
-.flower.left{
-  left:15%;
-  top:15%;
-}
-
-.flower.right{
-  right:15%;
-  top:15%;
-}
-
-/* =====================================================
-   CERALACCA
-===================================================== */
-
-.seal-effect{
-  position:absolute;
-  left:50%;
-  top:54%;
-  width:74px;
-  height:74px;
-  transform:translate(-50%,-50%) scale(1);
-  z-index:20;
-  pointer-events:none;
-  transition:
-    transform .45s ease,
-    opacity .5s ease;
-}
-
-.seal-effect.break{
-  animation:sealBreak .7s ease forwards;
-}
-
-@keyframes sealBreak{
-
-  0%{
-    transform:translate(-50%,-50%) scale(1);
-    opacity:1;
-  }
-
-  25%{
-    transform:translate(-50%,-50%) scale(1.06) rotate(-3deg);
-  }
-
-  45%{
-    transform:translate(-50%,-50%) scale(.98) rotate(3deg);
-  }
-
-  65%{
-    transform:translate(-50%,-50%) scale(1.03) rotate(-2deg);
-  }
-
-  100%{
-    transform:translate(-50%,-50%) scale(1.18) rotate(8deg);
-    opacity:0;
-  }
-}
-
-.crack{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:82px;
-  height:82px;
-  transform:translate(-50%,-50%);
-  opacity:0;
-}
-
-.seal-effect.break .crack{
-  opacity:1;
-}
-
-.crack i{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:2px;
-  height:26px;
-  background:#a97d7d;
-  transform-origin:bottom center;
-}
-
-.crack i:nth-child(1){
-  transform:translate(-50%,-100%) rotate(15deg);
-}
-
-.crack i:nth-child(2){
-  transform:translate(-50%,-100%) rotate(85deg);
-}
-
-.crack i:nth-child(3){
-  transform:translate(-50%,-100%) rotate(155deg);
-}
-
-.crack i:nth-child(4){
-  transform:translate(-50%,-100%) rotate(225deg);
-}
-
-.crack i:nth-child(5){
-  transform:translate(-50%,-100%) rotate(295deg);
-}
-
-/* =====================================================
-   BIGLIETTO CHE ENTRA
-===================================================== */
-
-.letter{
-  position:absolute;
-  left:50%;
-  top:16%;
-  width:72%;
-
-  transform:
-    translate(-50%,35%)
-    scale(.92);
-
-  opacity:0;
-  z-index:30;
-  pointer-events:none;
-
-  transition:
-    transform 1.15s cubic-bezier(.2,.8,.2,1),
-    opacity .7s ease;
-}
-
-.letter.show{
-  transform:
-    translate(-50%,0)
-    scale(1);
-
-  opacity:1;
-}
-
-/* =====================================================
-   BOTTONE APERTURA
+   PULSANTE
 ===================================================== */
 
 .open-btn{
   position:absolute;
+
   left:50%;
-  top:70%;
+  top:66%;
 
   transform:translate(-50%,-50%);
+
+  z-index:60;
 
   border:0;
   border-radius:999px;
@@ -308,7 +108,7 @@ body{
   padding:13px 24px;
 
   background:#dca4aa;
-  color:white;
+  color:#fff;
 
   letter-spacing:.12em;
   font-weight:600;
@@ -316,8 +116,6 @@ body{
   cursor:pointer;
 
   box-shadow:0 6px 18px #0002;
-
-  z-index:50;
 
   transition:
     opacity .4s ease,
@@ -327,47 +125,459 @@ body{
 .open-btn.hidden{
   opacity:0;
   pointer-events:none;
-  transform:translate(-50%,-50%) scale(.9);
+
+  transform:
+    translate(-50%,-50%)
+    scale(.9);
 }
 
-/* ELIMINATA COMPLETAMENTE */
-.hint{
-  display:none !important;
-}
 
 /* =====================================================
-   CONTENUTO PRINCIPALE
+   FIORI CHE ENTRANO
 ===================================================== */
 
-.content{
-  display:none;
+.flower-layer{
+  position:absolute;
+  inset:0;
 
-  width:100%;
-  max-width:520px;
+  z-index:35;
 
-  margin:auto;
+  pointer-events:none;
 
-  padding:30px 18px 70px;
+  opacity:0;
 }
 
-.content.show{
+.flower-layer.active{
+  opacity:1;
+}
+
+
+/* fiori decorativi */
+
+.flower{
+  position:absolute;
+
+  width:58px;
+  height:58px;
+
+  opacity:0;
+
+  transform:scale(.1) rotate(-30deg);
+}
+
+.flower-layer.active .flower{
+  animation:
+    flowerEnter 1.15s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.flower:nth-child(1){
+  left:3%;
+  top:7%;
+  animation-delay:.05s;
+}
+
+.flower:nth-child(2){
+  left:15%;
+  top:3%;
+  animation-delay:.15s;
+}
+
+.flower:nth-child(3){
+  right:3%;
+  top:7%;
+  animation-delay:.22s;
+}
+
+.flower:nth-child(4){
+  right:15%;
+  top:3%;
+  animation-delay:.3s;
+}
+
+.flower:nth-child(5){
+  left:-2%;
+  bottom:17%;
+  animation-delay:.35s;
+}
+
+.flower:nth-child(6){
+  left:8%;
+  bottom:12%;
+  animation-delay:.42s;
+}
+
+.flower:nth-child(7){
+  right:-2%;
+  bottom:17%;
+  animation-delay:.48s;
+}
+
+.flower:nth-child(8){
+  right:8%;
+  bottom:12%;
+  animation-delay:.55s;
+}
+
+
+.flower::before,
+.flower::after{
+  content:"";
+
+  position:absolute;
+  left:50%;
+  top:50%;
+
+  width:25px;
+  height:39px;
+
+  border-radius:50%;
+
+  background:#e6a0a9;
+
+  transform-origin:50% 100%;
+}
+
+.flower::before{
+  transform:
+    translate(-50%,-100%)
+    rotate(0deg);
+}
+
+.flower::after{
+  transform:
+    translate(-50%,-100%)
+    rotate(90deg);
+}
+
+.flower .center{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:12px;
+  height:12px;
+
+  border-radius:50%;
+
+  background:#d59b68;
+
+  transform:translate(-50%,-50%);
+
+  z-index:2;
+}
+
+.flower .leaf{
+  position:absolute;
+
+  width:27px;
+  height:13px;
+
+  border-radius:100% 0 100% 0;
+
+  background:#a7b39a;
+
+  transform:rotate(30deg);
+}
+
+.flower .leaf.one{
+  left:0;
+  bottom:3px;
+}
+
+.flower .leaf.two{
+  right:0;
+  top:3px;
+  transform:rotate(-35deg);
+}
+
+
+@keyframes flowerEnter{
+  0%{
+    opacity:0;
+    transform:
+      scale(.1)
+      rotate(-30deg)
+      translateY(45px);
+  }
+
+  55%{
+    opacity:1;
+    transform:
+      scale(1.08)
+      rotate(8deg)
+      translateY(-4px);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      scale(1)
+      rotate(0)
+      translateY(0);
+  }
+}
+
+
+/* =====================================================
+   CERALACCA
+===================================================== */
+
+.seal-effect{
+  position:absolute;
+
+  left:50%;
+  top:53%;
+
+  width:90px;
+  height:90px;
+
+  z-index:50;
+
+  transform:translate(-50%,-50%);
+
+  pointer-events:none;
+
+  opacity:0;
+}
+
+.seal-effect.active{
+  opacity:1;
+}
+
+.seal-effect.crack{
+  animation:
+    sealBreak .7s ease forwards;
+}
+
+.seal-circle{
+  position:absolute;
+  inset:4px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #f6b8bc,
+      #d9858d 55%,
+      #b96770
+    );
+
+  box-shadow:
+    inset 2px 2px 5px #fff8,
+    inset -3px -4px 7px #8f4d55;
+}
+
+.seal-text{
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-family:"Cormorant Garamond",serif;
+
+  font-size:25px;
+
+  color:#718a77;
+
+  font-style:italic;
+}
+
+.crack-line{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:3px;
+  height:38px;
+
+  background:#8c5a60;
+
+  border-radius:3px;
+
+  transform-origin:50% 100%;
+
+  opacity:0;
+}
+
+.seal-effect.crack .crack-line{
+  opacity:1;
+}
+
+.crack-1{
+  transform:
+    translate(-50%,-100%)
+    rotate(15deg);
+}
+
+.crack-2{
+  transform:
+    translate(-50%,-100%)
+    rotate(82deg);
+}
+
+.crack-3{
+  transform:
+    translate(-50%,-100%)
+    rotate(145deg);
+}
+
+.crack-4{
+  transform:
+    translate(-50%,-100%)
+    rotate(218deg);
+}
+
+.crack-5{
+  transform:
+    translate(-50%,-100%)
+    rotate(285deg);
+}
+
+@keyframes sealBreak{
+  0%{
+    transform:
+      translate(-50%,-50%)
+      scale(1)
+      rotate(0);
+  }
+
+  20%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.06)
+      rotate(-4deg);
+  }
+
+  40%{
+    transform:
+      translate(-50%,-50%)
+      scale(.94)
+      rotate(4deg);
+  }
+
+  60%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.08)
+      rotate(-3deg);
+  }
+
+  100%{
+    transform:
+      translate(-50%,-50%)
+      scale(.55)
+      rotate(7deg);
+    opacity:0;
+  }
+}
+
+
+/* =====================================================
+   BIGLIETTO CHE ESCE
+===================================================== */
+
+.letter{
+  position:absolute;
+
+  left:50%;
+  top:12%;
+
+  width:72%;
+
+  z-index:25;
+
+  opacity:0;
+
+  transform:
+    translate(-50%,42%)
+    scale(.94);
+
+  transition:
+    transform 1.25s cubic-bezier(.2,.8,.2,1),
+    opacity .65s ease;
+}
+
+.letter.visible{
+  opacity:1;
+
+  transform:
+    translate(-50%,0)
+    scale(1);
+}
+
+
+/* =====================================================
+   SITO - UNA SOLA PAGINA
+===================================================== */
+
+#site{
+  display:none;
+
+  min-height:100svh;
+
+  background:#f4eee4;
+}
+
+#site.visible{
   display:block;
 }
 
-.paper{
-  background:#f5eadc;
-  border-radius:2px;
-  padding:28px 20px 34px;
-  box-shadow:0 10px 35px #00000012;
+.main-ticket{
+  width:min(100%,520px);
+
+  margin:auto;
+
+  padding:20px 14px 60px;
 }
+
+
+/* =====================================================
+   BIGLIETTO
+===================================================== */
+
+.ticket{
+  position:relative;
+
+  width:100%;
+
+  overflow:hidden;
+
+  border-radius:2px;
+
+  box-shadow:
+    0 10px 35px #00000012;
+}
+
+.ticket-image{
+  display:block;
+
+  width:100%;
+  height:auto;
+}
+
 
 /* =====================================================
    NOMI
 ===================================================== */
 
 .names{
+  position:absolute;
+
+  left:15%;
+  right:15%;
+  top:8%;
+
+  z-index:5;
+
   text-align:center;
-  margin:8px 0 20px;
+
+  pointer-events:none;
 }
 
 .names h1{
@@ -375,63 +585,56 @@ body{
 
   font-family:"Cormorant Garamond",serif;
 
-  font-size:clamp(34px,9vw,52px);
+  font-size:clamp(30px,8vw,46px);
 
   font-weight:600;
 
-  letter-spacing:.12em;
+  letter-spacing:.08em;
 
   color:#718a77;
 }
 
-.names .amp{
-  font-size:.65em;
-  margin:0 8px;
-}
 
 /* =====================================================
-   GRATTA-E-VINCI
+   GRATTA E VINCI
 ===================================================== */
 
-.scratch-title{
-  text-align:center;
-
-  margin:4px 0 10px;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:23px;
-
-  letter-spacing:.1em;
-
-  color:#718a77;
-}
-
 .scratch-zone{
-  position:relative;
+  position:absolute;
 
-  width:100%;
-  height:82px;
+  left:5.5%;
+  top:45.4%;
 
-  margin:0 auto;
+  width:89%;
+  height:12.5%;
 
   overflow:hidden;
 
-  border-radius:3px;
+  border-radius:8px;
 
-  isolation:isolate;
+  z-index:20;
 }
+
+
+/*
+  SOTTO LA COPERTURA C'È SOLO LA DATA.
+  Nessun "GRATTA QUI".
+  Nessun brillantino.
+*/
 
 .reveal{
   position:absolute;
   inset:0;
 
-  display:flex;
+  z-index:1;
 
+  display:flex;
   align-items:center;
   justify-content:center;
 
   text-align:center;
+
+  background:#f5eadc;
 
   font-family:"Cormorant Garamond",serif;
 
@@ -442,25 +645,18 @@ body{
   letter-spacing:.08em;
 
   color:#718a77;
-
-  background:transparent;
-
-  z-index:1;
-
-  pointer-events:none;
 }
 
 #scratch{
   position:absolute;
-
   inset:0;
-
-  display:block;
 
   width:100%;
   height:100%;
 
   z-index:2;
+
+  display:block;
 
   touch-action:none;
 
@@ -469,34 +665,96 @@ body{
   transition:opacity .45s ease;
 }
 
-#scratch.finished{
+#scratch.done{
   opacity:0;
+
   pointer-events:none;
 }
+
+
+/* =====================================================
+   CORIANDOLI / PETALI DOPO IL GRATTA
+===================================================== */
+
+.confetti{
+  position:fixed;
+  inset:0;
+
+  z-index:900;
+
+  pointer-events:none;
+
+  overflow:hidden;
+}
+
+.confetti-piece{
+  position:absolute;
+
+  top:-30px;
+
+  width:9px;
+  height:15px;
+
+  border-radius:60% 40% 60% 40%;
+
+  opacity:0;
+
+  animation:
+    confettiFall linear forwards;
+}
+
+@keyframes confettiFall{
+
+  0%{
+    opacity:0;
+    transform:
+      translateY(-30px)
+      rotate(0deg);
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translateY(110vh)
+      translateX(var(--drift))
+      rotate(var(--rotation));
+  }
+}
+
 
 /* =====================================================
    COUNTDOWN
 ===================================================== */
 
 .countdown{
-  margin:24px 0 8px;
+  margin:20px 0 0;
+
   text-align:center;
 }
 
 .countdown-title{
+  margin-bottom:10px;
+
   font-family:"Cormorant Garamond",serif;
 
   font-size:25px;
 
   letter-spacing:.12em;
 
-  margin-bottom:10px;
+  color:#718a77;
 }
 
 .digits{
   display:flex;
+
   justify-content:center;
+
   gap:8px;
+
   flex-wrap:wrap;
 }
 
@@ -514,29 +772,35 @@ body{
 
 .num{
   font-size:25px;
+
   font-weight:600;
+
   color:#718a77;
 }
 
 .lab{
   font-size:9px;
+
   letter-spacing:.14em;
+
   color:#8a8176;
 }
+
 
 /* =====================================================
    TENUTA MONTICELLO
 ===================================================== */
 
 .venue{
-  margin-top:20px;
+  margin:20px 0 0;
+
   text-align:center;
 }
 
 .venue-title{
   font-family:"Cormorant Garamond",serif;
 
-  font-size:27px;
+  font-size:29px;
 
   font-weight:600;
 
@@ -545,44 +809,35 @@ body{
   color:#718a77;
 }
 
-.venue-subtitle{
-  margin-top:5px;
-
-  font-size:11px;
-
-  letter-spacing:.12em;
-
-  color:#8a8176;
-}
 
 /* =====================================================
-   MENU INTERATTIVO
+   PULSANTI
 ===================================================== */
 
-.menu{
+.navigation{
   display:grid;
 
   grid-template-columns:1fr 1fr;
 
   gap:10px;
 
-  margin-top:28px;
+  margin-top:25px;
 }
 
-.menu-btn{
+.nav-button{
+  padding:14px 8px;
+
   border:1px solid #d7cbbb;
+
+  border-radius:10px;
 
   background:#fffaf3;
 
   color:#718a77;
 
-  border-radius:10px;
-
-  padding:15px 10px;
-
   font-family:Montserrat,Arial,sans-serif;
 
-  font-size:11px;
+  font-size:10px;
 
   font-weight:600;
 
@@ -592,44 +847,41 @@ body{
 
   transition:
     transform .2s ease,
-    background .2s ease,
     box-shadow .2s ease;
 }
 
-.menu-btn:hover{
+.nav-button:hover{
   transform:translateY(-2px);
-  box-shadow:0 5px 14px #00000012;
+
+  box-shadow:0 6px 15px #00000012;
 }
 
-.menu-btn:active{
-  transform:translateY(0);
-}
 
 /* =====================================================
-   PAGINE INTERATTIVE
+   CONTENUTI DEI PULSANTI
 ===================================================== */
 
-.page{
+.info-section{
   display:none;
 
-  margin-top:24px;
+  margin-top:15px;
 
-  padding:24px 18px;
+  padding:22px 17px;
 
-  background:#fffaf3;
+  background:#f5eadc;
 
   border:1px solid #d7cbbb;
 
-  border-radius:12px;
+  border-radius:10px;
 
-  animation:pageIn .35s ease;
+  animation:sectionIn .35s ease;
 }
 
-.page.active{
+.info-section.open{
   display:block;
 }
 
-@keyframes pageIn{
+@keyframes sectionIn{
   from{
     opacity:0;
     transform:translateY(8px);
@@ -641,36 +893,34 @@ body{
   }
 }
 
-.page h2{
-  margin-top:0;
+.info-section h2{
+  margin:0 0 12px;
+
+  text-align:center;
 
   font-family:"Cormorant Garamond",serif;
 
   font-size:28px;
 
-  font-weight:600;
-
-  letter-spacing:.12em;
-
-  text-align:center;
+  letter-spacing:.1em;
 
   color:#718a77;
 }
 
-.page p{
+.info-section p{
   line-height:1.7;
 
-  color:#746f67;
-
   text-align:center;
+
+  color:#746f67;
 }
 
-.close-page{
+.close-section{
   display:block;
 
   margin:18px auto 0;
 
-  padding:10px 18px;
+  padding:9px 17px;
 
   border:0;
 
@@ -680,7 +930,7 @@ body{
 
   color:white;
 
-  font-size:10px;
+  font-size:9px;
 
   font-weight:600;
 
@@ -689,28 +939,15 @@ body{
   cursor:pointer;
 }
 
+
 /* =====================================================
    LOCATION
 ===================================================== */
 
-.map-box{
-  margin-top:15px;
-
-  padding:18px;
-
-  text-align:center;
-
-  border:1px solid #d7cbbb;
-
-  border-radius:10px;
-
-  background:#f5eadc;
-}
-
 .map-link{
   display:inline-block;
 
-  margin-top:12px;
+  margin-top:8px;
 
   padding:11px 18px;
 
@@ -727,14 +964,15 @@ body{
   letter-spacing:.08em;
 }
 
+
 /* =====================================================
    RSVP
 ===================================================== */
 
 .rsvp{
   display:grid;
+
   gap:10px;
-  text-align:left;
 }
 
 .rsvp input,
@@ -750,6 +988,8 @@ body{
   background:#fffaf3;
 
   font:inherit;
+
+  color:#746f67;
 }
 
 .rsvp button{
@@ -761,7 +1001,7 @@ body{
 
   background:#dca4aa;
 
-  color:white;
+  color:#fff;
 
   font-weight:600;
 
@@ -770,12 +1010,13 @@ body{
   cursor:pointer;
 }
 
+
 /* =====================================================
    FOOTER
 ===================================================== */
 
 .footer{
-  margin-top:25px;
+  margin-top:28px;
 
   text-align:center;
 
@@ -786,43 +1027,53 @@ body{
   color:#718a77;
 }
 
+
 /* =====================================================
    MOBILE
 ===================================================== */
 
 @media(max-width:400px){
 
-  .paper{
-    padding-left:15px;
-    padding-right:15px;
+  .main-ticket{
+    padding-left:10px;
+    padding-right:10px;
   }
 
-  .menu{
+  .navigation{
     grid-template-columns:1fr;
   }
 
-  .unit{
-    min-width:62px;
+  .names h1{
+    font-size:30px;
   }
 
+  .open-btn{
+    top:68%;
+  }
 }
+
 </style>
 </head>
+
 
 <body>
 
 
 <!-- =====================================================
-     APERTURA BUSTA
+     APERTURA
 ===================================================== -->
 
-<div id="opening">
+<div
+  id="opening"
+  class="opening"
+>
 
   <div
     class="envelope-wrap"
     id="envelopeWrap"
   >
 
+    <!-- BUSTA -->
     <img
       id="envelope"
       class="envelope"
@@ -830,38 +1081,81 @@ body{
       alt="Busta"
     >
 
+
     <!-- FIORI -->
     <div
-      class="flowers"
-      id="flowers"
-      aria-hidden="true"
+      id="flowerLayer"
+      class="flower-layer"
     >
 
-      <div class="flower-left">
-        <span class="flower left"></span>
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
       </div>
 
-      <div class="flower-right">
-        <span class="flower right"></span>
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+      </div>
+
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+      </div>
+
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+      </div>
+
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+      </div>
+
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+      </div>
+
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+      </div>
+
+      <div class="flower">
+        <div class="center"></div>
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
       </div>
 
     </div>
 
 
-    <!-- CERALACCA -->
+    <!-- EFFETTO CERALACCA -->
     <div
+      id="sealEffect"
       class="seal-effect"
-      id="seal"
-      aria-hidden="true"
     >
 
-      <div class="crack">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
+      <div class="seal-circle"></div>
+
+      <div class="seal-text">
+        GP
       </div>
+
+      <span class="crack-line crack-1"></span>
+      <span class="crack-line crack-2"></span>
+      <span class="crack-line crack-3"></span>
+      <span class="crack-line crack-4"></span>
+      <span class="crack-line crack-5"></span>
 
     </div>
 
@@ -871,11 +1165,12 @@ body{
       id="letter"
       class="letter"
       src="biglietto.png"
-      alt="Il nostro biglietto"
+      alt="Giada e Paolo"
     >
 
 
-    <!-- BOTTONE -->
+    <!-- NESSUNA SCRITTA "UN PICCOLO SORRISO PER TE" -->
+
     <button
       id="openBtn"
       class="open-btn"
@@ -889,49 +1184,54 @@ body{
 </div>
 
 
+
 <!-- =====================================================
-     PAGINA PRINCIPALE
+     UNICA PAGINA FINALE
 ===================================================== -->
 
-<main
-  id="content"
-  class="content"
->
+<main id="site">
 
-  <div class="paper">
+  <div class="main-ticket">
 
+    <div class="ticket">
 
-    <!-- NOMI -->
-
-    <div class="names">
-
-      <h1>
-        <span>GIADA</span>
-        <span class="amp">&amp;</span>
-        <span>PAOLO</span>
-      </h1>
-
-    </div>
+      <!-- GRAFICA DEL BIGLIETTO -->
+      <img
+        class="ticket-image"
+        src="biglietto.png"
+        alt="Il nostro biglietto"
+      >
 
 
-    <!-- GRATTA -->
+      <!-- NOMI -->
+      <div class="names">
 
-    <div class="scratch-title">
-      ✨ Scopri la data ✨
-    </div>
+        <h1>
+          GIADA &amp; PAOLO
+        </h1>
 
-    <div class="scratch-zone">
-
-      <div class="reveal">
-        8 SETTEMBRE 2027
       </div>
 
-      <canvas id="scratch"></canvas>
+
+      <!-- GRATTA -->
+      <div class="scratch-zone">
+
+        <div class="reveal">
+          8 SETTEMBRE 2027
+        </div>
+
+        <canvas
+          id="scratch"
+        ></canvas>
+
+      </div>
 
     </div>
 
 
-    <!-- COUNTDOWN -->
+    <!-- =================================================
+         COUNTDOWN
+    ================================================= -->
 
     <div class="countdown">
 
@@ -942,47 +1242,23 @@ body{
       <div class="digits">
 
         <div class="unit">
-          <div
-            class="num"
-            id="d"
-          >0</div>
-
-          <div class="lab">
-            GIORNI
-          </div>
+          <div class="num" id="d">0</div>
+          <div class="lab">GIORNI</div>
         </div>
 
         <div class="unit">
-          <div
-            class="num"
-            id="h"
-          >0</div>
-
-          <div class="lab">
-            ORE
-          </div>
+          <div class="num" id="h">0</div>
+          <div class="lab">ORE</div>
         </div>
 
         <div class="unit">
-          <div
-            class="num"
-            id="m"
-          >0</div>
-
-          <div class="lab">
-            MINUTI
-          </div>
+          <div class="num" id="m">0</div>
+          <div class="lab">MINUTI</div>
         </div>
 
         <div class="unit">
-          <div
-            class="num"
-            id="s"
-          >0</div>
-
-          <div class="lab">
-            SECONDI
-          </div>
+          <div class="num" id="s">0</div>
+          <div class="lab">SECONDI</div>
         </div>
 
       </div>
@@ -990,7 +1266,9 @@ body{
     </div>
 
 
-    <!-- TENUTA -->
+    <!-- =================================================
+         TENUTA
+    ================================================= -->
 
     <div class="venue">
 
@@ -998,48 +1276,46 @@ body{
         Tenuta Monticello
       </div>
 
-      <div class="venue-subtitle">
-        IL NOSTRO GIORNO
-      </div>
-
     </div>
 
 
-    <!-- PULSANTI -->
+    <!-- =================================================
+         MENU INTERATTIVO
+    ================================================= -->
 
-    <div class="menu">
+    <div class="navigation">
 
       <button
-        class="menu-btn"
-        data-page="location"
+        class="nav-button"
+        data-target="location"
       >
         📍 LOCATION
       </button>
 
       <button
-        class="menu-btn"
-        data-page="dresscode"
+        class="nav-button"
+        data-target="dresscode"
       >
         👗 DRESS CODE
       </button>
 
       <button
-        class="menu-btn"
-        data-page="rsvp"
+        class="nav-button"
+        data-target="presence"
       >
-        💌 CONFERMA PRESENZA
+        💌 PRESENZA
       </button>
 
       <button
-        class="menu-btn"
-        data-page="about"
+        class="nav-button"
+        data-target="us"
       >
         🤍 NOI DUE
       </button>
 
       <button
-        class="menu-btn"
-        data-page="dreams"
+        class="nav-button"
+        data-target="dreams"
       >
         🌿 I NOSTRI SOGNI
       </button>
@@ -1047,35 +1323,28 @@ body{
     </div>
 
 
-    <!-- LOCATION -->
+    <!-- =================================================
+         LOCATION
+    ================================================= -->
 
     <section
-      class="page"
       id="location"
+      class="info-section"
     >
 
-      <h2>
-        📍 Location
-      </h2>
+      <h2>📍 Location</h2>
 
       <p>
         Ci vediamo alla
         <strong>Tenuta Monticello</strong>.
       </p>
 
-      <div class="map-box">
+      <p>
+        Qui inseriremo le informazioni
+        per raggiungere la location.
+      </p>
 
-        <strong>
-          Tenuta Monticello
-        </strong>
-
-        <br>
-
-        <span>
-          Inserire qui l'indirizzo della location
-        </span>
-
-        <br>
+      <div style="text-align:center">
 
         <a
           class="map-link"
@@ -1089,7 +1358,7 @@ body{
       </div>
 
       <button
-        class="close-page"
+        class="close-section"
         type="button"
       >
         CHIUDI
@@ -1098,23 +1367,23 @@ body{
     </section>
 
 
-    <!-- DRESS CODE -->
+    <!-- =================================================
+         DRESS CODE
+    ================================================= -->
 
     <section
-      class="page"
       id="dresscode"
+      class="info-section"
     >
 
-      <h2>
-        👗 Dress code
-      </h2>
+      <h2>👗 Dress code</h2>
 
       <p>
         Eleganza, leggerezza e un tocco di voi.
       </p>
 
       <button
-        class="close-page"
+        class="close-section"
         type="button"
       >
         CHIUDI
@@ -1123,16 +1392,16 @@ body{
     </section>
 
 
-    <!-- RSVP -->
+    <!-- =================================================
+         PRESENZA
+    ================================================= -->
 
     <section
-      class="page"
-      id="rsvp"
+      id="presence"
+      class="info-section"
     >
 
-      <h2>
-        💌 Conferma la tua presenza
-      </h2>
+      <h2>💌 Conferma la tua presenza</h2>
 
       <form
         class="rsvp"
@@ -1169,7 +1438,7 @@ body{
       </form>
 
       <button
-        class="close-page"
+        class="close-section"
         type="button"
       >
         CHIUDI
@@ -1178,16 +1447,16 @@ body{
     </section>
 
 
-    <!-- NOI DUE -->
+    <!-- =================================================
+         NOI DUE
+    ================================================= -->
 
     <section
-      class="page"
-      id="about"
+      id="us"
+      class="info-section"
     >
 
-      <h2>
-        🤍 Noi due
-      </h2>
+      <h2>🤍 Noi due</h2>
 
       <p>
         Qui racconteremo la nostra storia,
@@ -1197,7 +1466,7 @@ body{
       </p>
 
       <button
-        class="close-page"
+        class="close-section"
         type="button"
       >
         CHIUDI
@@ -1206,16 +1475,16 @@ body{
     </section>
 
 
-    <!-- SOGNI -->
+    <!-- =================================================
+         SOGNI
+    ================================================= -->
 
     <section
-      class="page"
       id="dreams"
+      class="info-section"
     >
 
-      <h2>
-        🌿 I nostri sogni
-      </h2>
+      <h2>🌿 I nostri sogni</h2>
 
       <p>
         Uno spazio dedicato ai nostri desideri
@@ -1223,7 +1492,7 @@ body{
       </p>
 
       <button
-        class="close-page"
+        class="close-section"
         type="button"
       >
         CHIUDI
@@ -1233,7 +1502,7 @@ body{
 
 
     <div class="footer">
-      🤍 Il nostro giorno 🤍
+      Giada &amp; Paolo
     </div>
 
   </div>
@@ -1241,7 +1510,147 @@ body{
 </main>
 
 
+<!-- CORIANDOLI -->
+<div
+  id="confetti"
+  class="confetti"
+></div>
+
+
+
 <script>
+
+/* =====================================================
+   APERTURA BUSTA
+===================================================== */
+
+const opening =
+  document.getElementById("opening");
+
+const openBtn =
+  document.getElementById("openBtn");
+
+const envelope =
+  document.getElementById("envelope");
+
+const flowerLayer =
+  document.getElementById("flowerLayer");
+
+const sealEffect =
+  document.getElementById("sealEffect");
+
+const letter =
+  document.getElementById("letter");
+
+const site =
+  document.getElementById("site");
+
+
+openBtn.addEventListener(
+  "click",
+  () => {
+
+    openBtn.classList.add("hidden");
+
+    /*
+      1 — entrano i fiori
+    */
+
+    flowerLayer.classList.add("active");
+
+
+    /*
+      2 — piccola apertura della busta
+    */
+
+    setTimeout(
+      () => {
+
+        envelope.classList.add("opening");
+
+      },
+      350
+    );
+
+
+    /*
+      3 — ceralacca si spezza
+    */
+
+    setTimeout(
+      () => {
+
+        sealEffect.classList.add("active");
+
+        setTimeout(
+          () => {
+
+            sealEffect.classList.add("crack");
+
+          },
+          80
+        );
+
+      },
+      900
+    );
+
+
+    /*
+      4 — il biglietto esce
+    */
+
+    setTimeout(
+      () => {
+
+        letter.classList.add("visible");
+
+      },
+      1250
+    );
+
+
+    /*
+      5 — quando il biglietto è arrivato,
+          la busta scompare.
+    */
+
+    setTimeout(
+      () => {
+
+        envelope.classList.add("disappear");
+
+      },
+      2350
+    );
+
+
+    /*
+      6 — rimane UNA SOLA PAGINA
+    */
+
+    setTimeout(
+      () => {
+
+        opening.classList.add("gone");
+
+        site.classList.add("visible");
+
+        initScratch();
+
+        window.scrollTo(
+          0,
+          0
+        );
+
+      },
+      3000
+    );
+
+  }
+);
+
+
 
 /* =====================================================
    COUNTDOWN
@@ -1303,6 +1712,7 @@ function tick(){
 
   document.getElementById("s").textContent =
     String(s).padStart(2,"0");
+
 }
 
 
@@ -1314,116 +1724,6 @@ setInterval(
 );
 
 
-/* =====================================================
-   APERTURA BUSTA
-===================================================== */
-
-const opening =
-  document.getElementById("opening");
-
-const envelope =
-  document.getElementById("envelope");
-
-const seal =
-  document.getElementById("seal");
-
-const letter =
-  document.getElementById("letter");
-
-const flowers =
-  document.getElementById("flowers");
-
-const openBtn =
-  document.getElementById("openBtn");
-
-const content =
-  document.getElementById("content");
-
-
-openBtn.addEventListener(
-  "click",
-  () => {
-
-    /* FIORI */
-
-    flowers.classList.add(
-      "opening-flowers"
-    );
-
-
-    /* CERALACCA */
-
-    seal.classList.add(
-      "break"
-    );
-
-
-    /* BOTTONE */
-
-    openBtn.classList.add(
-      "hidden"
-    );
-
-
-    /* ENTRA IL BIGLIETTO */
-
-    setTimeout(
-      () => {
-
-        letter.classList.add(
-          "show"
-        );
-
-      },
-      550
-    );
-
-
-    /*
-      LA BUSTA SCOMPARE QUANDO
-      ARRIVA IL BIGLIETTO.
-    */
-
-    setTimeout(
-      () => {
-
-        envelope.classList.add(
-          "envelope-fade"
-        );
-
-      },
-      1150
-    );
-
-
-    /*
-      MOSTRA IL CONTENUTO UNA SOLA VOLTA.
-    */
-
-    setTimeout(
-      () => {
-
-        opening.style.display =
-          "none";
-
-        content.classList.add(
-          "show"
-        );
-
-        initScratch();
-
-        window.scrollTo(
-          0,
-          0
-        );
-
-      },
-      1850
-    );
-
-  }
-);
-
 
 /* =====================================================
    GRATTA-E-VINCI
@@ -1434,16 +1734,24 @@ function initScratch(){
   const canvas =
     document.getElementById("scratch");
 
-  if(!canvas) return;
+  if(!canvas){
+    return;
+  }
 
 
   const box =
     canvas.getBoundingClientRect();
 
+  const width =
+    box.width;
+
+  const height =
+    box.height;
+
 
   if(
-    box.width <= 0 ||
-    box.height <= 0
+    width <= 0 ||
+    height <= 0
   ){
     return;
   }
@@ -1458,19 +1766,17 @@ function initScratch(){
 
   canvas.width =
     Math.round(
-      box.width * dpr
+      width * dpr
     );
 
   canvas.height =
     Math.round(
-      box.height * dpr
+      height * dpr
     );
 
 
   const ctx =
-    canvas.getContext(
-      "2d"
-    );
+    canvas.getContext("2d");
 
 
   ctx.setTransform(
@@ -1483,14 +1789,16 @@ function initScratch(){
   );
 
 
-  /* COPERTURA DORATA */
+  /*
+    COPERTURA DORATA
+  */
 
   const gold =
     ctx.createLinearGradient(
       0,
       0,
-      box.width,
-      box.height
+      width,
+      height
     );
 
 
@@ -1500,22 +1808,22 @@ function initScratch(){
   );
 
   gold.addColorStop(
-    .2,
+    .18,
     "#e8cc72"
   );
 
   gold.addColorStop(
-    .4,
+    .38,
     "#c89b32"
   );
 
   gold.addColorStop(
-    .6,
+    .58,
     "#f2dc91"
   );
 
   gold.addColorStop(
-    .8,
+    .78,
     "#c2942d"
   );
 
@@ -1531,59 +1839,49 @@ function initScratch(){
   ctx.fillRect(
     0,
     0,
-    box.width,
-    box.height
+    width,
+    height
   );
 
 
-  /* GRATTATURA */
+  /*
+    BRILLANTINI SULLA COPERTURA.
+    Vengono cancellati insieme al canvas.
+  */
 
-  let drawing =
-    false;
-
-  let last =
-    null;
-
-  let strokes =
-    0;
-
-  let finished =
-    false;
+  const glitter=[
+    "#fff8d6",
+    "#ffffff",
+    "#f7e5a0",
+    "#d5ad45"
+  ];
 
 
-  const brush =
-    23;
-
-
-  function position(e){
-
-    const rect =
-      canvas.getBoundingClientRect();
-
-
-    return {
-      x:
-        e.clientX -
-        rect.left,
-
-      y:
-        e.clientY -
-        rect.top
-    };
-
-  }
-
-
-  function erasePoint(
-    x,
-    y
+  for(
+    let i=0;
+    i<220;
+    i++
   ){
 
-    ctx.globalCompositeOperation =
-      "destination-out";
+    const x =
+      Math.random()*width;
+
+    const y =
+      Math.random()*height;
+
+    const r =
+      Math.random()*1.7+.4;
+
 
     ctx.globalAlpha =
-      1;
+      .4+Math.random()*.6;
+
+    ctx.fillStyle =
+      glitter[
+        Math.floor(
+          Math.random()*glitter.length
+        )
+      ];
 
 
     ctx.beginPath();
@@ -1591,9 +1889,86 @@ function initScratch(){
     ctx.arc(
       x,
       y,
-      brush,
+      r,
       0,
-      Math.PI * 2
+      Math.PI*2
+    );
+
+    ctx.fill();
+
+
+    if(
+      Math.random()>.72
+    ){
+
+      ctx.fillRect(
+        x-2,
+        y-.5,
+        4,
+        1
+      );
+
+      ctx.fillRect(
+        x-.5,
+        y-2,
+        1,
+        4
+      );
+
+    }
+
+  }
+
+
+  ctx.globalAlpha=1;
+
+
+  /*
+    IMPORTANTE:
+    NON DISEGNIAMO "GRATTA QUI" SUL CANVAS.
+
+    Così, quando viene cancellato,
+    non resta nessuna scritta sotto.
+  */
+
+
+  let drawing=false;
+  let last=null;
+  let strokes=0;
+  let finished=false;
+
+
+  function pos(e){
+
+    const r =
+      canvas.getBoundingClientRect();
+
+
+    return{
+      x:e.clientX-r.left,
+      y:e.clientY-r.top
+    };
+
+  }
+
+
+  function erase(
+    x,
+    y
+  ){
+
+    ctx.globalCompositeOperation =
+      "destination-out";
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      x,
+      y,
+      22,
+      0,
+      Math.PI*2
     );
 
     ctx.fill();
@@ -1609,15 +1984,11 @@ function initScratch(){
     ctx.globalCompositeOperation =
       "destination-out";
 
+    ctx.lineWidth=44;
 
-    ctx.lineWidth =
-      brush * 2;
+    ctx.lineCap="round";
 
-    ctx.lineCap =
-      "round";
-
-    ctx.lineJoin =
-      "round";
+    ctx.lineJoin="round";
 
 
     ctx.beginPath();
@@ -1637,131 +2008,43 @@ function initScratch(){
   }
 
 
-  /* CONTROLLO AREA GRATTATA */
-
-  function checkProgress(){
-
-    const w =
-      80;
-
-    const h =
-      40;
-
-
-    const sample =
-      document.createElement(
-        "canvas"
-      );
-
-
-    sample.width =
-      w;
-
-    sample.height =
-      h;
-
-
-    const sampleCtx =
-      sample.getContext(
-        "2d"
-      );
-
-
-    sampleCtx.drawImage(
-      canvas,
-      0,
-      0,
-      w,
-      h
-    );
-
-
-    const data =
-      sampleCtx.getImageData(
-        0,
-        0,
-        w,
-        h
-      ).data;
-
-
-    let transparent =
-      0;
-
-
-    const total =
-      w * h;
-
-
-    for(
-      let i = 3;
-      i < data.length;
-      i += 4
-    ){
-
-      if(
-        data[i] < 100
-      ){
-
-        transparent++;
-
-      }
-
-    }
-
-
-    const percent =
-      transparent /
-      total *
-      100;
-
-
-    if(
-      percent >= 55
-    ){
-
-      finishScratch();
-
-    }
-
-  }
-
-
-  /* FINE GRATTA */
-
   function finishScratch(){
 
     if(finished){
       return;
     }
 
+    finished=true;
 
-    finished =
-      true;
 
+    /*
+      CANCELLIAMO COMPLETAMENTE IL CANVAS.
+      Rimane SOLO la data.
+    */
 
     ctx.clearRect(
       0,
       0,
-      box.width,
-      box.height
+      width,
+      height
     );
 
 
-    canvas.classList.add(
-      "finished"
-    );
+    canvas.classList.add("done");
+
+
+    /*
+      FESTA 🎉🌸
+    */
+
+    launchConfetti();
 
 
     setTimeout(
       () => {
 
-        if(
-          canvas.parentNode
-        ){
-
+        if(canvas.parentNode){
           canvas.remove();
-
         }
 
       },
@@ -1771,44 +2054,72 @@ function initScratch(){
   }
 
 
-  /* POINTER DOWN */
+  function scratch(e){
+
+    if(
+      !drawing ||
+      finished
+    ){
+      return;
+    }
+
+
+    e.preventDefault();
+
+
+    const p =
+      pos(e);
+
+
+    erase(
+      p.x,
+      p.y
+    );
+
+
+    if(last){
+
+      eraseLine(
+        last,
+        p
+      );
+
+    }
+
+
+    last=p;
+
+    strokes++;
+
+
+    /*
+      Dopo abbastanza grattatura
+      la copertura viene tolta.
+    */
+
+    if(
+      strokes>=75
+    ){
+
+      finishScratch();
+
+    }
+
+  }
+
 
   canvas.addEventListener(
     "pointerdown",
     e => {
 
-      if(finished){
-        return;
-      }
+      drawing=true;
 
+      last=pos(e);
 
-      e.preventDefault();
-
-
-      drawing =
-        true;
-
-
-      last =
-        position(e);
-
-
-      erasePoint(
+      erase(
         last.x,
         last.y
       );
-
-
-      strokes++;
-
-
-      if(
-        strokes % 10 === 0
-      ){
-
-        checkProgress();
-
-      }
 
 
       try{
@@ -1823,73 +2134,17 @@ function initScratch(){
   );
 
 
-  /* POINTER MOVE */
-
   canvas.addEventListener(
     "pointermove",
-    e => {
-
-      if(
-        !drawing ||
-        finished
-      ){
-
-        return;
-
-      }
-
-
-      e.preventDefault();
-
-
-      const current =
-        position(e);
-
-
-      if(last){
-
-        eraseLine(
-          last,
-          current
-        );
-
-      }
-
-
-      erasePoint(
-        current.x,
-        current.y
-      );
-
-
-      last =
-        current;
-
-
-      strokes++;
-
-
-      if(
-        strokes % 10 === 0
-      ){
-
-        checkProgress();
-
-      }
-
-    }
+    scratch
   );
 
 
-  /* POINTER UP */
-
   function stop(e){
 
-    drawing =
-      false;
+    drawing=false;
 
-    last =
-      null;
+    last=null;
 
 
     try{
@@ -1908,7 +2163,6 @@ function initScratch(){
     stop
   );
 
-
   canvas.addEventListener(
     "pointercancel",
     stop
@@ -1917,19 +2171,156 @@ function initScratch(){
 }
 
 
+
 /* =====================================================
-   PULSANTI INTERATTIVI
+   CORIANDOLI / FIORI DOPO LA DATA
+===================================================== */
+
+function launchConfetti(){
+
+  const container =
+    document.getElementById("confetti");
+
+
+  const pieces = 42;
+
+
+  for(
+    let i=0;
+    i<pieces;
+    i++
+  ){
+
+    const piece =
+      document.createElement("span");
+
+
+    piece.className =
+      "confetti-piece";
+
+
+    /*
+      Petali e coriandoli
+      in stile delicato.
+    */
+
+    const shapes=[
+      "50% 50% 50% 10%",
+      "60% 40% 60% 40%",
+      "40% 60% 40% 60%"
+    ];
+
+
+    piece.style.borderRadius =
+      shapes[
+        Math.floor(
+          Math.random()*shapes.length
+        )
+      ];
+
+
+    piece.style.left =
+      Math.random()*100+"%";
+
+
+    piece.style.width =
+      (6+Math.random()*8)+"px";
+
+
+    piece.style.height =
+      (9+Math.random()*10)+"px";
+
+
+    piece.style.animationDuration =
+      (2.2+Math.random()*2)+"s";
+
+
+    piece.style.animationDelay =
+      (Math.random()*.35)+"s";
+
+
+    piece.style.setProperty(
+      "--drift",
+      (-100+Math.random()*200)+"px"
+    );
+
+
+    piece.style.setProperty(
+      "--rotation",
+      (-500+Math.random()*1000)+"deg"
+    );
+
+
+    /*
+      Usiamo colori direttamente nel CSS
+      tramite classi.
+    */
+
+    const colorClasses=[
+      "pink",
+      "cream",
+      "green",
+      "rose"
+    ];
+
+    const chosen =
+      colorClasses[
+        Math.floor(
+          Math.random()*colorClasses.length
+        )
+      ];
+
+
+    if(chosen==="pink"){
+      piece.style.background="#e6a0a9";
+    }
+
+    if(chosen==="cream"){
+      piece.style.background="#f3dfc7";
+    }
+
+    if(chosen==="green"){
+      piece.style.background="#a7b39a";
+    }
+
+    if(chosen==="rose"){
+      piece.style.background="#dca4aa";
+    }
+
+
+    container.appendChild(
+      piece
+    );
+
+
+    setTimeout(
+      () => {
+
+        piece.remove();
+
+      },
+      5000
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   PULSANTI
 ===================================================== */
 
 const buttons =
   document.querySelectorAll(
-    ".menu-btn"
+    ".nav-button"
   );
 
 
-const pages =
+const sections =
   document.querySelectorAll(
-    ".page"
+    ".info-section"
   );
 
 
@@ -1941,37 +2332,37 @@ buttons.forEach(
       () => {
 
         const target =
-          button.dataset.page;
+          button.dataset.target;
 
 
-        pages.forEach(
-          page => {
+        sections.forEach(
+          section => {
 
-            page.classList.remove(
-              "active"
+            section.classList.remove(
+              "open"
             );
 
           }
         );
 
 
-        const selected =
+        const section =
           document.getElementById(
             target
           );
 
 
-        if(selected){
+        if(section){
 
-          selected.classList.add(
-            "active"
+          section.classList.add(
+            "open"
           );
 
 
           setTimeout(
             () => {
 
-              selected.scrollIntoView({
+              section.scrollIntoView({
                 behavior:"smooth",
                 block:"start"
               });
@@ -1989,46 +2380,48 @@ buttons.forEach(
 );
 
 
+
 /* =====================================================
-   CHIUDI PAGINA
+   CHIUDI
 ===================================================== */
 
-document.querySelectorAll(
-  ".close-page"
-).forEach(
-  button => {
+document
+  .querySelectorAll(".close-section")
+  .forEach(
+    button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-        const page =
-          button.closest(
-            ".page"
-          );
-
-
-        if(page){
-
-          page.classList.remove(
-            "active"
-          );
+          const section =
+            button.closest(
+              ".info-section"
+            );
 
 
-          document.querySelector(
-            ".menu"
-          ).scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-          });
+          if(section){
+
+            section.classList.remove(
+              "open"
+            );
+
+            window.scrollTo({
+              top:document
+                .querySelector(".navigation")
+                .offsetTop - 20,
+
+              behavior:"smooth"
+            });
+
+          }
 
         }
+      );
 
-      }
-    );
+    }
+  );
 
-  }
-);
 
 
 /* =====================================================
@@ -2039,7 +2432,7 @@ document
   .getElementById("rsvpForm")
   .addEventListener(
     "submit",
-    e => {
+    function(e){
 
       e.preventDefault();
 
