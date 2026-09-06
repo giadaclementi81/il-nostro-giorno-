@@ -9,8 +9,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans-serif}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#f4eee4;
+  color:#718a77;
+  font-family:Montserrat,Arial,sans-serif;
+}
+
+/* =========================
+   APERTURA BUSTA
+========================= */
 
 #opening{
   position:fixed;
@@ -21,19 +34,19 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   justify-content:center;
   overflow:hidden;
   background:#f4eee4;
-  transition:opacity .9s ease,visibility .9s ease
+  transition:opacity .9s ease,visibility .9s ease;
 }
 
 #opening.finished{
   opacity:0;
   visibility:hidden;
-  pointer-events:none
+  pointer-events:none;
 }
 
 .envelope-wrap{
   position:relative;
   width:min(92vw,520px);
-  height:min(92vh,925px)
+  height:min(92vh,925px);
 }
 
 .envelope{
@@ -43,13 +56,17 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   height:100%;
   object-fit:contain;
   z-index:10;
-  transition:opacity .8s ease,transform .8s ease
+  transition:opacity .8s ease,transform .8s ease;
 }
 
 .envelope.hide{
   opacity:0;
-  transform:scale(.97) translateY(2%)
+  transform:scale(.97) translateY(2%);
 }
+
+/* =========================
+   CERALACCA
+========================= */
 
 .seal-effect{
   position:absolute;
@@ -60,10 +77,12 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   z-index:60;
   pointer-events:none;
   opacity:0;
-  transform:translate(-50%,-50%)
+  transform:translate(-50%,-50%);
 }
 
-.seal-effect.active{opacity:1}
+.seal-effect.active{
+  opacity:1;
+}
 
 .seal-piece{
   position:absolute;
@@ -72,35 +91,59 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   width:45px;
   height:45px;
   border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#f5c6c9,#df9199 48%,#c97782 100%);
-  box-shadow:inset 0 2px 3px #ffffff66,0 3px 7px #0002;
-  opacity:0
+  background:radial-gradient(
+    circle at 35% 30%,
+    #f5c6c9,
+    #df9199 48%,
+    #c97782 100%
+  );
+  box-shadow:
+    inset 0 2px 3px #ffffff66,
+    0 3px 7px #0002;
+  opacity:0;
 }
 
-.seal-piece.left,.seal-piece.right{
-  transform:translate(-50%,-50%)
+.seal-piece.left,
+.seal-piece.right{
+  transform:translate(-50%,-50%);
 }
 
-.seal-effect.active .seal-piece{opacity:1}
+.seal-effect.active .seal-piece{
+  opacity:1;
+}
 
 .seal-effect.break .seal-piece.left{
-  animation:sealLeft .75s ease forwards
+  animation:sealLeft .75s ease forwards;
 }
 
 .seal-effect.break .seal-piece.right{
-  animation:sealRight .75s ease forwards
+  animation:sealRight .75s ease forwards;
 }
 
 @keyframes sealLeft{
-  0%{transform:translate(-50%,-50%) rotate(0) scale(1)}
-  35%{transform:translate(-95%,-55%) rotate(-12deg) scale(1.02)}
-  100%{transform:translate(-180%,-80%) rotate(-28deg) scale(.55);opacity:0}
+  0%{
+    transform:translate(-50%,-50%) rotate(0) scale(1);
+  }
+  35%{
+    transform:translate(-95%,-55%) rotate(-12deg) scale(1.02);
+  }
+  100%{
+    transform:translate(-180%,-80%) rotate(-28deg) scale(.55);
+    opacity:0;
+  }
 }
 
 @keyframes sealRight{
-  0%{transform:translate(-50%,-50%) rotate(0) scale(1)}
-  35%{transform:translate(-5%,-45%) rotate(12deg) scale(1.02)}
-  100%{transform:translate(80%,-5%) rotate(28deg) scale(.55);opacity:0}
+  0%{
+    transform:translate(-50%,-50%) rotate(0) scale(1);
+  }
+  35%{
+    transform:translate(-5%,-45%) rotate(12deg) scale(1.02);
+  }
+  100%{
+    transform:translate(80%,-5%) rotate(28deg) scale(.55);
+    opacity:0;
+  }
 }
 
 .crack{
@@ -112,22 +155,43 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   height:48px;
   background:#8e6669;
   opacity:0;
-  transform-origin:center bottom
+  transform-origin:center bottom;
 }
 
-.crack.c1{transform:translate(-50%,-50%) rotate(-25deg)}
-.crack.c2{transform:translate(-50%,-50%) rotate(18deg)}
-.crack.c3{transform:translate(-50%,-50%) rotate(60deg)}
+.crack.c1{
+  transform:translate(-50%,-50%) rotate(-25deg);
+}
+
+.crack.c2{
+  transform:translate(-50%,-50%) rotate(18deg);
+}
+
+.crack.c3{
+  transform:translate(-50%,-50%) rotate(60deg);
+}
 
 .seal-effect.break .crack{
-  animation:crackShow .45s ease forwards
+  animation:crackShow .45s ease forwards;
 }
 
 @keyframes crackShow{
-  0%{opacity:0;height:0}
-  45%{opacity:.8;height:48px}
-  100%{opacity:0;height:55px}
+  0%{
+    opacity:0;
+    height:0;
+  }
+  45%{
+    opacity:.8;
+    height:48px;
+  }
+  100%{
+    opacity:0;
+    height:55px;
+  }
 }
+
+/* =========================
+   BIGLIETTO
+========================= */
 
 .letter{
   position:absolute;
@@ -137,12 +201,14 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   z-index:40;
   opacity:0;
   transform:translate(-50%,48%) scale(.94);
-  transition:transform 1.25s cubic-bezier(.2,.8,.2,1),opacity .7s ease
+  transition:
+    transform 1.25s cubic-bezier(.2,.8,.2,1),
+    opacity .7s ease;
 }
 
 .letter.show{
   opacity:1;
-  transform:translate(-50%,0) scale(1)
+  transform:translate(-50%,0) scale(1);
 }
 
 .open-btn{
@@ -160,28 +226,36 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-weight:600;
   cursor:pointer;
   box-shadow:0 6px 18px #0002;
-  transition:opacity .4s ease,transform .4s ease
+  transition:
+    opacity .4s ease,
+    transform .4s ease;
 }
 
 .open-btn.hidden{
   opacity:0;
   pointer-events:none;
-  transform:translate(-50%,-50%) scale(.9)
+  transform:translate(-50%,-50%) scale(.9);
 }
+
+/* =========================
+   SITO
+========================= */
 
 #site{
   min-height:100svh;
   opacity:0;
   transition:opacity .6s ease;
-  background:#f4eee4
+  background:#f4eee4;
 }
 
-#site.show{opacity:1}
+#site.show{
+  opacity:1;
+}
 
 .page{
   width:min(100%,520px);
   margin:auto;
-  padding:20px 14px 70px
+  padding:20px 14px 70px;
 }
 
 .ticket{
@@ -189,14 +263,18 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   width:100%;
   overflow:hidden;
   border-radius:2px;
-  box-shadow:0 10px 35px #00000012
+  box-shadow:0 10px 35px #00000012;
 }
 
 .ticket img{
   display:block;
   width:100%;
-  height:auto
+  height:auto;
 }
+
+/* =========================
+   GRATTA QUI
+========================= */
 
 .scratch-zone{
   position:absolute;
@@ -206,7 +284,7 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   height:12.5%;
   overflow:hidden;
   border-radius:7px;
-  z-index:20
+  z-index:20;
 }
 
 .reveal{
@@ -222,7 +300,7 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-size:clamp(18px,5vw,29px);
   font-weight:600;
   letter-spacing:.08em;
-  color:#718a77
+  color:#718a77;
 }
 
 #scratch{
@@ -234,18 +312,18 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   display:block;
   touch-action:none;
   cursor:crosshair;
-  transition:opacity .45s ease
+  transition:opacity .45s ease;
 }
 
 #scratch.finished{
   opacity:0;
-  pointer-events:none
+  pointer-events:none;
 }
 
-/* =====================================
-   NUOVO EFFETTO:
-   PETALI + CORIANDOLI ROSA E VERDI
-===================================== */
+/* =========================
+   CORIANDOLI + PETALI
+   ROSA E VERDI
+========================= */
 
 #confetti{
   position:fixed;
@@ -254,74 +332,81 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   height:100%;
   z-index:99999;
   pointer-events:none;
-  overflow:hidden
+  overflow:hidden;
 }
 
 .confetti-piece{
   position:absolute;
-  top:-45px;
+  top:-35px;
   display:block;
   opacity:0;
   pointer-events:none;
   will-change:transform,opacity;
-  animation:petalFall var(--duration) cubic-bezier(.18,.65,.28,1) forwards;
+  animation:softFall var(--duration) ease-out forwards;
 }
 
-/* Petali */
+/* Petalo piccolo */
 .confetti-piece.petal{
-  width:13px;
-  height:21px;
-  border-radius:80% 20% 80% 20%;
-  transform:rotate(25deg);
-}
-
-/* Coriandoli piccoli */
-.confetti-piece.confetti{
   width:8px;
-  height:12px;
-  border-radius:2px;
+  height:13px;
+  border-radius:75% 25% 75% 25%;
 }
 
-/* Piccoli fiori */
-.confetti-piece.flower{
-  font-family:"Cormorant Garamond",serif;
-  font-size:19px;
-  line-height:1;
+/* Coriandolino piccolo */
+.confetti-piece.confetti{
+  width:6px;
+  height:9px;
+  border-radius:1px;
 }
 
-@keyframes petalFall{
+/* Alcuni elementi ancora più delicati */
+.confetti-piece.tiny{
+  width:4px;
+  height:6px;
+  border-radius:1px;
+}
+
+@keyframes softFall{
+
   0%{
     opacity:0;
     transform:
-      translate3d(0,-40px,0)
-      rotate(0deg)
-      scale(.65)
+      translate3d(0,-30px,0)
+      rotate(0deg);
   }
 
   8%{
-    opacity:1
+    opacity:.85;
   }
 
-  35%{
+  30%{
     transform:
       translate3d(
-        calc(var(--moveX) * .35),
-        35vh,
+        calc(var(--moveX) * .25),
+        28vh,
         0
       )
-      rotate(var(--rotate))
-      scale(1)
+      rotate(var(--rotate));
   }
 
-  70%{
+  55%{
     transform:
       translate3d(
-        calc(var(--moveX) * .75),
-        70vh,
+        calc(var(--moveX) * .55),
+        55vh,
         0
       )
-      rotate(calc(var(--rotate) * 1.4))
-      scale(.9)
+      rotate(calc(var(--rotate) * 1.4));
+  }
+
+  78%{
+    transform:
+      translate3d(
+        calc(var(--moveX) * .78),
+        78vh,
+        0
+      )
+      rotate(calc(var(--rotate) * 1.8));
   }
 
   100%{
@@ -329,17 +414,20 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
     transform:
       translate3d(
         var(--moveX),
-        110vh,
+        108vh,
         0
       )
-      rotate(var(--rotate))
-      scale(.75)
+      rotate(var(--rotate));
   }
 }
 
+/* =========================
+   COUNTDOWN
+========================= */
+
 .countdown{
   margin:15px 0 0;
-  text-align:center
+  text-align:center;
 }
 
 .countdown-title{
@@ -347,14 +435,14 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
   letter-spacing:.12em;
-  color:#718a77
+  color:#718a77;
 }
 
 .digits{
   display:flex;
   justify-content:center;
   gap:8px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .unit{
@@ -362,24 +450,28 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   padding:9px 7px;
   background:#f5eadc;
   border:1px solid #d7cbbb;
-  border-radius:8px
+  border-radius:8px;
 }
 
 .num{
   font-size:25px;
   font-weight:600;
-  color:#718a77
+  color:#718a77;
 }
 
 .lab{
   font-size:9px;
   letter-spacing:.14em;
-  color:#8a8176
+  color:#8a8176;
 }
+
+/* =========================
+   TENUTA
+========================= */
 
 .venue{
   margin-top:-4px;
-  text-align:center
+  text-align:center;
 }
 
 .venue-title{
@@ -387,14 +479,18 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-size:29px;
   font-weight:600;
   letter-spacing:.12em;
-  color:#718a77
+  color:#718a77;
 }
+
+/* =========================
+   MENU
+========================= */
 
 .navigation{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:25px
+  margin-top:25px;
 }
 
 .nav-button{
@@ -408,13 +504,19 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-weight:600;
   letter-spacing:.08em;
   cursor:pointer;
-  transition:transform .2s ease,box-shadow .2s ease
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
 .nav-button:hover{
   transform:translateY(-2px);
-  box-shadow:0 6px 15px #00000012
+  box-shadow:0 6px 15px #00000012;
 }
+
+/* =========================
+   SEZIONI
+========================= */
 
 .info-section{
   display:none;
@@ -423,14 +525,22 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   background:#f5eadc;
   border:1px solid #d7cbbb;
   border-radius:10px;
-  animation:sectionIn .35s ease
+  animation:sectionIn .35s ease;
 }
 
-.info-section.open{display:block}
+.info-section.open{
+  display:block;
+}
 
 @keyframes sectionIn{
-  from{opacity:0;transform:translateY(8px)}
-  to{opacity:1;transform:translateY(0)}
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .info-section h2{
@@ -439,13 +549,13 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-family:"Cormorant Garamond",serif;
   font-size:28px;
   letter-spacing:.1em;
-  color:#718a77
+  color:#718a77;
 }
 
 .info-section p{
   line-height:1.7;
   text-align:center;
-  color:#746f67
+  color:#746f67;
 }
 
 .close-section{
@@ -459,15 +569,19 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-size:9px;
   font-weight:600;
   letter-spacing:.08em;
-  cursor:pointer
+  cursor:pointer;
 }
+
+/* =========================
+   LOCATION
+========================= */
 
 .location-photo{
   display:block;
   width:100%;
   margin:0 0 17px;
   border-radius:8px;
-  box-shadow:0 6px 18px #00000014
+  box-shadow:0 6px 18px #00000014;
 }
 
 .location-address{
@@ -475,7 +589,7 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   font-size:21px;
   line-height:1.4;
   text-align:center;
-  color:#718a77
+  color:#718a77;
 }
 
 .location-buttons{
@@ -483,10 +597,11 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   justify-content:center;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:15px
+  margin-top:15px;
 }
 
-.map-link,.site-link{
+.map-link,
+.site-link{
   display:inline-block;
   padding:11px 16px;
   border-radius:999px;
@@ -494,25 +609,35 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   text-decoration:none;
   font-size:9px;
   font-weight:600;
-  letter-spacing:.08em
+  letter-spacing:.08em;
 }
 
-.map-link{background:#718a77}
-.site-link{background:#dca4aa}
+.map-link{
+  background:#718a77;
+}
+
+.site-link{
+  background:#dca4aa;
+}
+
+/* =========================
+   RSVP
+========================= */
 
 .rsvp{
   display:grid;
-  gap:10px
+  gap:10px;
 }
 
-.rsvp input,.rsvp textarea{
+.rsvp input,
+.rsvp textarea{
   width:100%;
   padding:12px;
   border:1px solid #d7cbbb;
   border-radius:7px;
   background:#fffaf3;
   font:inherit;
-  color:#746f67
+  color:#746f67;
 }
 
 .rsvp button{
@@ -523,8 +648,12 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   color:white;
   font-weight:600;
   letter-spacing:.08em;
-  cursor:pointer
+  cursor:pointer;
 }
+
+/* =========================
+   FRASE FINALE
+========================= */
 
 .final-message{
   margin-top:30px;
@@ -535,7 +664,7 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   line-height:1.35;
   font-weight:600;
   letter-spacing:.04em;
-  color:#718a77
+  color:#718a77;
 }
 
 .footer{
@@ -543,22 +672,28 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   text-align:center;
   font-family:"Cormorant Garamond",serif;
   font-size:17px;
-  color:#718a77
+  color:#718a77;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:400px){
+
   .page{
     padding-left:10px;
-    padding-right:10px
+    padding-right:10px;
   }
 
   .navigation{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .open-btn{
-    top:68%
+    top:68%;
   }
+
 }
 </style>
 </head>
@@ -566,6 +701,10 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 <body>
 
 <div id="confetti"></div>
+
+<!-- =========================
+     BUSTA
+========================= -->
 
 <div id="opening">
 
@@ -579,11 +718,14 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
     >
 
     <div id="sealEffect" class="seal-effect">
+
       <div class="seal-piece left"></div>
       <div class="seal-piece right"></div>
+
       <span class="crack c1"></span>
       <span class="crack c2"></span>
       <span class="crack c3"></span>
+
     </div>
 
     <img
@@ -604,6 +746,10 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
   </div>
 
 </div>
+
+<!-- =========================
+     SITO
+========================= -->
 
 <main id="site">
 
@@ -627,6 +773,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
       </div>
 
     </div>
+
+    <!-- COUNTDOWN -->
 
     <div class="countdown">
 
@@ -660,11 +808,17 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 
     </div>
 
+    <!-- TENUTA -->
+
     <div class="venue">
+
       <div class="venue-title">
         Tenuta Monticello
       </div>
+
     </div>
+
+    <!-- MENU -->
 
     <div class="navigation">
 
@@ -709,6 +863,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
       </button>
 
     </div>
+
+    <!-- LOCATION -->
 
     <section
       id="location"
@@ -775,6 +931,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 
     </section>
 
+    <!-- DRESS CODE -->
+
     <section
       id="dresscode"
       class="info-section"
@@ -795,6 +953,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
       </button>
 
     </section>
+
+    <!-- PRESENZA -->
 
     <section
       id="presence"
@@ -846,6 +1006,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 
     </section>
 
+    <!-- NOI DUE -->
+
     <section
       id="us"
       class="info-section"
@@ -869,6 +1031,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 
     </section>
 
+    <!-- I NOSTRI SOGNI -->
+
     <section
       id="dreams"
       class="info-section"
@@ -890,6 +1054,8 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 
     </section>
 
+    <!-- FRASE FINALE -->
+
     <div class="final-message">
       Non vediamo l’ora di vivere questo giorno insieme a voi!
     </div>
@@ -903,6 +1069,10 @@ body{margin:0;background:#f4eee4;color:#718a77;font-family:Montserrat,Arial,sans
 </main>
 
 <script>
+
+/* =========================
+   COUNTDOWN
+========================= */
 
 const target =
   new Date(
@@ -963,6 +1133,10 @@ setInterval(
   tick,
   1000
 );
+
+/* =========================
+   APERTURA BUSTA
+========================= */
 
 const opening =
   document.getElementById("opening");
@@ -1046,6 +1220,10 @@ openBtn.addEventListener(
 
   }
 );
+
+/* =========================
+   GRATTA QUI
+========================= */
 
 let scratchInitialized =
   false;
@@ -1329,9 +1507,9 @@ function initScratch(){
 
   }
 
-  /* =====================================
+  /* =========================
      PETALI + CORIANDOLI
-  ===================================== */
+========================= */
 
   function launchConfetti(){
 
@@ -1344,129 +1522,76 @@ function initScratch(){
       return;
     }
 
-    const pieces = [
-
-      /* petali rosa */
-      {
-        type:"petal",
-        color:"#e8a5b1"
-      },
-
-      {
-        type:"petal",
-        color:"#f1b9c3"
-      },
-
-      {
-        type:"petal",
-        color:"#d98e9d"
-      },
-
-      /* petali verdi */
-      {
-        type:"petal",
-        color:"#9db79e"
-      },
-
-      {
-        type:"petal",
-        color:"#789b7f"
-      },
-
-      {
-        type:"petal",
-        color:"#b7cbb7"
-      },
-
-      /* coriandoli rosa */
-      {
-        type:"confetti",
-        color:"#e8a5b1"
-      },
-
-      {
-        type:"confetti",
-        color:"#d98e9d"
-      },
-
-      /* coriandoli verdi */
-      {
-        type:"confetti",
-        color:"#789b7f"
-      },
-
-      {
-        type:"confetti",
-        color:"#9db79e"
-      },
-
-      /* piccoli fiorellini */
-      {
-        type:"flower",
-        color:"#e8a5b1",
-        symbol:"✿"
-      },
-
-      {
-        type:"flower",
-        color:"#9db79e",
-        symbol:"❀"
-      }
-
+    const colors = [
+      "#e8a5b1",
+      "#f0b7c0",
+      "#d98e9d",
+      "#789b7f",
+      "#9db79e",
+      "#b8cbb8"
     ];
 
     for(
       let i=0;
-      i<115;
+      i<150;
       i++
     ){
-
-      const selected =
-        pieces[
-          Math.floor(
-            Math.random()*
-            pieces.length
-          )
-        ];
 
       const piece =
         document.createElement(
           "span"
         );
 
-      piece.className =
-        "confetti-piece "+
-        selected.type;
+      /*
+        La maggior parte sono piccoli petali,
+        una parte coriandolini.
+      */
 
-      piece.style.backgroundColor =
-        selected.type === "flower"
-          ? "transparent"
-          : selected.color;
+      const isPetal =
+        Math.random() < .58;
+
+      piece.className =
+        "confetti-piece " +
+        (isPetal ? "petal" : "confetti");
+
+      /*
+        Ogni tanto un elemento ancora più piccolo
+        per rendere l'effetto simile al video.
+      */
 
       if(
-        selected.type === "flower"
+        Math.random() < .18
       ){
-
-        piece.textContent =
-          selected.symbol;
-
-        piece.style.color =
-          selected.color;
-
+        piece.classList.add(
+          "tiny"
+        );
       }
+
+      piece.style.backgroundColor =
+        colors[
+          Math.floor(
+            Math.random() *
+            colors.length
+          )
+        ];
+
+      /*
+        Partenza distribuita su tutta la larghezza
+        e movimento laterale casuale.
+      */
 
       const startX =
         Math.random()*100;
 
       const moveX =
-        Math.random()*420-210;
+        Math.random()*360-180;
 
       const rotate =
-        Math.random()*900-450;
+        Math.random()*720-360;
 
       const duration =
-        3.8+
-        Math.random()*2.2;
+        4.5+
+        Math.random()*2.8;
 
       piece.style.left =
         startX+"%";
@@ -1486,16 +1611,24 @@ function initScratch(){
         duration+"s"
       );
 
+      /*
+        Arrivano leggermente sfalsati,
+        non tutti insieme.
+      */
+
       piece.style.animationDelay =
-        Math.random()*.65+"s";
+        Math.random()*.9+"s";
 
-      /* varia leggermente dimensione */
+      /*
+        Piccole variazioni di scala.
+      */
+
       const scale =
-        .65+
-        Math.random()*.8;
+        .55+
+        Math.random()*.75;
 
-      piece.style.scale =
-        scale;
+      piece.style.transform =
+        "scale("+scale+")";
 
       container.appendChild(
         piece
@@ -1505,7 +1638,7 @@ function initScratch(){
         () => {
           piece.remove();
         },
-        (duration+.8)*1000
+        (duration+1.2)*1000
       );
 
     }
@@ -1534,9 +1667,11 @@ function initScratch(){
       "finished"
     );
 
-    /* LANCIO PETALI E CORIANDOLI
-       ESATTAMENTE QUANDO FINISCE
-       IL GRATTA QUI */
+    /*
+      I PETALI E I CORIANDOLI
+      PARTONO QUANDO LA DATA
+      VIENE COMPLETAMENTE SCOPERTA.
+    */
 
     launchConfetti();
 
@@ -1659,6 +1794,10 @@ function initScratch(){
 
 }
 
+/* =========================
+   MENU SEZIONI
+========================= */
+
 document
 .querySelectorAll(
   ".nav-button"
@@ -1709,6 +1848,10 @@ document
   }
 );
 
+/* =========================
+   CHIUSURA SEZIONI
+========================= */
+
 document
 .querySelectorAll(
   ".close-section"
@@ -1738,6 +1881,10 @@ document
 
   }
 );
+
+/* =========================
+   RSVP
+========================= */
 
 document
 .getElementById("rsvpForm")
