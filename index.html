@@ -85,90 +85,35 @@
 <script>
 const target = new Date("2027-09-08T00:00:00+02:00").getTime();
 function initScratch(){
-  const c=document.getElementById("scratch");
-  const box=c.getBoundingClientRect();
-  const dpr=Math.max(1,window.devicePixelRatio||1);
+  const c=document.getElementById("scratch"), box=c.getBoundingClientRect();
+  const dpr=Math.max(1,devicePixelRatio||1);
+  c.width=box.width*dpr; c.height=box.height*dpr;
+  const ctx=c.getContext("2d"); ctx.scale(dpr,dpr);
 
-  c.width=box.width*dpr;
-  c.height=box.height*dpr;
-
-  const ctx=c.getContext("2d");
-  ctx.scale(dpr,dpr);
-
-  /* BASE DORATA */
-  const gold=ctx.createLinearGradient(0,0,box.width,box.height);
-
-  gold.addColorStop(0,"#b88620");
-  gold.addColorStop(.2,"#e8cc72");
-  gold.addColorStop(.4,"#c89b32");
-  gold.addColorStop(.6,"#f2dc91");
-  gold.addColorStop(.8,"#c2942d");
-  gold.addColorStop(1,"#e2c15e");
-
-  ctx.fillStyle=gold;
+  ctx.fillStyle="#d8b65d";
   ctx.fillRect(0,0,box.width,box.height);
 
-  /* BRILLANTINI */
-  const glitter=[
-    "#fff8d6",
-    "#ffffff",
-    "#f7e5a0",
-    "#d5ad45"
-  ];
-
-  for(let i=0;i<220;i++){
-    const x=Math.random()*box.width;
-    const y=Math.random()*box.height;
-    const r=Math.random()*1.8+.4;
-
-    ctx.globalAlpha=.45+Math.random()*.55;
-    ctx.fillStyle=glitter[Math.floor(Math.random()*glitter.length)];
-
-    ctx.beginPath();
-    ctx.arc(x,y,r,0,Math.PI*2);
-    ctx.fill();
-
-    /* piccoli riflessi a stellina */
-    if(Math.random()>.72){
-      ctx.fillRect(x-2,y-.5,4,1);
-      ctx.fillRect(x-.5,y-2,1,4);
-    }
-  }
-
-  ctx.globalAlpha=1;
-
-  /* SCRITTA */
   ctx.font="600 18px Montserrat,Arial";
   ctx.fillStyle="#718a77";
   ctx.textAlign="center";
-  ctx.textBaseline="middle";
+  ctx.fillText("GRATTA QUI ✨",box.width/2,box.height/2+6);
 
-  ctx.fillText(
-    "GRATTA QUI ✨",
-    box.width/2,
-    box.height/2
-  );
-
-  let down=false;
-  let last=null;
-  let erased=0;
+  let down=false,last=null,erased=0;
 
   function pos(e){
     const r=c.getBoundingClientRect();
-
+    const p=e.touches?e.touches[0]:e;
     return {
-      x:e.clientX-r.left,
-      y:e.clientY-r.top
+      x:p.clientX-r.left,
+      y:p.clientY-r.top
     };
   }
 
   function scratch(e){
     if(!down)return;
-
     e.preventDefault();
 
     const p=pos(e);
-
     ctx.globalCompositeOperation="destination-out";
 
     ctx.beginPath();
@@ -178,7 +123,6 @@ function initScratch(){
     if(last){
       ctx.lineWidth=36;
       ctx.lineCap="round";
-
       ctx.beginPath();
       ctx.moveTo(last.x,last.y);
       ctx.lineTo(p.x,p.y);
@@ -188,19 +132,9 @@ function initScratch(){
     last=p;
     erased++;
 
-    /*
-      Quando è stata grattata abbastanza,
-      il rivestimento sparisce completamente.
-    */
     if(erased>90){
-      c.style.transition="opacity .4s ease";
       c.style.opacity="0";
-
-      setTimeout(()=>{
-        if(c.parentNode){
-          c.remove();
-        }
-      },400);
+      setTimeout(()=>c.remove(),350);
     }
   }
 
@@ -222,6 +156,7 @@ function initScratch(){
     last=null;
   });
 }
+
 
 
 </script>
