@@ -322,7 +322,6 @@ body{
 
 /* =========================
    CORIANDOLI + PETALI
-   ROSA E VERDI
 ========================= */
 
 #confetti{
@@ -345,21 +344,18 @@ body{
   animation:softFall var(--duration) ease-out forwards;
 }
 
-/* Petalo piccolo */
 .confetti-piece.petal{
   width:8px;
   height:13px;
   border-radius:75% 25% 75% 25%;
 }
 
-/* Coriandolino piccolo */
 .confetti-piece.confetti{
   width:6px;
   height:9px;
   border-radius:1px;
 }
 
-/* Alcuni elementi ancora più delicati */
 .confetti-piece.tiny{
   width:4px;
   height:6px;
@@ -464,6 +460,7 @@ body{
   letter-spacing:.14em;
   color:#8a8176;
 }
+
 /* =========================
    MENU
 ========================= */
@@ -790,15 +787,7 @@ body{
 
     </div>
 
-    <!-- TENUTA -->
-
-    <div class="venue">
-
-      <div class="venue-title">
-        Tenuta Monticello
-      </div>
-
-    </div>
+    <!-- QUI NON C'È PIÙ "TENUTA MONTICELLO" -->
 
     <!-- MENU -->
 
@@ -1524,22 +1513,12 @@ function initScratch(){
           "span"
         );
 
-      /*
-        La maggior parte sono piccoli petali,
-        una parte coriandolini.
-      */
-
       const isPetal =
         Math.random() < .58;
 
       piece.className =
         "confetti-piece " +
         (isPetal ? "petal" : "confetti");
-
-      /*
-        Ogni tanto un elemento ancora più piccolo
-        per rendere l'effetto simile al video.
-      */
 
       if(
         Math.random() < .18
@@ -1556,11 +1535,6 @@ function initScratch(){
             colors.length
           )
         ];
-
-      /*
-        Partenza distribuita su tutta la larghezza
-        e movimento laterale casuale.
-      */
 
       const startX =
         Math.random()*100;
@@ -1593,17 +1567,8 @@ function initScratch(){
         duration+"s"
       );
 
-      /*
-        Arrivano leggermente sfalsati,
-        non tutti insieme.
-      */
-
       piece.style.animationDelay =
         Math.random()*.9+"s";
-
-      /*
-        Piccole variazioni di scala.
-      */
 
       const scale =
         .55+
@@ -1648,12 +1613,6 @@ function initScratch(){
     canvas.classList.add(
       "finished"
     );
-
-    /*
-      I PETALI E I CORIANDOLI
-      PARTONO QUANDO LA DATA
-      VIENE COMPLETAMENTE SCOPERTA.
-    */
 
     launchConfetti();
 
