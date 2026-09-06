@@ -9,18 +9,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
 
 *{
-  box-sizing:border-box;
+  box-sizing:border-box
 }
 
 html{
-  scroll-behavior:smooth;
+  scroll-behavior:smooth
 }
 
 body{
   margin:0;
   background:#f4eee4;
   color:#718a77;
-  font-family:Montserrat,Arial,sans-serif;
+  font-family:Montserrat,Arial,sans-serif
 }
 
 /* ================================
@@ -36,19 +36,19 @@ body{
   justify-content:center;
   overflow:hidden;
   background:#f4eee4;
-  transition:opacity .9s ease,visibility .9s ease;
+  transition:opacity .9s ease,visibility .9s ease
 }
 
 #opening.finished{
   opacity:0;
   visibility:hidden;
-  pointer-events:none;
+  pointer-events:none
 }
 
 .envelope-wrap{
   position:relative;
   width:min(92vw,520px);
-  height:min(92vh,925px);
+  height:min(92vh,925px)
 }
 
 .envelope{
@@ -58,12 +58,12 @@ body{
   height:100%;
   object-fit:contain;
   z-index:10;
-  transition:opacity .8s ease,transform .8s ease;
+  transition:opacity .8s ease,transform .8s ease
 }
 
 .envelope.hide{
   opacity:0;
-  transform:scale(.97) translateY(2%);
+  transform:scale(.97) translateY(2%)
 }
 
 /* ================================
@@ -79,11 +79,11 @@ body{
   z-index:60;
   pointer-events:none;
   opacity:0;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%)
 }
 
 .seal-effect.active{
-  opacity:1;
+  opacity:1
 }
 
 .seal-piece{
@@ -102,52 +102,49 @@ body{
   box-shadow:
     inset 0 2px 3px #ffffff66,
     0 3px 7px #0002;
-  opacity:0;
+  opacity:0
+}
+
+.seal-piece.left,
+.seal-piece.right{
+  transform:translate(-50%,-50%)
 }
 
 .seal-effect.active .seal-piece{
-  opacity:1;
-}
-
-.seal-piece.left{
-  transform:translate(-50%,-50%);
-}
-
-.seal-piece.right{
-  transform:translate(-50%,-50%);
+  opacity:1
 }
 
 .seal-effect.break .seal-piece.left{
-  animation:sealLeft .75s ease forwards;
+  animation:sealLeft .75s ease forwards
 }
 
 .seal-effect.break .seal-piece.right{
-  animation:sealRight .75s ease forwards;
+  animation:sealRight .75s ease forwards
 }
 
 @keyframes sealLeft{
   0%{
-    transform:translate(-50%,-50%) rotate(0) scale(1);
+    transform:translate(-50%,-50%) rotate(0) scale(1)
   }
   35%{
-    transform:translate(-95%,-55%) rotate(-12deg) scale(1.02);
+    transform:translate(-95%,-55%) rotate(-12deg) scale(1.02)
   }
   100%{
     transform:translate(-180%,-80%) rotate(-28deg) scale(.55);
-    opacity:0;
+    opacity:0
   }
 }
 
 @keyframes sealRight{
   0%{
-    transform:translate(-50%,-50%) rotate(0) scale(1);
+    transform:translate(-50%,-50%) rotate(0) scale(1)
   }
   35%{
-    transform:translate(-5%,-45%) rotate(12deg) scale(1.02);
+    transform:translate(-5%,-45%) rotate(12deg) scale(1.02)
   }
   100%{
     transform:translate(80%,-5%) rotate(28deg) scale(.55);
-    opacity:0;
+    opacity:0
   }
 }
 
@@ -160,37 +157,37 @@ body{
   height:48px;
   background:#8e6669;
   opacity:0;
-  transform-origin:center bottom;
+  transform-origin:center bottom
 }
 
 .crack.c1{
-  transform:translate(-50%,-50%) rotate(-25deg);
+  transform:translate(-50%,-50%) rotate(-25deg)
 }
 
 .crack.c2{
-  transform:translate(-50%,-50%) rotate(18deg);
+  transform:translate(-50%,-50%) rotate(18deg)
 }
 
 .crack.c3{
-  transform:translate(-50%,-50%) rotate(60deg);
+  transform:translate(-50%,-50%) rotate(60deg)
 }
 
 .seal-effect.break .crack{
-  animation:crackShow .45s ease forwards;
+  animation:crackShow .45s ease forwards
 }
 
 @keyframes crackShow{
   0%{
     opacity:0;
-    height:0;
+    height:0
   }
   45%{
     opacity:.8;
-    height:48px;
+    height:48px
   }
   100%{
     opacity:0;
-    height:55px;
+    height:55px
   }
 }
 
@@ -208,12 +205,12 @@ body{
   transform:translate(-50%,48%) scale(.94);
   transition:
     transform 1.25s cubic-bezier(.2,.8,.2,1),
-    opacity .7s ease;
+    opacity .7s ease
 }
 
 .letter.show{
   opacity:1;
-  transform:translate(-50%,0) scale(1);
+  transform:translate(-50%,0) scale(1)
 }
 
 /* ================================
@@ -226,29 +223,22 @@ body{
   top:66%;
   transform:translate(-50%,-50%);
   z-index:80;
-
   border:0;
   border-radius:999px;
   padding:13px 24px;
-
   background:#dca4aa;
-  color:#fff;
-
+  color:white;
   letter-spacing:.12em;
   font-weight:600;
-
   cursor:pointer;
   box-shadow:0 6px 18px #0002;
-
-  transition:
-    opacity .4s ease,
-    transform .4s ease;
+  transition:opacity .4s ease,transform .4s ease
 }
 
 .open-btn.hidden{
   opacity:0;
   pointer-events:none;
-  transform:translate(-50%,-50%) scale(.9);
+  transform:translate(-50%,-50%) scale(.9)
 }
 
 /* ================================
@@ -259,17 +249,17 @@ body{
   min-height:100svh;
   opacity:0;
   transition:opacity .6s ease;
-  background:#f4eee4;
+  background:#f4eee4
 }
 
 #site.show{
-  opacity:1;
+  opacity:1
 }
 
 .page{
   width:min(100%,520px);
   margin:auto;
-  padding:20px 14px 70px;
+  padding:20px 14px 70px
 }
 
 /* ================================
@@ -281,13 +271,13 @@ body{
   width:100%;
   overflow:hidden;
   border-radius:2px;
-  box-shadow:0 10px 35px #00000012;
+  box-shadow:0 10px 35px #00000012
 }
 
 .ticket img{
   display:block;
   width:100%;
-  height:auto;
+  height:auto
 }
 
 /* ================================
@@ -302,52 +292,44 @@ body{
   height:12.5%;
   overflow:hidden;
   border-radius:7px;
-  z-index:20;
+  z-index:20
 }
 
 .reveal{
   position:absolute;
   inset:0;
   z-index:1;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
   background:#f5eadc;
-
   font-family:"Cormorant Garamond",serif;
   font-size:clamp(18px,5vw,29px);
   font-weight:600;
   letter-spacing:.08em;
-
-  color:#718a77;
+  color:#718a77
 }
 
 #scratch{
   position:absolute;
   inset:0;
   z-index:2;
-
   width:100%;
   height:100%;
-
   display:block;
   touch-action:none;
   cursor:crosshair;
-
-  transition:opacity .45s ease;
+  transition:opacity .45s ease
 }
 
 #scratch.finished{
   opacity:0;
-  pointer-events:none;
+  pointer-events:none
 }
 
 /* ================================
-   CORIANDOLI / FIORI
+   CORIANDOLI E FIORI
 ================================ */
 
 #confetti{
@@ -355,32 +337,24 @@ body{
   inset:0;
   width:100%;
   height:100%;
-  z-index:9999;
+  z-index:99999;
   pointer-events:none;
-  overflow:hidden;
+  overflow:hidden
 }
 
 .confetti-piece{
   position:absolute;
-  top:-40px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:auto;
-  height:auto;
-
+  top:-50px;
+  display:block;
   opacity:0;
-
+  line-height:1;
   font-family:"Cormorant Garamond",serif;
   font-weight:600;
-
   animation:
     confettiFall
-    3.8s
+    4s
     cubic-bezier(.15,.65,.25,1)
-    forwards;
+    forwards
 }
 
 @keyframes confettiFall{
@@ -390,11 +364,11 @@ body{
     transform:
       translate3d(0,-40px,0)
       rotate(0deg)
-      scale(.5);
+      scale(.5)
   }
 
   8%{
-    opacity:1;
+    opacity:1
   }
 
   35%{
@@ -405,7 +379,7 @@ body{
         0
       )
       rotate(var(--rotate))
-      scale(1);
+      scale(1)
   }
 
   70%{
@@ -416,7 +390,7 @@ body{
         0
       )
       rotate(calc(var(--rotate) * 1.5))
-      scale(.9);
+      scale(.9)
   }
 
   100%{
@@ -428,7 +402,7 @@ body{
         0
       )
       rotate(var(--rotate))
-      scale(.75);
+      scale(.75)
   }
 }
 
@@ -438,44 +412,42 @@ body{
 
 .countdown{
   margin:15px 0 0;
-  text-align:center;
+  text-align:center
 }
 
 .countdown-title{
   margin-bottom:10px;
-
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
   letter-spacing:.12em;
-  color:#718a77;
+  color:#718a77
 }
 
 .digits{
   display:flex;
   justify-content:center;
   gap:8px;
-  flex-wrap:wrap;
+  flex-wrap:wrap
 }
 
 .unit{
   min-width:68px;
   padding:9px 7px;
-
   background:#f5eadc;
   border:1px solid #d7cbbb;
-  border-radius:8px;
+  border-radius:8px
 }
 
 .num{
   font-size:25px;
   font-weight:600;
-  color:#718a77;
+  color:#718a77
 }
 
 .lab{
   font-size:9px;
   letter-spacing:.14em;
-  color:#8a8176;
+  color:#8a8176
 }
 
 /* ================================
@@ -486,33 +458,26 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:25px;
+  margin-top:25px
 }
 
 .nav-button{
   padding:14px 8px;
-
   border:1px solid #d7cbbb;
   border-radius:10px;
-
   background:#fffaf3;
   color:#718a77;
-
   font-family:Montserrat,Arial,sans-serif;
   font-size:10px;
   font-weight:600;
   letter-spacing:.08em;
-
   cursor:pointer;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+  transition:transform .2s ease,box-shadow .2s ease
 }
 
 .nav-button:hover{
   transform:translateY(-2px);
-  box-shadow:0 6px 15px #00000012;
+  box-shadow:0 6px 15px #00000012
 }
 
 /* ================================
@@ -521,71 +486,56 @@ body{
 
 .info-section{
   display:none;
-
   margin-top:15px;
   padding:22px 17px;
-
   background:#f5eadc;
   border:1px solid #d7cbbb;
   border-radius:10px;
-
-  animation:sectionIn .35s ease;
+  animation:sectionIn .35s ease
 }
 
 .info-section.open{
-  display:block;
+  display:block
 }
 
 @keyframes sectionIn{
-
   from{
     opacity:0;
-    transform:translateY(8px);
+    transform:translateY(8px)
   }
-
   to{
     opacity:1;
-    transform:translateY(0);
+    transform:translateY(0)
   }
-
 }
 
 .info-section h2{
   margin:0 0 12px;
-
   text-align:center;
-
   font-family:"Cormorant Garamond",serif;
   font-size:28px;
   letter-spacing:.1em;
-
-  color:#718a77;
+  color:#718a77
 }
 
 .info-section p{
   line-height:1.7;
   text-align:center;
-  color:#746f67;
+  color:#746f67
 }
 
 .close-section{
   display:block;
-
   margin:18px auto 0;
-
   padding:9px 17px;
-
   border:0;
   border-radius:999px;
-
   background:#dca4aa;
   color:#fff;
-
   font-size:9px;
   font-weight:600;
   letter-spacing:.08em;
-
-  cursor:pointer;
+  cursor:pointer
 }
 
 /* ================================
@@ -596,18 +546,16 @@ body{
   display:block;
   width:100%;
   margin:0 0 17px;
-
   border-radius:8px;
-  box-shadow:0 6px 18px #00000014;
+  box-shadow:0 6px 18px #00000014
 }
 
 .location-address{
   font-family:"Cormorant Garamond",serif;
   font-size:21px;
   line-height:1.4;
-
   text-align:center;
-  color:#718a77;
+  color:#718a77
 }
 
 .location-buttons{
@@ -615,31 +563,27 @@ body{
   justify-content:center;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:15px;
+  margin-top:15px
 }
 
 .map-link,
 .site-link{
   display:inline-block;
-
   padding:11px 16px;
-
   border-radius:999px;
-
-  color:#fff;
+  color:white;
   text-decoration:none;
-
   font-size:9px;
   font-weight:600;
-  letter-spacing:.08em;
+  letter-spacing:.08em
 }
 
 .map-link{
-  background:#718a77;
+  background:#718a77
 }
 
 .site-link{
-  background:#dca4aa;
+  background:#dca4aa
 }
 
 /* ================================
@@ -648,37 +592,29 @@ body{
 
 .rsvp{
   display:grid;
-  gap:10px;
+  gap:10px
 }
 
 .rsvp input,
 .rsvp textarea{
   width:100%;
-
   padding:12px;
-
   border:1px solid #d7cbbb;
   border-radius:7px;
-
   background:#fffaf3;
-
   font:inherit;
-  color:#746f67;
+  color:#746f67
 }
 
 .rsvp button{
   padding:13px;
-
   border:0;
   border-radius:999px;
-
   background:#dca4aa;
-  color:#fff;
-
+  color:white;
   font-weight:600;
   letter-spacing:.08em;
-
-  cursor:pointer;
+  cursor:pointer
 }
 
 /* ================================
@@ -688,28 +624,21 @@ body{
 .final-message{
   margin-top:30px;
   padding:5px 10px 0;
-
   text-align:center;
-
   font-family:"Cormorant Garamond",serif;
   font-size:23px;
   line-height:1.35;
-
   font-weight:600;
   letter-spacing:.04em;
-
-  color:#718a77;
+  color:#718a77
 }
 
 .footer{
   margin-top:20px;
-
   text-align:center;
-
   font-family:"Cormorant Garamond",serif;
   font-size:17px;
-
-  color:#718a77;
+  color:#718a77
 }
 
 /* ================================
@@ -720,17 +649,16 @@ body{
 
   .page{
     padding-left:10px;
-    padding-right:10px;
+    padding-right:10px
   }
 
   .navigation{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .open-btn{
-    top:68%;
+    top:68%
   }
-
 }
 
 </style>
@@ -738,6 +666,7 @@ body{
 
 <body>
 
+<!-- CONTENITORE CORIANDOLI -->
 <div id="confetti"></div>
 
 <!-- ================================
@@ -852,10 +781,8 @@ body{
     </div>
 
 
-    <!--
-      QUI NON C'È PIÙ LA SECONDA SCRITTA
-      "TENUTA MONTICELLO" SOTTO IL COUNTDOWN
-    -->
+    <!-- QUI È STATA TOLTA LA SECONDA
+         SCRITTA "TENUTA MONTICELLO" -->
 
 
     <!-- PULSANTI -->
@@ -1216,46 +1143,38 @@ openBtn.addEventListener(
 
     setTimeout(
       function(){
-
         sealEffect.classList.add(
           "active"
         );
-
       },
-      300
+      350
     );
 
     setTimeout(
       function(){
-
         sealEffect.classList.add(
           "break"
         );
-
       },
-      450
+      430
     );
 
     setTimeout(
       function(){
-
         envelope.classList.add(
           "hide"
         );
-
       },
-      800
+      850
     );
 
     setTimeout(
       function(){
-
         letter.classList.add(
           "show"
         );
-
       },
-      950
+      1000
     );
 
     setTimeout(
@@ -1523,7 +1442,7 @@ function initScratch(){
   }
 
 
-  function eraseCircle(
+  function erase(
     x,
     y
   ){
@@ -1581,7 +1500,7 @@ function initScratch(){
 
 
   /* ================================
-     CORIANDOLI
+     CORIANDOLI E FIORI
   ================================= */
 
   function launchConfetti(){
@@ -1598,15 +1517,16 @@ function initScratch(){
     const symbols=[
       "✿",
       "❀",
+      "❁",
       "✦",
       "✧",
-      "❁",
+      "❋",
       "•"
     ];
 
     for(
       let i=0;
-      i<90;
+      i<100;
       i++
     ){
 
@@ -1635,26 +1555,26 @@ function initScratch(){
       piece.style.fontSize =
         (
           10+
-          Math.random()*15
+          Math.random()*18
         )+"px";
 
       piece.style.setProperty(
         "--moveX",
         (
-          Math.random()*300-150
+          Math.random()*360-180
         )+"px"
       );
 
       piece.style.setProperty(
         "--rotate",
         (
-          Math.random()*900-450
+          Math.random()*1000-500
         )+"deg"
       );
 
       piece.style.animationDelay =
         (
-          Math.random()*.5
+          Math.random()*.55
         )+"s";
 
       container.appendChild(
@@ -1665,7 +1585,7 @@ function initScratch(){
         function(){
           piece.remove();
         },
-        4000
+        4500
       );
 
     }
@@ -1673,7 +1593,7 @@ function initScratch(){
   }
 
 
-  function completeScratch(){
+  function complete(){
 
     if(finished){
       return;
@@ -1693,11 +1613,7 @@ function initScratch(){
       "finished"
     );
 
-    /*
-      APPENA VIENE SCOPERTO
-      IL BIGLIETTO PARTONO
-      CORIANDOLI E FIORI
-    */
+    /* QUI PARTONO I CORIANDOLI */
 
     launchConfetti();
 
@@ -1729,7 +1645,7 @@ function initScratch(){
     const p =
       position(e);
 
-    eraseCircle(
+    erase(
       p.x,
       p.y
     );
@@ -1752,7 +1668,7 @@ function initScratch(){
       strokes>=75
     ){
 
-      completeScratch();
+      complete();
 
     }
 
@@ -1769,7 +1685,7 @@ function initScratch(){
       last =
         position(e);
 
-      eraseCircle(
+      erase(
         last.x,
         last.y
       );
